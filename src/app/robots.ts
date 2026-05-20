@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/"],
       },
     ],
-    sitemap: "https://pearlgate.io/sitemap.xml",
+    sitemap: "https://pearlgatesourcing.com/sitemap.xml",
   };
 }

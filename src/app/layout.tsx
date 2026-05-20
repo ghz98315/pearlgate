@@ -34,11 +34,11 @@ export const metadata: Metadata = {
     "Foshan aluminum",
     "Pearl River Delta manufacturing",
   ],
-  metadataBase: new URL("https://pearlgate.io"),
+  metadataBase: new URL("https://pearlgatesourcing.com"),
   openGraph: {
     title: "PearlGate — Your Sourcing Partner in Guangdong",
     description: "30+ verified factories across Guangdong. Hardware, industrial parts, and workwear. Browse the database or let us source for you.",
-    url: "https://pearlgate.io",
+    url: "https://pearlgatesourcing.com",
     siteName: "PearlGate",
     locale: "en_US",
     type: "website",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://pearlgate.io",
+    canonical: "https://pearlgatesourcing.com",
   },
 };
 
