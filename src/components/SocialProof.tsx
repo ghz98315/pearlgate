@@ -1,22 +1,33 @@
-export default function SocialProof() {
-  const countries = [
-    { name: "United States", flag: "🇺🇸" },
-    { name: "United Kingdom", flag: "🇬🇧" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "Canada", flag: "🇨🇦" },
-  ];
+import Image from "next/image";
 
+const countries = [
+  { name: "United States", code: "us" },
+  { name: "United Kingdom", code: "gb" },
+  { name: "Germany", code: "de" },
+  { name: "Australia", code: "au" },
+  { name: "Canada", code: "ca" },
+  { name: "Netherlands", code: "nl" },
+];
+
+export default function SocialProof() {
   return (
-    <section className="py-8 bg-gray-50 border-y border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-wrap items-center justify-center gap-4 text-base">
-        <span className="font-semibold text-navy-900">Trusted by buyers from</span>
-        <div className="flex items-center gap-3">
+    <section className="py-10 bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+        <p className="text-sm text-text-secondary mb-6">
+          Trusted by buyers from around the world
+        </p>
+        <div className="flex items-center justify-center gap-8 flex-wrap">
           {countries.map((c) => (
-            <span key={c.name} className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-full px-4 py-2 text-sm shadow-sm">
-              <span className="text-lg">{c.flag}</span>
-              {c.name}
-            </span>
+            <div key={c.code} className="flex items-center gap-2.5">
+              <Image
+                src={`https://flagcdn.com/w40/${c.code}.png`}
+                alt={c.name}
+                width={28}
+                height={20}
+                className="rounded-sm shadow-sm"
+              />
+              <span className="text-sm font-medium text-navy-900">{c.name}</span>
+            </div>
           ))}
         </div>
       </div>
