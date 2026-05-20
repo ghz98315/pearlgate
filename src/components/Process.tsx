@@ -7,26 +7,26 @@ const steps = [
   {
     icon: ClipboardList,
     step: "01",
-    title: "Tell Me What You Need",
-    description: "Submit a quick form with your product details, quantity, and budget.",
+    title: "Tell us what you need",
+    description: "Submit a quick form with your product details, quantity, and target price.",
   },
   {
     icon: Search,
     step: "02",
-    title: "I Find the Best Factories",
-    description: "Within 48 hours, you get quotes from 3+ verified suppliers with my recommendation.",
+    title: "We match you with verified factories",
+    description: "Within 48 hours, you get 2-3 verified factory options with comparative quotes.",
   },
   {
     icon: CheckCircle,
     step: "03",
-    title: "You Choose, I Handle the Rest",
-    description: "I manage the order, track production, and inspect quality before shipping.",
+    title: "You choose, we connect you",
+    description: "Pick the best fit. We introduce you directly to the factory.",
   },
   {
     icon: Ship,
     step: "04",
-    title: "Products Arrive at Your Door",
-    description: "Shipping arranged, customs docs prepared, delivered to your warehouse.",
+    title: "Ongoing support if you need it",
+    description: "QC inspection, production tracking, and logistics help — available when you need it.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Process() {
             How it works
           </h2>
           <p className="mt-4 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            Four simple steps from inquiry to delivery.
+            From inquiry to verified factory match in 48 hours.
           </p>
         </FadeIn>
 

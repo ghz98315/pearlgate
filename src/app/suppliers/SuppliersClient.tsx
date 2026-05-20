@@ -6,7 +6,7 @@ import Link from "next/link";
 import ChecklistDownload from "@/components/ChecklistDownload";
 import SupplierCompare from "@/components/SupplierCompare";
 import { type Supplier } from "@/lib/suppliers";
-import { MapPin, Star, Lock, Shield, Factory } from "lucide-react";
+import { MapPin, Shield, Factory } from "lucide-react";
 
 export default function SuppliersClient({ suppliers }: { suppliers: Supplier[] }) {
   const clusters = ["All", ...Array.from(new Set(suppliers.map((s) => s.cluster)))];
@@ -52,47 +52,27 @@ export default function SuppliersClient({ suppliers }: { suppliers: Supplier[] }
             </button>
           ))}
         </div>
+
         {/* Update notice */}
         <div className="mt-10 p-4 rounded-xl bg-navy-900/5 border border-navy-900/10 flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse shrink-0" />
           <p className="text-sm text-text-secondary">
             <span className="font-medium text-text-primary">Database growing monthly.</span>{" "}
-            We add 5-10 new verified factories every month. Subscribe to get notified of new additions.
+            We add new verified factories every month. Subscribe to get notified of new additions.
           </p>
         </div>
 
         {/* Grid */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {filtered.map((supplier) => (
-            <div key={supplier.id} className="relative group">
-              {supplier.isFree ? (
-                <Link href={`/suppliers/${supplier.id}`} className="block">
-                  <SupplierCardContent supplier={supplier} />
-                </Link>
-              ) : (
-                <div className="relative">
-                  <SupplierCardContent supplier={supplier} locked />
-                  <div className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-sm flex flex-col items-center justify-center border border-border">
-                    <div className="w-14 h-14 rounded-full bg-navy-900/10 flex items-center justify-center mb-4">
-                      <Lock size={24} className="text-navy-700" />
-                    </div>
-                    <p className="font-semibold text-lg">Unlock Full Profile</p>
-                    <p className="text-text-secondary text-sm mt-1">Subscribe to access all supplier details</p>
-                    <Link
-                      href="/pricing"
-                      className="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2.5 rounded-lg text-sm transition-all hover:-translate-y-0.5"
-                    >
-                      View Plans
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
+            <Link key={supplier.id} href={`/suppliers/${supplier.id}`} className="block group">
+              <SupplierCardContent supplier={supplier} />
+            </Link>
           ))}
         </div>
 
         {/* Compare Tool */}
-        <SupplierCompare suppliers={suppliers.filter((s) => s.isFree)} />
+        <SupplierCompare suppliers={suppliers} />
 
         {/* Checklist Download */}
         <div className="mt-12">
@@ -102,16 +82,16 @@ export default function SuppliersClient({ suppliers }: { suppliers: Supplier[] }
         {/* Bottom CTA */}
         <div className="mt-16 text-center p-10 rounded-2xl bg-gray-50 border border-border">
           <h3 className="text-xl font-bold font-[family-name:var(--font-serif)]">
-            Want access to all {suppliers.length} verified factories?
+            Need help choosing the right factory?
           </h3>
           <p className="mt-2 text-text-secondary">
-            Pro members get full contact details, certifications, and unlimited inquiries.
+            Submit an inquiry and we&apos;ll match you with 2-3 verified options within 48 hours. Free.
           </p>
           <Link
-            href="/pricing"
+            href="/quote"
             className="inline-block mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all hover:-translate-y-0.5"
           >
-            See Pricing Plans
+            Submit an Inquiry
           </Link>
         </div>
       </div>
@@ -119,15 +99,15 @@ export default function SuppliersClient({ suppliers }: { suppliers: Supplier[] }
   );
 }
 
-function SupplierCardContent({ supplier, locked = false }: { supplier: Supplier; locked?: boolean }) {
+function SupplierCardContent({ supplier }: { supplier: Supplier }) {
   return (
-    <div className={`rounded-2xl overflow-hidden border border-border transition-all ${!locked ? "hover:shadow-lg hover:-translate-y-1" : ""}`}>
+    <div className="rounded-2xl overflow-hidden border border-border transition-all hover:shadow-lg hover:-translate-y-1">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={supplier.images[0]}
           alt={supplier.name}
           fill
-          className={`object-cover ${locked ? "opacity-50" : "transition-transform duration-500 group-hover:scale-105"}`}
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 to-transparent" />
         <div className="absolute bottom-4 left-5 right-5">
@@ -148,10 +128,8 @@ function SupplierCardContent({ supplier, locked = false }: { supplier: Supplier;
           <span className="text-xs font-medium bg-navy-900/5 text-navy-700 px-2.5 py-1 rounded-full">
             {supplier.cluster}
           </span>
-          <span className="flex items-center gap-0.5 text-sm">
-            <Star size={14} className="text-orange-500 fill-orange-500" />
-            <span className="font-medium">{supplier.qualityRating}</span>
-            <span className="text-text-secondary">/5</span>
+          <span className="flex items-center gap-1 text-[10px] text-teal-600 font-medium">
+            <Shield size={10} /> Verified
           </span>
         </div>
 

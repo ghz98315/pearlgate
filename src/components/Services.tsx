@@ -1,23 +1,23 @@
 "use client";
 
-import { Search, ClipboardCheck, Package } from "lucide-react";
+import { Search, ClipboardCheck, Database } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "./Animations";
 
 const services = [
   {
+    icon: Database,
+    title: "Verified Factory Database",
+    description: "Browse 20+ factories personally visited and vetted. See MOQ, certifications, lead times, and specialties — all in one place.",
+  },
+  {
     icon: Search,
-    title: "Supplier Sourcing",
-    description: "I find and vet 3+ factories for your product, with comparative quotes ready in 48 hours.",
+    title: "Free Factory Matching",
+    description: "Tell us what you need. We'll match you with 2-3 verified factories and send comparative quotes within 48 hours.",
   },
   {
     icon: ClipboardCheck,
-    title: "Quality Control",
-    description: "On-site inspection before shipping — photos, video, and a detailed report so you know exactly what you're getting.",
-  },
-  {
-    icon: Package,
-    title: "Order Management",
-    description: "I handle factory communication, production tracking, and logistics coordination from order to delivery.",
+    title: "Optional QC Support",
+    description: "Need on-site inspection before shipping? We offer quality control visits with photos and detailed reports.",
   },
 ];
 
@@ -27,10 +27,10 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <FadeIn>
           <h2 className="text-3xl lg:text-4xl font-bold text-center font-[family-name:var(--font-serif)]">
-            How I help
+            What we offer
           </h2>
           <p className="mt-4 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            Three core services to take the stress out of sourcing from China.
+            Everything you need to find and connect with the right Chinese factory.
           </p>
         </FadeIn>
 

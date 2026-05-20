@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "./Animations";
 
 const faqs = [
-  { question: "Is the first quote really free?", answer: "Yes. No commitment, no hidden fees. You only pay when you decide to place an order." },
-  { question: "What's the minimum order?", answer: "Depends on the product, but I work with factories that accept orders as low as $500." },
-  { question: "How do I pay? Is it safe?", answer: "PayPal or bank transfer. PayPal gives you 180-day buyer protection, so your money is safe." },
-  { question: "What if quality doesn't match?", answer: "I inspect every order before shipping. If something's wrong, I negotiate with the factory before it leaves China." },
-  { question: "How long does the whole process take?", answer: "Typically 2-4 weeks from quote to delivery, depending on product complexity and shipping method." },
-  { question: "Do you only source from Guangdong?", answer: "These are my core areas with the deepest factory relationships. For other regions or products, I can still help — just ask." },
-  { question: "Do you only source the categories listed?", answer: "Those are my strongest areas, but I can source most manufactured products from the Pearl River Delta. Just ask." },
+  { question: "Is the inquiry really free?", answer: "Yes. Completely free, no strings attached. You submit your requirements, we match you with verified factories — no payment needed at any point." },
+  { question: "How is this different from Alibaba?", answer: "On Alibaba, you're sorting through thousands of unverified listings yourself. Here, every factory has been personally visited and vetted by someone with 10+ years of factory management experience. We do the filtering for you and only show factories we'd trust with our own orders." },
+  { question: "What's the minimum order?", answer: "Depends on the product, but we work with factories that accept orders as low as $500." },
+  { question: "What if quality doesn't match?", answer: "We inspect every order before shipping. If something's wrong, we negotiate with the factory before it leaves China." },
+  { question: "How long does the matching process take?", answer: "Typically 48 hours from inquiry to receiving 2-3 verified factory options with comparative quotes." },
+  { question: "Do you only source from Guangdong?", answer: "These are our core areas with the deepest factory relationships. For other regions or products, we can still help — just ask." },
+  { question: "What categories do you cover?", answer: "Hardware tools and molds are our strongest areas. We're expanding coverage — submit an inquiry and we'll let you know if we can help." },
 ];
 
 export default function FAQ() {

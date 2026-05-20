@@ -36,13 +36,13 @@ export default function Trust() {
                 &ldquo;I&apos;ve been inside hundreds of factories — now I go in for you.&rdquo;
               </h2>
               <p className="mt-4 text-text-secondary leading-relaxed">
-                I spent 8+ years managing factory operations at BYD — one of China&apos;s largest
+                I spent 10+ years managing factory operations at BYD — one of China&apos;s largest
                 manufacturers. Now I help overseas businesses source directly from Guangdong&apos;s
                 best factories with confidence.
               </p>
               <div className="mt-6 flex flex-wrap gap-3 text-sm text-text-secondary">
-                <span className="bg-white px-3 py-1.5 rounded-full border border-border"><Counter target={8} suffix="+" /> years in manufacturing</span>
-                <span className="bg-white px-3 py-1.5 rounded-full border border-border"><Counter target={10} suffix="+" /> verified factory partners</span>
+                <span className="bg-white px-3 py-1.5 rounded-full border border-border"><Counter target={10} suffix="+" /> years in manufacturing</span>
+                <span className="bg-white px-3 py-1.5 rounded-full border border-border"><Counter target={20} suffix="+" /> verified factory partners</span>
                 <span className="bg-white px-3 py-1.5 rounded-full border border-border">Guangdong-based</span>
               </div>
               <div className="mt-6 flex items-center gap-4">

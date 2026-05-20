@@ -2,7 +2,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import PainPoints from "@/components/PainPoints";
 import DatabasePreview from "@/components/DatabasePreview";
-import DualProduct from "@/components/DualProduct";
 import StatsBar from "@/components/StatsBar";
 import Services from "@/components/Services";
 import WhyGuangdong from "@/components/WhyGuangdong";
@@ -20,7 +19,6 @@ export default function Home() {
       <main>
         <Hero />
         <PainPoints />
-        <DualProduct />
         <StatsBar />
         <DatabasePreview />
         <Services />

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getAllSuppliers, getSupplierById } from "@/lib/suppliers";
-import { MapPin, Star, Calendar, Users, Clock, Ship, ArrowLeft, Shield, CheckCircle, Mail, Lock } from "lucide-react";
+import { MapPin, Star, Calendar, Users, Clock, Ship, ArrowLeft, Shield, CheckCircle, Mail } from "lucide-react";
 
 export async function generateStaticParams() {
   const all = await getAllSuppliers();
@@ -25,7 +25,6 @@ export default async function SupplierDetailPage({ params }: { params: Promise<{
   const { id } = await params;
   const supplier = await getSupplierById(id);
   if (!supplier) notFound();
-  if (!supplier.isFree) redirect("/suppliers");
 
   const allSuppliers = await getAllSuppliers();
 
@@ -143,41 +142,20 @@ export default async function SupplierDetailPage({ params }: { params: Promise<{
             </div>
           </section>
 
-          {/* Contact */}
-          <section className="mt-10">
-            <h2 className="text-xl font-bold font-[family-name:var(--font-serif)]">Contact</h2>
-            <div className="mt-4 p-6 rounded-xl bg-gray-50 border border-border">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <p className="text-xs text-text-secondary">Contact Person</p>
-                  <p className="font-medium mt-1">{supplier.contactName}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-text-secondary">Email</p>
-                  <p className="font-medium mt-1">{supplier.contactEmail}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-text-secondary">WeChat</p>
-                  <p className="font-medium mt-1">{supplier.contactWechat}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* CTA */}
+          {/* Contact CTA (replaces direct contact info) */}
           <section className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-navy-900 to-navy-800 text-center">
             <h3 className="text-xl font-bold text-white font-[family-name:var(--font-serif)]">
-              Interested in this supplier?
+              Interested in this factory?
             </h3>
             <p className="mt-2 text-white/70">
-              I can help you get quotes, arrange samples, and manage the order.
+              Submit an inquiry and we&apos;ll connect you directly with this supplier within 48 hours.
             </p>
             <Link
-              href="/quote"
+              href={`/quote?factory=${encodeURIComponent(supplier.name)}&category=${encodeURIComponent(supplier.cluster)}`}
               className="inline-flex items-center gap-2 mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all hover:-translate-y-0.5"
             >
               <Mail size={18} />
-              Send Inquiry
+              Submit an Inquiry
             </Link>
           </section>
 
@@ -189,27 +167,21 @@ export default async function SupplierDetailPage({ params }: { params: Promise<{
                 .filter((s) => s.id !== supplier.id)
                 .slice(0, 2)
                 .map((s) => (
-                  <div key={s.id} className="relative rounded-xl overflow-hidden border border-border">
-                    <div className="relative h-32">
-                      <Image src={s.images[0]} alt={s.name} fill className={`object-cover ${!s.isFree ? "opacity-50" : ""}`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 to-transparent" />
-                      <div className="absolute bottom-3 left-4">
-                        <p className="text-white font-semibold text-sm">{s.name}</p>
-                        <p className="text-white/60 text-xs flex items-center gap-1"><MapPin size={10} />{s.city}</p>
+                  <Link key={s.id} href={`/suppliers/${s.id}`} className="block group">
+                    <div className="rounded-xl overflow-hidden border border-border hover:shadow-md transition-all">
+                      <div className="relative h-32">
+                        <Image src={s.images[0]} alt={s.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/70 to-transparent" />
+                        <div className="absolute bottom-3 left-4">
+                          <p className="text-white font-semibold text-sm">{s.name}</p>
+                          <p className="text-white/60 text-xs flex items-center gap-1"><MapPin size={10} />{s.city}</p>
+                        </div>
+                      </div>
+                      <div className="p-3 text-center text-sm text-orange-500 font-medium">
+                        View Profile →
                       </div>
                     </div>
-                    {s.isFree ? (
-                      <Link href={`/suppliers/${s.id}`} className="block p-3 text-center text-sm text-orange-500 font-medium hover:text-orange-600">
-                        View Profile →
-                      </Link>
-                    ) : (
-                      <div className="p-3 text-center">
-                        <Link href="/pricing" className="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-navy-700">
-                          <Lock size={12} /> Subscribe to unlock
-                        </Link>
-                      </div>
-                    )}
-                  </div>
+                  </Link>
                 ))}
             </div>
           </section>

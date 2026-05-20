@@ -3,10 +3,10 @@
 import { FadeIn } from "./Animations";
 
 const stats = [
-  { value: "30", suffix: "+", label: "Verified Factories", sub: "Personally checked, not scraped" },
-  { value: "3", suffix: "", label: "Core Categories", sub: "Hardware · Industrial · Workwear" },
+  { value: "20", suffix: "+", label: "Verified Factories", sub: "Personally visited and vetted" },
+  { value: "2", suffix: "", label: "Core Categories", sub: "Hardware Tools · Molds" },
   { value: "10", suffix: "yr", label: "Factory Experience", sub: "In Guangdong operations" },
-  { value: "48", suffix: "h", label: "Free Shortlist", sub: "3 vetted options, no payment" },
+  { value: "48", suffix: "h", label: "Free Matching", sub: "2-3 verified options, no cost" },
 ];
 
 export default function StatsBar() {

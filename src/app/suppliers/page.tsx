@@ -6,7 +6,7 @@ import SuppliersClient from "./SuppliersClient";
 
 export const metadata: Metadata = {
   title: "Verified Supplier Directory — PearlGate",
-  description: "Browse 30+ personally-vetted factories across Guangdong. Hardware, industrial parts, workwear. Filter by city, category, MOQ, and certification.",
+  description: "Browse 20+ personally-vetted factories across Guangdong. Hardware tools and molds. Filter by city, category, MOQ, and certification.",
 };
 
 export default async function SuppliersPage() {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Shield, MapPin, Clock, Database, Phone } from "lucide-react";
+import { Shield, MapPin, Clock, Database, Send } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -46,20 +46,26 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-4xl lg:text-6xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
           >
-            The Factory Database
+            Verified China Factories.
             <br />
-            Guangdong <span className="text-orange-500 italic">Buyers</span>
-            <br />
-            Actually Trust.
+            No Alibaba <span className="text-orange-500 italic">Guesswork.</span>
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-3 text-white/60 text-base"
+          >
+            Vetted by a 10-Year Factory Manager.
+          </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-6 text-lg text-white/75 leading-relaxed max-w-xl"
           >
-            30+ personally-vetted factories across Dongguan, Foshan, Yangjiang and Guangzhou.
-            Hardware, industrial parts, and workwear. Browse yourself — or let us source for you.
+            20+ personally-vetted factories in hardware tools and molds. Browse the database
+            or submit your sourcing request — we&apos;ll match you with 2-3 verified options in 48 hours.
           </motion.p>
 
           <motion.div
@@ -73,14 +79,14 @@ export default function Hero() {
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
               <Database size={18} />
-              Browse the Database
+              Browse Suppliers
             </Link>
             <Link
               href="/quote"
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 backdrop-blur-sm"
             >
-              <Phone size={18} />
-              Book a Free Call
+              <Send size={18} />
+              Submit an Inquiry
             </Link>
           </motion.div>
 
@@ -91,12 +97,12 @@ export default function Hero() {
             className="mt-10 pt-6 border-t border-white/10 flex flex-wrap gap-3"
           >
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">30+</span>
+              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">20+</span>
               <span className="text-xs text-white/60">Verified<br/>Factories</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">3</span>
-              <span className="text-xs text-white/60">Product<br/>Categories</span>
+              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">2</span>
+              <span className="text-xs text-white/60">Core<br/>Categories</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">10yr</span>
