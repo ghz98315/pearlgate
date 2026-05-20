@@ -44,20 +44,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-4xl lg:text-6xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
+            className="text-3xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
           >
-            Verified China Factories.
+            Verified China Factories. No Alibaba Guesswork
             <br />
-            No Alibaba <span className="text-orange-500 italic">Guesswork.</span>
+            <span className="text-orange-500">— Vetted by a 10-Year Factory Manager.</span>
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-3 text-white/60 text-base"
-          >
-            Vetted by a 10-Year Factory Manager.
-          </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,6 +99,10 @@ export default function Hero() {
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">10yr</span>
               <span className="text-xs text-white/60">Factory<br/>Experience</span>
+            </div>
+            <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
+              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">48h</span>
+              <span className="text-xs text-white/60">Free<br/>Matching</span>
             </div>
           </motion.div>
         </div>
