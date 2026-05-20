@@ -7,25 +7,25 @@ import MapSection from "@/components/MapSection";
 import { Factory, ShieldCheck, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — PearlGate | Former Factory Manager, Now Your Sourcing Partner",
-  description: "10+ years managing factory operations in Guangdong. Now I help overseas buyers source directly from the Pearl River Delta's best factories with confidence.",
+  title: "About — PearlGate | 11 Years in Chinese Manufacturing, Now Building Your Factory Database",
+  description: "11 years at BYD managing NPI, engineering, and after-sales for Dell, Toshiba, Lenovo, Huawei. Now I vet factories so you don't have to.",
 };
 
 const strengths = [
   {
     icon: Factory,
     title: "Factory Insider Perspective",
-    description: "I'm not a trading company. I managed production lines, solved quality issues on the floor, and negotiated with suppliers as a peer — not an outsider.",
+    description: "11 years inside BYD — from NPI engineer to engineering manager to after-sales director. I managed 100+ person teams and delivered 30-40 projects per year for clients like Dell, Toshiba, Lenovo, Huawei, Siemens, and ASUS. I know what \"factory-verified\" actually means. Every factory in our database is vetted the same way I used to evaluate BYD's own suppliers.",
   },
   {
     icon: ShieldCheck,
     title: "Quality-First Approach",
-    description: "With a background in quality management at BYD, I know what to look for. Every order gets inspected before it leaves China.",
+    description: "My career was built on preventing quality failures before they reach the customer. I've managed full product lifecycles — from prototype validation through mass production to field support. When I vet a factory, I check their processes, not just their sales pitch.",
   },
   {
     icon: MapPin,
     title: "Guangdong-Based, On the Ground",
-    description: "I live in the Pearl River Delta. I can visit any factory within hours — not days. Problems get solved fast.",
+    description: "I live in Shenzhen, in the heart of the Pearl River Delta. I can visit any factory within 1-2 hours. Problems get solved in person, not over email chains that take weeks.",
   },
 ];
 
@@ -61,17 +61,19 @@ export default function AboutPage() {
 
               <div className="max-w-xl">
                 <h1 className="text-3xl lg:text-5xl font-bold font-[family-name:var(--font-serif)]">
-                  Hi, I&apos;m your sourcing partner.
+                  11 Years Inside China&apos;s Factories.
+                  <br />
+                  Now I Vet Them for You.
                 </h1>
                 <p className="mt-6 text-text-secondary text-lg leading-relaxed">
-                  I spent 8+ years managing factory operations at BYD — one of China&apos;s
-                  largest manufacturers. I&apos;ve walked thousands of production lines, resolved
-                  quality crises, and built relationships with suppliers across the Pearl River Delta.
+                  I spent 11 years at BYD — one of the world&apos;s largest electronics manufacturers —
+                  progressing from NPI Engineer to Engineering &amp; Technical Department Manager
+                  to After-Sales Service Director. I managed teams of 100+ people and delivered
+                  30-40 projects per year for clients including Dell, Toshiba, Lenovo, Huawei, Siemens, and ASUS.
                 </p>
                 <p className="mt-4 text-text-secondary text-lg leading-relaxed">
-                  Now I use that experience to help overseas businesses source from China
-                  with confidence. No guesswork, no middlemen games — just direct access
-                  to verified factories through someone who speaks their language.
+                  Now I use that experience to build a verified factory database for overseas buyers.
+                  Every factory in our system is vetted the same way I used to evaluate BYD&apos;s own supply chain.
                 </p>
               </div>
             </div>
@@ -123,23 +125,28 @@ export default function AboutPage() {
             </h2>
             <div className="mt-8 space-y-6 text-text-secondary leading-relaxed text-lg">
               <p>
-                At BYD, I managed technical operations across multiple production lines.
-                My job was to ensure quality, optimize processes, and solve problems before
-                they became expensive. I learned how Chinese factories really work — not
-                from a sales brochure, but from the inside.
+                I joined BYD in 2014 as an NPI (New Product Introduction) engineer, responsible
+                for taking products from prototype to mass production. Over 11 years, I progressed
+                through engineering management and eventually led the after-sales service division.
               </p>
               <p>
-                Over the years, I watched overseas buyers struggle with the same problems:
+                My clients were global brands — Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS.
+                My job was to ensure their products were manufactured to spec, on time, and without
+                quality escapes. I managed teams of 100+ engineers and technicians, delivering
+                30-40 projects per year across consumer electronics, industrial equipment, and precision components.
+              </p>
+              <p>
+                Over the years, I watched overseas buyers outside of BYD struggle with the same problems:
                 unreliable suppliers, quality gaps between samples and bulk orders, communication
                 breakdowns, and the constant fear of getting scammed. I realized that what
                 these buyers needed wasn&apos;t another Alibaba listing — they needed someone
-                on the ground who could be their eyes, ears, and quality gate.
+                on the ground who could vet factories the way a major OEM does.
               </p>
               <p>
-                That&apos;s why I started PearlGate. I combine my factory management experience
-                with deep relationships across Guangdong&apos;s industrial clusters to give
-                overseas buyers something they can&apos;t get anywhere else: a trusted insider
-                who works for them, not the factory.
+                That&apos;s why I built PearlGate. Every factory in our database goes through
+                the same evaluation process I used at BYD: on-site visit, production capability
+                assessment, quality system review, and reference checks. If a factory wouldn&apos;t
+                pass BYD&apos;s supplier audit, it doesn&apos;t make it into our database.
               </p>
             </div>
           </div>
@@ -153,8 +160,8 @@ export default function AboutPage() {
             </h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
               {strengths.map((item) => (
-                <div key={item.title} className="text-center p-6">
-                  <div className="w-14 h-14 rounded-full bg-navy-900/5 flex items-center justify-center mx-auto">
+                <div key={item.title} className="p-6">
+                  <div className="w-14 h-14 rounded-full bg-navy-900/5 flex items-center justify-center">
                     <item.icon size={26} className="text-navy-700" />
                   </div>
                   <h3 className="mt-4 font-semibold text-lg">{item.title}</h3>
@@ -174,7 +181,7 @@ export default function AboutPage() {
               Our Coverage — Pearl River Delta
             </h2>
             <p className="mt-4 text-text-secondary text-center">
-              Five major industrial clusters, all within 2 hours of each other. Click the markers to learn more.
+              Major industrial clusters, all within 1-2 hours of each other. Click the markers to learn more.
             </p>
 
             <div className="mt-12">
@@ -213,16 +220,16 @@ export default function AboutPage() {
         <section className="py-20 lg:py-28 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700">
           <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-serif)]">
-              Ready to work together?
+              Ready to source with confidence?
             </h2>
             <p className="mt-4 text-white/70 text-lg">
-              Send me your first sourcing request — it&apos;s free, no strings attached.
+              Submit your requirements — we&apos;ll match you with verified factories within 48 hours. Free, no obligation.
             </p>
             <Link
               href="/quote"
               className="inline-block mt-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
-              Get a Free Quote
+              Submit an Inquiry
             </Link>
           </div>
         </section>

@@ -85,11 +85,26 @@ export default function QuotePage() {
       <main className="pt-32 pb-24 min-h-screen bg-gray-50">
         <div className="max-w-2xl mx-auto px-6 lg:px-12">
           <h1 className="text-3xl lg:text-4xl font-bold font-[family-name:var(--font-serif)]">
-            Get a Free Quote
+            Submit an Inquiry
           </h1>
           <p className="mt-3 text-text-secondary text-lg">
-            Tell me what you&apos;re looking for — I&apos;ll get back within 24 hours with factory options.
+            Tell us what you&apos;re looking for — we&apos;ll match you with verified factories within 48 hours.
           </p>
+
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-text-secondary">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Free
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              No obligation
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Response within 24h
+            </span>
+          </div>
 
           <form
             onSubmit={handleSubmit}
