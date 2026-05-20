@@ -13,7 +13,7 @@ export default function SocialProof() {
   return (
     <section className="py-10 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-        <p className="text-sm text-text-secondary mb-6">
+        <p className="text-lg font-bold text-navy-900 mb-6 font-[family-name:var(--font-serif)]">
           Trusted by buyers from around the world
         </p>
         <div className="flex items-center justify-center gap-8 flex-wrap">
