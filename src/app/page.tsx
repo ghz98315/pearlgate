@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import SocialProof from "@/components/SocialProof";
 import PainPoints from "@/components/PainPoints";
 import DatabasePreview from "@/components/DatabasePreview";
 import Services from "@/components/Services";
@@ -18,6 +19,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <SocialProof />
         <PainPoints />
         <DatabasePreview />
         <Services />
