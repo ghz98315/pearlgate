@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans, DM_Serif_Display } from "next/font/google";
+import Script from "next/script";
 import AuthProvider from "@/components/AuthProvider";
 import PageTransition from "@/components/PageTransition";
 import "./globals.css";
@@ -63,6 +64,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable} ${serif.variable}`}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EZ49XXCGPG"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EZ49XXCGPG');
+          `}
+        </Script>
+      </head>
       <body className="min-h-screen antialiased">
         <AuthProvider>
           <PageTransition>{children}</PageTransition>
