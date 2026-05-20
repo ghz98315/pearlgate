@@ -12,7 +12,7 @@ export default function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
-    <section ref={ref} className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section ref={ref} className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden">
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1920&q=80"
@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 lg:py-40">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-40">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -86,7 +86,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
-            className="mt-10 pt-6 border-t border-white/10 flex flex-wrap gap-3"
+            className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 lg:flex lg:flex-wrap gap-3"
           >
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">20+</span>
