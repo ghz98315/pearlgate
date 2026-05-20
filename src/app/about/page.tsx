@@ -78,26 +78,35 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Video Introduction */}
+        {/* Video Introduction - Placeholder */}
         <section className="py-20 lg:py-28 bg-navy-900">
           <div className="max-w-4xl mx-auto px-6 lg:px-12">
             <div className="text-center mb-10">
               <h2 className="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-serif)]">
-                Watch: Who I am & how I can help
+                Inside our factory network
               </h2>
               <p className="mt-3 text-white/60">
-                2 minutes that could save you months of sourcing headaches.
+                We visit every factory before adding it to our database.
               </p>
             </div>
 
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
-              <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="PearlGate Introduction"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
+              <Image
+                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80"
+                alt="Factory inspection visit"
+                fill
+                className="object-cover"
               />
+              <div className="absolute inset-0 bg-navy-900/40 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-white/80 text-sm font-medium">Video coming soon</p>
+                </div>
+              </div>
             </div>
 
             <p className="mt-6 text-center text-white/40 text-sm">

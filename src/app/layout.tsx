@@ -23,21 +23,22 @@ const serif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "PearlGate — Your Sourcing Partner in Guangdong",
+  title: "PearlGate — Verified China Factory Database | Hardware & Mold Sourcing",
   description:
-    "Former factory managers based in the Pearl River Delta. We help small businesses find reliable Chinese suppliers, ensure quality, and manage orders from Guangdong's best factories.",
+    "20+ personally-vetted factories in hardware tools and molds. Browse the database or submit your sourcing request — we'll match you with verified options in 48 hours.",
   keywords: [
-    "China sourcing agent",
-    "Guangdong supplier",
-    "CNC machining China",
+    "China factory database",
+    "verified Chinese suppliers",
+    "hardware tools supplier China",
+    "mold manufacturer China",
+    "Guangdong factory",
     "Yangjiang knife supplier",
-    "Foshan aluminum",
-    "Pearl River Delta manufacturing",
+    "Dongguan mold maker",
   ],
   metadataBase: new URL("https://pearlgatesourcing.com"),
   openGraph: {
-    title: "PearlGate — Your Sourcing Partner in Guangdong",
-    description: "30+ verified factories across Guangdong. Hardware, industrial parts, and workwear. Browse the database or let us source for you.",
+    title: "PearlGate — Verified China Factory Database | Hardware & Mold Sourcing",
+    description: "20+ verified factories in Guangdong. Hardware tools and molds. Browse the database or get matched with 2-3 options in 48 hours.",
     url: "https://pearlgatesourcing.com",
     siteName: "PearlGate",
     locale: "en_US",
@@ -45,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PearlGate — Your Sourcing Partner in Guangdong",
-    description: "30+ verified factories across Guangdong. Browse the database or let us source for you.",
+    title: "PearlGate — Verified China Factory Database",
+    description: "20+ verified factories in Guangdong. Hardware tools and molds. Free factory matching in 48 hours.",
   },
   robots: {
     index: true,
