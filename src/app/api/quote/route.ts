@@ -17,13 +17,13 @@ export async function POST(request: NextRequest) {
   const adminEmail = process.env.ADMIN_EMAIL || "delivered@resend.dev";
 
   if (!apiKey) {
-    return NextResponse.json({ success: true, emailSent: false, reason: "no_api_key" });
+    return NextResponse.json({ success: true, emailSent: false });
   }
 
   const resend = new Resend(apiKey);
 
   try {
-    const [customerResult, adminResult] = await Promise.all([
+    await Promise.all([
       resend.emails.send({
         from: "PearlGate <hello@pearlgatesourcing.com>",
         to: data.email,
@@ -39,19 +39,8 @@ export async function POST(request: NextRequest) {
       }),
     ]);
 
-    return NextResponse.json({
-      success: true,
-      emailSent: true,
-      adminEmail,
-      customerResult,
-      adminResult,
-    });
-  } catch (error) {
-    return NextResponse.json({
-      success: true,
-      emailSent: false,
-      reason: "send_failed",
-      error: String(error),
-    });
+    return NextResponse.json({ success: true, emailSent: true });
+  } catch {
+    return NextResponse.json({ success: true, emailSent: false });
   }
 }
