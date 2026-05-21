@@ -15,7 +15,7 @@ export default function Hero() {
     <section ref={ref} className="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden">
       <motion.div style={{ y: bgY }} className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=1200&q=75"
           alt="Modern factory floor"
           fill
           className="object-cover scale-110"

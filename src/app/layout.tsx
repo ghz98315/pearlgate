@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Plus_Jakarta_Sans, DM_Serif_Display } from "next/font/google";
+import { Inter, DM_Serif_Display } from "next/font/google";
 import Script from "next/script";
-import AuthProvider from "@/components/AuthProvider";
-import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-jakarta",
-});
-
-// [FONT-EXPERIMENT] Serif for hero titles & stats — revert if not working
 const serif = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-serif",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -64,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jakarta.variable} ${serif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${serif.variable}`}>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-EZ49XXCGPG"
@@ -80,9 +74,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className="min-h-screen antialiased">
-        <AuthProvider>
-          <PageTransition>{children}</PageTransition>
-        </AuthProvider>
+        {children}
       </body>
     </html>
   );

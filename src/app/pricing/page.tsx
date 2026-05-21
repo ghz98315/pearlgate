@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -72,24 +71,8 @@ const plans = [
 ];
 
 export default function PricingPage() {
-  const { data: session } = useSession();
-
   const handleSubscribe = async (priceId: string) => {
-    if (!session) {
-      window.location.href = "/login";
-      return;
-    }
-
-    const res = await fetch("/api/stripe/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ priceId }),
-    });
-
-    const data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-    }
+    window.location.href = "/quote";
   };
   return (
     <>
