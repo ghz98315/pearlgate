@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getAllSuppliers, getSupplierById } from "@/lib/suppliers";
 import { MapPin, Star, Calendar, Users, Clock, Ship, ArrowLeft, Shield, CheckCircle, Mail } from "lucide-react";
+import ProductGallery from "@/components/ProductGallery";
 
 export async function generateStaticParams() {
   const all = await getAllSuppliers();
@@ -103,6 +104,12 @@ export default async function SupplierDetailPage({ params }: { params: Promise<{
               <InfoCard icon={Ship} label="Port" value={supplier.shippingPort} />
             </div>
           </section>
+
+          {/* Product Gallery */}
+          <ProductGallery
+            images={[...supplier.productImages, ...supplier.images.slice(1)]}
+            supplierName={supplier.name}
+          />
 
           {/* Business Details */}
           <section className="mt-10">
