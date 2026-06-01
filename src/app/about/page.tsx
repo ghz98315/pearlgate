@@ -7,25 +7,25 @@ import MapSection from "@/components/MapSection";
 import { Factory, ShieldCheck, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — PearlGate | 11 Years in Chinese Manufacturing, Now Building Your Factory Database",
-  description: "11 years at BYD managing NPI, engineering, and after-sales for Dell, Toshiba, Lenovo, Huawei. Now I vet factories so you don't have to.",
+  title: "About — PearlGate | 11 Years in BYD Manufacturing, Now Helping You Source EV Charging Components",
+  description: "11 years at BYD managing manufacturing for Dell, Toshiba, Lenovo, Huawei. Now I help overseas buyers source verified EV charging suppliers from China's Pearl River Delta.",
 };
 
 const strengths = [
   {
     icon: Factory,
-    title: "Factory Insider Perspective",
-    description: "11 years inside BYD — from NPI engineer to engineering manager to after-sales director. I managed 100+ person teams and delivered 30-40 projects per year for clients like Dell, Toshiba, Lenovo, Huawei, Siemens, and ASUS. I know what \"factory-verified\" actually means. Every factory in our database is vetted the same way I used to evaluate BYD's own suppliers.",
+    title: "Manufacturing Insider Perspective",
+    description: "11 years inside BYD — from NPI engineer to engineering manager. I managed 100+ person teams delivering projects for Dell, Toshiba, Lenovo, Huawei. I know what 'factory-verified' actually means, especially for EV components where safety certifications and quality consistency matter.",
   },
   {
     icon: ShieldCheck,
-    title: "Quality-First Approach",
-    description: "My career was built on preventing quality failures before they reach the customer. I've managed full product lifecycles — from prototype validation through mass production to field support. When I vet a factory, I check their processes, not just their sales pitch.",
+    title: "EV-Focused Quality Approach",
+    description: "EV charging products require specific certifications (UL2251, IEC 62196, GB/T 20234) and safety testing that generic factories don't understand. I verify that suppliers actually hold these certifications, understand EV-specific quality requirements, and have experience with international EV brands.",
   },
   {
     icon: MapPin,
-    title: "Guangdong-Based, On the Ground",
-    description: "I live in Shenzhen, in the heart of the Pearl River Delta. I can visit any factory within 1-2 hours. Problems get solved in person, not over email chains that take weeks.",
+    title: "Pearl River Delta Network",
+    description: "Based in Shenzhen, heart of China's EV supply chain. Most EV charging manufacturers are within 1-2 hours. Problems get solved in person, not over email chains. I can visit factories same-week when issues arise, which is critical for time-sensitive production problems.",
   },
 ];
 
@@ -61,9 +61,9 @@ export default function AboutPage() {
 
               <div className="max-w-xl">
                 <h1 className="text-3xl lg:text-5xl font-bold font-[family-name:var(--font-serif)]">
-                  11 Years Inside China&apos;s Factories.
+                  11 Years in BYD Manufacturing.
                   <br />
-                  Now I Vet Them for You.
+                  Now Helping You Source EV Charging Components.
                 </h1>
                 <p className="mt-6 text-text-secondary text-lg leading-relaxed">
                   I spent 11 years at BYD — one of the world&apos;s largest electronics manufacturers —
@@ -72,8 +72,8 @@ export default function AboutPage() {
                   30-40 projects per year for clients including Dell, Toshiba, Lenovo, Huawei, Siemens, and ASUS.
                 </p>
                 <p className="mt-4 text-text-secondary text-lg leading-relaxed">
-                  Now I use that experience to build a verified factory database for overseas buyers.
-                  Every factory in our system is vetted the same way I used to evaluate BYD&apos;s own supply chain.
+                  Now I use that experience to help overseas buyers source verified EV charging suppliers.
+                  Every supplier in our network is vetted the same way I used to evaluate BYD&apos;s own supply chain.
                 </p>
               </div>
             </div>
@@ -117,6 +117,38 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* Why EV Charging - NEW SECTION */}
+        <section className="py-20 lg:py-28 bg-white">
+          <div className="max-w-3xl mx-auto px-6 lg:px-12">
+            <h2 className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-serif)]">
+              Why EV Charging?
+            </h2>
+            <div className="mt-8 space-y-6 text-text-secondary leading-relaxed text-lg">
+              <p>
+                After 11 years in manufacturing, I watched China&apos;s EV ecosystem explode.
+                The Pearl River Delta became the global hub for EV charging components —
+                cables, connectors, adapters, portable chargers. Shenzhen alone has hundreds
+                of factories producing EV charging products for Tesla, ChargePoint, and major
+                automakers worldwide.
+              </p>
+              <p>
+                But overseas buyers still struggle to find reliable suppliers who understand
+                both manufacturing quality and EV safety standards. Many factories claim
+                certifications they don&apos;t have. Quality varies wildly between samples and
+                bulk orders. Communication breaks down during production. A bad supplier
+                doesn&apos;t just cost money — it can create safety risks and regulatory problems.
+              </p>
+              <p>
+                That&apos;s why PearlGate focuses exclusively on EV charging supply chain.
+                Every supplier in our network is vetted for EV-specific certifications
+                (UL2251, IEC 62196, CE, TUV), production capability, and export experience.
+                I use the same evaluation process I learned at BYD — the same standards we
+                applied to suppliers for Dell, Toshiba, and Lenovo.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* My Story */}
         <section className="py-20 lg:py-28 bg-gray-50">
           <div className="max-w-3xl mx-auto px-6 lg:px-12">
@@ -143,10 +175,10 @@ export default function AboutPage() {
                 on the ground who could vet factories the way a major OEM does.
               </p>
               <p>
-                That&apos;s why I built PearlGate. Every factory in our database goes through
+                That&apos;s why I built PearlGate. Every supplier in our network goes through
                 the same evaluation process I used at BYD: on-site visit, production capability
-                assessment, quality system review, and reference checks. If a factory wouldn&apos;t
-                pass BYD&apos;s supplier audit, it doesn&apos;t make it into our database.
+                assessment, quality system review, and reference checks. If a supplier wouldn&apos;t
+                pass BYD&apos;s supplier audit, it doesn&apos;t make it into our network.
               </p>
             </div>
           </div>

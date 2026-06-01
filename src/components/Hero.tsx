@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Shield, MapPin, Clock, Database, Send } from "lucide-react";
+import { ShieldCheck, Zap, Factory, Clock, Search, FileText } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -37,7 +37,7 @@ export default function Hero() {
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Pearl River Delta · Guangdong, China
             <span className="inline-block w-px h-3 bg-white/30 mx-1" />
-            <span className="text-green-400 font-semibold">Factory-Verified</span>
+            <span className="text-green-400 font-semibold">EV Charging Focus</span>
           </motion.div>
 
           <motion.h1
@@ -46,9 +46,12 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-3xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
           >
-            Verified China Factories. No Alibaba Guesswork
+            Reliable EV Charging Supply Chain From China
             <br />
-            <span className="text-orange-500">— Vetted by a 10-Year Factory Manager.</span>
+            <span className="text-orange-500">
+              — Helping overseas buyers source verified EV charging suppliers,
+              components, and manufacturing partners from the Pearl River Delta.
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -56,8 +59,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-6 text-lg text-white/75 leading-relaxed max-w-xl"
           >
-            20+ personally-vetted factories in hardware tools and molds. Browse the database
-            or submit your sourcing request — we&apos;ll match you with 2-3 verified options in 48 hours.
+            Carefully verified EV charging manufacturers specializing in cables,
+            adapters, portable chargers, and connectors. Former BYD factory manager
+            with 11 years of manufacturing experience. Submit your requirements —
+            we&apos;ll match you with verified options within 48 hours.
           </motion.p>
 
           <motion.div
@@ -67,18 +72,18 @@ export default function Hero() {
             className="mt-8 flex flex-wrap gap-4"
           >
             <Link
-              href="/suppliers"
+              href="/supplier-match"
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
-              <Database size={18} />
-              Browse Suppliers
+              <Search size={18} />
+              Request Supplier Match
             </Link>
             <Link
-              href="/quote"
+              href="/blog"
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 backdrop-blur-sm"
             >
-              <Send size={18} />
-              Submit an Inquiry
+              <FileText size={18} />
+              Explore Insights
             </Link>
           </motion.div>
 
@@ -89,20 +94,20 @@ export default function Hero() {
             className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 lg:flex lg:flex-wrap gap-3"
           >
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">20+</span>
-              <span className="text-xs text-white/60">Verified<br/>Factories</span>
+              <ShieldCheck className="text-orange-500" size={20} />
+              <span className="text-xs text-white/60">Verified<br/>Network</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">2</span>
-              <span className="text-xs text-white/60">Core<br/>Categories</span>
+              <Zap className="text-orange-500" size={20} />
+              <span className="text-xs text-white/60">EV Charging<br/>Focus</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">10yr</span>
-              <span className="text-xs text-white/60">Factory<br/>Experience</span>
+              <Factory className="text-orange-500" size={20} />
+              <span className="text-xs text-white/60">11yr Factory<br/>Experience</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
-              <span className="text-2xl font-bold text-orange-500 font-[family-name:var(--font-serif)]">48h</span>
-              <span className="text-xs text-white/60">Free<br/>Matching</span>
+              <Clock className="text-orange-500" size={20} />
+              <span className="text-xs text-white/60">48h Free<br/>Matching</span>
             </div>
           </motion.div>
         </div>
