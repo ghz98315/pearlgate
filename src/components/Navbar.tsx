@@ -18,14 +18,15 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-white/80 hover:text-white text-sm transition-colors">Home</Link>
           <Link href="/suppliers" className="text-white/80 hover:text-white text-sm transition-colors">Suppliers</Link>
+          <Link href="/factory-verification" className="text-white/80 hover:text-white text-sm transition-colors">Verification</Link>
           <Link href="/about" className="text-white/80 hover:text-white text-sm transition-colors">About</Link>
-          <Link href="/blog" className="text-white/80 hover:text-white text-sm transition-colors">Blog</Link>
+          <Link href="/blog" className="text-white/80 hover:text-white text-sm transition-colors">Insights</Link>
 
           <Link
-            href="/quote"
+            href="/supplier-match"
             className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all hover:-translate-y-0.5"
           >
-            Submit an Inquiry
+            Get Matched
           </Link>
         </div>
 
@@ -42,14 +43,15 @@ export default function Navbar() {
         <div className="md:hidden bg-navy-900 border-t border-white/10 px-6 py-4 space-y-3">
           <Link href="/" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Home</Link>
           <Link href="/suppliers" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Suppliers</Link>
+          <Link href="/factory-verification" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Verification</Link>
           <Link href="/about" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>About</Link>
-          <Link href="/blog" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Blog</Link>
+          <Link href="/blog" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Insights</Link>
           <Link
-            href="/quote"
+            href="/supplier-match"
             className="block bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2.5 rounded-lg text-center transition-colors"
             onClick={() => setOpen(false)}
           >
-            Submit an Inquiry
+            Get Matched
           </Link>
         </div>
       )}
