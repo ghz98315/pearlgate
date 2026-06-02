@@ -4,38 +4,85 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MapSection from "@/components/MapSection";
-import { Factory, ShieldCheck, MapPin } from "lucide-react";
+import { AlertTriangle, ShieldCheck, Factory, Users, FileCheck, Zap, CheckCircle, XCircle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About — PearlGate | 11 Years in BYD Manufacturing, Now Helping You Source EV Charging Components",
-  description: "11 years at BYD managing manufacturing for Dell, Toshiba, Lenovo, Huawei. Now I help overseas buyers source verified EV charging suppliers from China's Pearl River Delta.",
+  title: "About — PearlGate | Solving EV Charging Sourcing Problems You've Actually Experienced",
+  description: "Fake certifications? Quality disasters? Lost money to scam suppliers? 11 years in BYD manufacturing taught me how to prevent these problems. Here's how we solve them.",
 };
 
-const strengths = [
+const painPoints = [
   {
-    icon: Factory,
-    title: "Manufacturing Insider Perspective",
-    description: "11 years inside BYD — from NPI engineer to engineering manager. I managed 100+ person teams delivering projects for Dell, Toshiba, Lenovo, Huawei. I know what 'factory-verified' actually means, especially for EV components where safety certifications and quality consistency matter.",
+    icon: XCircle,
+    title: "Fake UL/CE Certificates",
+    problem: "Supplier sent you a UL certificate PDF. You imported 5,000 units. Customs rejected them because the cert was photoshopped.",
+    solution: "We verify every certificate in official databases (UL Product iQ, TUV, SGS). We check the certificate number, expiry date, and factory name match. If it's not in the database, it doesn't exist.",
   },
   {
-    icon: ShieldCheck,
-    title: "EV-Focused Quality Approach",
-    description: "EV charging products require specific certifications (UL2251, IEC 62196, GB/T 20234) and safety testing that generic factories don't understand. I verify that suppliers actually hold these certifications, understand EV-specific quality requirements, and have experience with international EV brands.",
+    icon: XCircle,
+    title: "Sample Perfect, Bulk Disaster",
+    problem: "Your sample was flawless. The 10,000-unit bulk order arrived with wrong cable thickness, broken pins, and failed safety tests.",
+    solution: "We witness pre-production samples (PPAP) and inspect bulk orders before shipment. We measure cable cross-sections, test contact resistance, and verify pin dimensions match your approved sample.",
   },
   {
-    icon: MapPin,
-    title: "Pearl River Delta Network",
-    description: "Based in Shenzhen, heart of China's EV supply chain. Most EV charging manufacturers are within 1-2 hours. Problems get solved in person, not over email chains. I can visit factories same-week when issues arise, which is critical for time-sensitive production problems.",
+    icon: XCircle,
+    title: "Communication Breakdown",
+    problem: "Your supplier stops replying after receiving the deposit. Or they promise delivery in 30 days, then go silent for 60 days.",
+    solution: "We're on the ground in Shenzhen. When suppliers go quiet, we visit the factory same-week. We escalate directly to factory owners, not just sales reps.",
+  },
+  {
+    icon: XCircle,
+    title: "Can't Verify Factory Claims",
+    problem: "Supplier claims 10,000 units/month capacity and UL testing equipment. You can't verify this from 8,000 miles away.",
+    solution: "We visit every factory before recommending them. We photograph production lines, test equipment (hipot testers, temperature chambers), and verify worker count matches capacity claims.",
+  },
+  {
+    icon: XCircle,
+    title: "Lost Money to Scam Suppliers",
+    problem: "You paid $50K deposit via wire transfer. The 'factory' was a trading company with no manufacturing. Your money is gone.",
+    solution: "We only work with factories we've physically visited. We verify business licenses, production equipment ownership, and previous export records. No trading companies pretending to be manufacturers.",
   },
 ];
 
-const gallery = [
-  { src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80", alt: "Factory production line" },
-  { src: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80", alt: "CNC machining" },
-  { src: "https://images.unsplash.com/photo-1586864387789-628af9feed72?w=600&q=80", alt: "Precision parts" },
-  { src: "https://images.unsplash.com/photo-1504917595217-d4dc5ebb6571?w=600&q=80", alt: "Aluminum profiles" },
-  { src: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=600&q=80", alt: "Factory floor" },
-  { src: "https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=600&q=80", alt: "Metal fittings" },
+const whyMeMatters = [
+  {
+    icon: Factory,
+    title: "I've Seen These Problems From the Inside",
+    description: "11 years at BYD managing Dell, Toshiba, Lenovo projects. I watched suppliers try to cut corners on samples, swap materials mid-production, and fake test reports. I know every trick because I had to prevent them at BYD.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "I Know What 'Verified' Actually Means",
+    description: "At BYD, I managed supplier audits for global OEMs. Real verification isn't checking a PDF — it's measuring cable cross-sections, testing contact resistance, witnessing production runs, and calling certification labs to confirm test reports.",
+  },
+  {
+    icon: Users,
+    title: "I'm Your Local Escalation Point",
+    description: "Based in Shenzhen, 1-2 hours from every major EV charging factory. When suppliers go silent or quality issues arise, I show up at their factory. Problems get solved in person, not over 50-email chains.",
+  },
+];
+
+const howItWorks = [
+  {
+    step: "1",
+    title: "You Tell Me What Went Wrong Before",
+    description: "Share your past supplier horror stories. I'll explain exactly how we prevent each problem.",
+  },
+  {
+    step: "2",
+    title: "I Match You With Pre-Vetted Factories",
+    description: "Every supplier I recommend has passed on-site audits, certification verification, and reference checks. Same standards I used at BYD.",
+  },
+  {
+    step: "3",
+    title: "We Verify Before You Pay",
+    description: "Pre-production samples, in-process inspections, pre-shipment QC. We catch problems before they cost you money.",
+  },
+  {
+    step: "4",
+    title: "I Stay On-Ground Throughout Production",
+    description: "If suppliers go quiet or issues arise, I visit the factory. You get photo updates, not excuses.",
+  },
 ];
 
 export default function AboutPage() {
@@ -43,163 +90,174 @@ export default function AboutPage() {
     <>
       <Navbar />
       <main className="pt-24">
-        {/* Hero / Intro */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-              <div className="relative w-56 h-56 lg:w-72 lg:h-72 shrink-0">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-navy-700 to-orange-500 opacity-15 rotate-3" />
-                <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&q=80"
-                    alt="Professional portrait"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              <div className="max-w-xl">
-                <h1 className="text-3xl lg:text-5xl font-bold font-[family-name:var(--font-serif)]">
-                  11 Years in BYD Manufacturing.
-                  <br />
-                  Now Helping You Source EV Charging Components.
-                </h1>
-                <p className="mt-6 text-text-secondary text-lg leading-relaxed">
-                  I spent 11 years at BYD — one of the world&apos;s largest electronics manufacturers —
-                  progressing from NPI Engineer to Engineering &amp; Technical Department Manager
-                  to After-Sales Service Director. I managed teams of 100+ people and delivered
-                  30-40 projects per year for clients including Dell, Toshiba, Lenovo, Huawei, Siemens, and ASUS.
-                </p>
-                <p className="mt-4 text-text-secondary text-lg leading-relaxed">
-                  Now I use that experience to help overseas buyers source verified EV charging suppliers.
-                  Every supplier in our network is vetted the same way I used to evaluate BYD&apos;s own supply chain.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Video Introduction - Placeholder */}
-        <section className="py-20 lg:py-28 bg-navy-900">
-          <div className="max-w-4xl mx-auto px-6 lg:px-12">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl lg:text-3xl font-bold text-white font-[family-name:var(--font-serif)]">
-                Inside our factory network
-              </h2>
-              <p className="mt-3 text-white/60">
-                We visit every factory before adding it to our database.
-              </p>
+        {/* Hero - Pain Point Focused */}
+        <section className="py-20 lg:py-28 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+          <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 border border-red-300 rounded-full mb-6">
+              <AlertTriangle size={18} className="text-red-600" />
+              <span className="text-sm font-semibold text-red-700">Have you been burned by Chinese suppliers?</span>
             </div>
 
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10">
-              <Image
-                src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80"
-                alt="Factory inspection visit"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-navy-900/40 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-3">
-                    <svg className="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                  <p className="text-white/80 text-sm font-medium">Video coming soon</p>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-3xl lg:text-5xl font-bold font-[family-name:var(--font-serif)] leading-tight">
+              Fake Certifications. Quality Disasters. Lost Deposits.
+              <br />
+              <span className="text-orange-600">I've seen every supplier trick in the book.</span>
+            </h1>
 
-            <p className="mt-6 text-center text-white/40 text-sm">
-              Prefer reading? Scroll down for the full story.
+            <p className="mt-6 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              After 11 years managing manufacturing at BYD (Dell, Toshiba, Lenovo projects),
+              I know exactly how suppliers cut corners, fake certifications, and scam overseas buyers.
+              <strong> Your supplier problems are my specialty.</strong>
             </p>
-          </div>
-        </section>
 
-        {/* Why EV Charging - NEW SECTION */}
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="max-w-3xl mx-auto px-6 lg:px-12">
-            <h2 className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-serif)]">
-              Why EV Charging?
-            </h2>
-            <div className="mt-8 space-y-6 text-text-secondary leading-relaxed text-lg">
-              <p>
-                After 11 years in manufacturing, I watched China&apos;s EV ecosystem explode.
-                The Pearl River Delta became the global hub for EV charging components —
-                cables, connectors, adapters, portable chargers. Shenzhen alone has hundreds
-                of factories producing EV charging products for Tesla, ChargePoint, and major
-                automakers worldwide.
-              </p>
-              <p>
-                But overseas buyers still struggle to find reliable suppliers who understand
-                both manufacturing quality and EV safety standards. Many factories claim
-                certifications they don&apos;t have. Quality varies wildly between samples and
-                bulk orders. Communication breaks down during production. A bad supplier
-                doesn&apos;t just cost money — it can create safety risks and regulatory problems.
-              </p>
-              <p>
-                That&apos;s why PearlGate focuses exclusively on EV charging supply chain.
-                Every supplier in our network is vetted for EV-specific certifications
-                (UL2251, IEC 62196, CE, TUV), production capability, and export experience.
-                I use the same evaluation process I learned at BYD — the same standards we
-                applied to suppliers for Dell, Toshiba, and Lenovo.
-              </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/supplier-match"
+                className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5"
+              >
+                Get Matched With Verified Suppliers
+              </Link>
+              <a
+                href="#pain-points"
+                className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold px-8 py-4 rounded-lg text-lg transition-all"
+              >
+                See How We Solve These Problems
+              </a>
             </div>
           </div>
         </section>
 
-        {/* My Story */}
-        <section className="py-20 lg:py-28 bg-gray-50">
-          <div className="max-w-3xl mx-auto px-6 lg:px-12">
-            <h2 className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-serif)]">
-              My Story
-            </h2>
-            <div className="mt-8 space-y-6 text-text-secondary leading-relaxed text-lg">
-              <p>
-                I joined BYD in 2014 as an NPI (New Product Introduction) engineer, responsible
-                for taking products from prototype to mass production. Over 11 years, I progressed
-                through engineering management and eventually led the after-sales service division.
-              </p>
-              <p>
-                My clients were global brands — Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS.
-                My job was to ensure their products were manufactured to spec, on time, and without
-                quality escapes. I managed teams of 100+ engineers and technicians, delivering
-                30-40 projects per year across consumer electronics, industrial equipment, and precision components.
-              </p>
-              <p>
-                Over the years, I watched overseas buyers outside of BYD struggle with the same problems:
-                unreliable suppliers, quality gaps between samples and bulk orders, communication
-                breakdowns, and the constant fear of getting scammed. I realized that what
-                these buyers needed wasn&apos;t another Alibaba listing — they needed someone
-                on the ground who could vet factories the way a major OEM does.
-              </p>
-              <p>
-                That&apos;s why I built PearlGate. Every supplier in our network goes through
-                the same evaluation process I used at BYD: on-site visit, production capability
-                assessment, quality system review, and reference checks. If a supplier wouldn&apos;t
-                pass BYD&apos;s supplier audit, it doesn&apos;t make it into our network.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Work With Me */}
-        <section className="py-20 lg:py-28 bg-white">
+        {/* Pain Points → Solutions */}
+        <section id="pain-points" className="py-20 lg:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-center font-[family-name:var(--font-serif)]">
-              Why work with me
-            </h2>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-              {strengths.map((item) => (
-                <div key={item.title} className="p-6">
-                  <div className="w-14 h-14 rounded-full bg-navy-900/5 flex items-center justify-center">
-                    <item.icon size={26} className="text-navy-700" />
+            <div className="text-center mb-16">
+              <h2 className="text-3xl lg:text-4xl font-bold font-[family-name:var(--font-serif)]">
+                Your Supplier Nightmares = Our Specialty
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                These are real problems our clients faced before working with us. Here's exactly how we prevent them.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {painPoints.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-8 rounded-2xl border-2 border-gray-200 bg-white hover:border-orange-300 hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex flex-col lg:flex-row gap-8">
+                    {/* Problem */}
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                          <item.icon size={20} className="text-red-600" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                      </div>
+                      <div className="pl-13">
+                        <p className="text-sm font-semibold text-red-600 uppercase tracking-wider mb-2">The Problem:</p>
+                        <p className="text-gray-700 leading-relaxed">{item.problem}</p>
+                      </div>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="flex lg:items-center justify-center">
+                      <div className="text-orange-500 font-bold text-2xl">→</div>
+                    </div>
+
+                    {/* Solution */}
+                    <div className="flex-1 bg-green-50 p-6 rounded-xl border-2 border-green-200">
+                      <p className="text-sm font-semibold text-green-700 uppercase tracking-wider mb-3">How We Solve It:</p>
+                      <p className="text-gray-800 leading-relaxed font-medium">{item.solution}</p>
+                    </div>
                   </div>
-                  <h3 className="mt-4 font-semibold text-lg">{item.title}</h3>
-                  <p className="mt-3 text-text-secondary leading-relaxed text-sm">
-                    {item.description}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why My Background Matters */}
+        <section className="py-20 lg:py-28 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold font-[family-name:var(--font-serif)]">
+                Why My BYD Background Actually Matters
+              </h2>
+              <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+                11 years managing manufacturing for global OEMs taught me every supplier trick — and how to prevent them.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {whyMeMatters.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-8 bg-white rounded-2xl border-2 border-gray-200 hover:border-orange-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center mb-6">
+                    <item.icon size={28} className="text-orange-600" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Credentials Box */}
+            <div className="mt-12 p-8 bg-navy-900 rounded-2xl text-white">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="relative w-32 h-32 flex-shrink-0">
+                  <div className="absolute inset-0 rounded-xl overflow-hidden">
+                    <Image
+                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80"
+                      alt="Professional portrait"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">11 Years at BYD</h3>
+                  <p className="text-white/80 leading-relaxed mb-4">
+                    NPI Engineer → Engineering Manager → After-Sales Director. Managed 100+ person teams
+                    delivering 30-40 projects/year for Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS.
                   </p>
+                  <p className="text-white/80 leading-relaxed">
+                    My job was catching supplier problems before they became $500K recalls. Now I use
+                    those same methods to protect your EV charging orders.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
+        <section className="py-20 lg:py-28 bg-white">
+          <div className="max-w-5xl mx-auto px-6 lg:px-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold font-[family-name:var(--font-serif)]">
+                How We Work Together
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                No more supplier roulette. Here's the process.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {howItWorks.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex gap-6 items-start p-6 bg-gray-50 rounded-xl border-2 border-gray-200 hover:border-orange-300 transition-all"
+                >
+                  <div className="w-12 h-12 rounded-full bg-orange-500 text-white font-bold text-xl flex items-center justify-center flex-shrink-0">
+                    {item.step}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -210,10 +268,10 @@ export default function AboutPage() {
         <section className="py-20 lg:py-28 bg-gray-50">
           <div className="max-w-5xl mx-auto px-6 lg:px-12">
             <h2 className="text-2xl lg:text-3xl font-bold text-center font-[family-name:var(--font-serif)]">
-              Our Coverage — Pearl River Delta
+              Based in Shenzhen — Heart of EV Supply Chain
             </h2>
-            <p className="mt-4 text-text-secondary text-center">
-              Major industrial clusters, all within 1-2 hours of each other. Click the markers to learn more.
+            <p className="mt-4 text-gray-600 text-center max-w-2xl mx-auto">
+              Every major EV charging factory is within 1-2 hours. When problems arise, I show up same-week.
             </p>
 
             <div className="mt-12">
@@ -222,28 +280,73 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Factory Gallery */}
+        {/* Social Proof - NEW */}
         <section className="py-20 lg:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <h2 className="text-2xl lg:text-3xl font-bold text-center font-[family-name:var(--font-serif)]">
-              Inside the factories
-            </h2>
-            <p className="mt-4 text-text-secondary text-center">
-              Real photos from our factory visits and inspections.
-            </p>
+          <div className="max-w-4xl mx-auto px-6 lg:px-12">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold font-[family-name:var(--font-serif)]">
+                What Happens When You Work With Us
+              </h2>
+            </div>
 
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
-              {gallery.map((img) => (
-                <div key={img.alt} className="relative aspect-[4/3] rounded-xl overflow-hidden group">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-navy-900/0 group-hover:bg-navy-900/20 transition-colors" />
-                </div>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-6 bg-red-50 border-2 border-red-200 rounded-xl">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <XCircle size={20} className="text-red-600" />
+                  Before PearlGate
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>Fake UL certificates discovered after importing</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>Samples perfect, bulk orders fail safety tests</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>Suppliers ghost you after deposit</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>Can't verify factory claims from overseas</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-red-600 mt-1">•</span>
+                    <span>Lost $50K to scam trading companies</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="p-6 bg-green-50 border-2 border-green-200 rounded-xl">
+                <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                  <CheckCircle size={20} className="text-green-600" />
+                  With PearlGate
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>Certificates verified in UL/TUV databases</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>Pre-shipment QC catches problems early</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>On-ground escalation when suppliers go quiet</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>Factory visits with photo documentation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 mt-1">✓</span>
+                    <span>Only real factories, no trading companies</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
@@ -252,17 +355,21 @@ export default function AboutPage() {
         <section className="py-20 lg:py-28 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700">
           <div className="max-w-3xl mx-auto px-6 lg:px-12 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold text-white font-[family-name:var(--font-serif)]">
-              Ready to source with confidence?
+              Stop Gambling With Suppliers
             </h2>
-            <p className="mt-4 text-white/70 text-lg">
-              Submit your requirements — we&apos;ll match you with verified factories within 48 hours. Free, no obligation.
+            <p className="mt-4 text-white/80 text-lg leading-relaxed">
+              Share your supplier horror stories. I'll explain exactly how we prevent each problem.
+              Free consultation, 48-hour response.
             </p>
             <Link
-              href="/quote"
-              className="inline-block mt-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
+              href="/supplier-match"
+              className="inline-block mt-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-10 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
-              Submit an Inquiry
+              Get Matched With Verified Suppliers
             </Link>
+            <p className="mt-6 text-white/60 text-sm">
+              No obligation. We only earn commission after successful orders.
+            </p>
           </div>
         </section>
       </main>
