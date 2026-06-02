@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
 import {
   buildSampleRequestConfirmationEmail,
   buildSampleRequestNotificationEmail,
@@ -36,11 +37,53 @@ function generateReferenceId(): string {
 }
 
 async function saveToDatabase(data: SampleRequestData) {
-  // TODO: 实现 Airtable 或 Notion 集成
-  console.log("=== 保存到数据库 ===");
-  console.log("Reference ID:", data.referenceId);
-  console.log("数据:", JSON.stringify(data, null, 2));
-  console.log("==========================");
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    console.log("⚠️  Supabase 未配置，跳过数据库保存");
+    return;
+  }
+
+  try {
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const { data: result, error } = await supabase
+      .from("sample_requests")
+      .insert([
+        {
+          reference_id: data.referenceId,
+          full_name: data.fullName,
+          company: data.company,
+          email: data.email,
+          whatsapp: data.whatsapp || null,
+          country: data.country,
+          target_market: data.targetMarket,
+          product_name: data.productName,
+          product_category: data.productCategory,
+          product_url: data.productUrl || null,
+          charging_standard: data.chargingStandard || null,
+          certifications_needed: data.certificationsNeeded || [],
+          intended_use: data.intendedUse || null,
+          estimated_volume: data.estimatedVolume || null,
+          oem_requirements: data.oemRequirements || null,
+          message: data.message || null,
+          status: "pending",
+        },
+      ])
+      .select();
+
+    if (error) {
+      console.error("❌ Supabase 保存失败:", error);
+      throw error;
+    }
+
+    console.log("✅ 成功保存到 Supabase:", data.referenceId);
+    return result;
+  } catch (error) {
+    console.error("❌ 保存到数据库时出错:", error);
+    // 不抛出错误，继续处理（邮件仍会发送）
+  }
 }
 
 export async function POST(request: NextRequest) {
