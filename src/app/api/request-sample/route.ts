@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+import {
+  buildSampleRequestConfirmationEmail,
+  buildSampleRequestNotificationEmail,
+  type SampleRequestData,
+} from "@/lib/emails";
 
 interface RequestSampleData {
   fullName: string;
@@ -27,81 +33,11 @@ function generateReferenceId(): string {
   return `PG-${year}${month}${day}-${random}`;
 }
 
-async function sendNotificationEmail(data: RequestSampleData, referenceId: string) {
-  const notificationBody = `
-New Sample Request Received
-
-Reference ID: ${referenceId}
-
-CONTACT INFORMATION
-Name: ${data.fullName}
-Company: ${data.company}
-Email: ${data.email}
-WhatsApp/Phone: ${data.whatsapp || "Not provided"}
-Country: ${data.country}
-
-PROJECT DETAILS
-Target Market: ${data.targetMarket}
-Product: ${data.productName || "Not specified"}
-Product Category: ${data.productCategory || "Not specified"}
-Product URL: ${data.productUrl || "Not specified"}
-Charging Standard: ${data.chargingStandard || "Not specified"}
-Certifications Needed: ${data.certificationsNeeded.join(", ") || "Not specified"}
-Intended Use: ${data.intendedUse || "Not specified"}
-Estimated Volume: ${data.estimatedVolume || "Not specified"}
-OEM Requirements: ${data.oemRequirements || "Not specified"}
-
-MESSAGE
-${data.message || "No additional message"}
-
----
-Submitted at: ${new Date().toISOString()}
-  `.trim();
-
-  // TODO: Replace with actual email service (Resend, SendGrid, etc.)
-  // For now, just log to console
-  console.log("=== NOTIFICATION EMAIL ===");
-  console.log(notificationBody);
-  console.log("=========================");
-}
-
-async function sendConfirmationEmail(data: RequestSampleData, referenceId: string) {
-  const confirmationBody = `
-Dear ${data.fullName},
-
-Thank you for your interest in our EVSE & charging cable products!
-
-Your sample request has been received successfully.
-
-Reference ID: ${referenceId}
-
-We have received your inquiry for:
-${data.productName || "EVSE Product"}
-
-Our team will review your requirements and match you with 2-3 verified OEM manufacturers within 48 hours. You will receive a detailed response at ${data.email}.
-
-In the meantime, if you have urgent questions, feel free to reach us:
-- WhatsApp: [TO BE CONFIGURED]
-- Email: hello@pearlgatesourcing.com
-- LinkedIn: [TO BE CONFIGURED]
-
-Best regards,
-PearlGate Sourcing Team
-Your EVSE & Connector Specialists
-  `.trim();
-
-  // TODO: Replace with actual email service
-  console.log("=== CONFIRMATION EMAIL ===");
-  console.log(`To: ${data.email}`);
-  console.log(confirmationBody);
-  console.log("==========================");
-}
-
-async function saveToDatabase(data: RequestSampleData, referenceId: string) {
-  // TODO: Implement Airtable or Notion integration
-  console.log("=== SAVING TO DATABASE ===");
-  console.log("Reference ID:", referenceId);
-  console.log("Data:", JSON.stringify(data, null, 2));
+async function saveToDatabase(data: SampleRequestData) {
+  // TODO: 实现 Airtable 或 Notion 集成
+  console.log("=== 保存到数据库 ===");
+  console.log("Reference ID:", data.referenceId);
+  console.log("数据:", JSON.stringify(data, null, 2));
   console.log("==========================");
 }
 
@@ -109,42 +45,92 @@ export async function POST(request: NextRequest) {
   try {
     const data: RequestSampleData = await request.json();
 
-    // Validate required fields
+    // 验证必填字段
     if (!data.fullName || !data.company || !data.email || !data.country || !data.targetMarket) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "缺少必填字段" },
         { status: 400 }
       );
     }
 
-    // Validate email format
+    // 验证邮箱格式
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
       return NextResponse.json(
-        { error: "Invalid email format" },
+        { error: "邮箱格式无效" },
         { status: 400 }
       );
     }
 
-    // Generate reference ID
+    // 生成 Reference ID
     const referenceId = generateReferenceId();
 
-    // Process in parallel
-    await Promise.all([
-      sendNotificationEmail(data, referenceId),
-      sendConfirmationEmail(data, referenceId),
-      saveToDatabase(data, referenceId),
-    ]);
-
-    return NextResponse.json({
-      success: true,
+    const emailData: SampleRequestData = {
+      ...data,
       referenceId,
-      message: "Sample request submitted successfully",
-    });
+    };
+
+    // 获取配置
+    const apiKey = process.env.RESEND_API_KEY;
+    const adminEmail = process.env.ADMIN_EMAIL || "Alex.Guan@pearlgatesourcing.com";
+
+    // 保存到数据库
+    await saveToDatabase(emailData);
+
+    // 如果没有 API Key，只保存数据库，不发送邮件
+    if (!apiKey) {
+      console.log("⚠️  未配置 RESEND_API_KEY，跳过邮件发送");
+      return NextResponse.json({
+        success: true,
+        referenceId,
+        emailSent: false,
+        message: "请求已接收，但邮件服务未配置",
+      });
+    }
+
+    const resend = new Resend(apiKey);
+
+    // 并行发送确认邮件和通知邮件
+    try {
+      await Promise.all([
+        // 发送给客户的确认邮件
+        resend.emails.send({
+          from: "PearlGate <Alex.Guan@pearlgatesourcing.com>",
+          to: data.email,
+          subject: "Sample Request Confirmation — PearlGate",
+          html: buildSampleRequestConfirmationEmail(emailData),
+        }),
+        // 发送给管理员的通知邮件
+        resend.emails.send({
+          from: "PearlGate Samples <samples@pearlgatesourcing.com>",
+          to: adminEmail,
+          subject: `[New Sample Request] ${data.productName} — ${data.fullName}`,
+          html: buildSampleRequestNotificationEmail(emailData),
+          replyTo: data.email,
+        }),
+      ]);
+
+      return NextResponse.json({
+        success: true,
+        referenceId,
+        emailSent: true,
+        message: "样品请求已提交成功",
+      });
+    } catch (emailError) {
+      console.error("邮件发送失败:", emailError);
+
+      // 即使邮件失败，也返回成功（因为数据已保存）
+      return NextResponse.json({
+        success: true,
+        referenceId,
+        emailSent: false,
+        message: "请求已保存，但邮件发送失败",
+      });
+    }
   } catch (error) {
-    console.error("Error processing sample request:", error);
+    console.error("处理样品请求时出错:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "内部服务器错误" },
       { status: 500 }
     );
   }
