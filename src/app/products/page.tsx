@@ -1,138 +1,165 @@
 import Link from "next/link";
-import { getAllProducts } from "@/lib/products";
-import type { Metadata } from "next";
+import { Cable, Zap, Package, Plug, ChevronRight, Beaker } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { FadeIn, Stagger, StaggerItem } from "@/components/Animations";
 
-export const metadata: Metadata = {
-  title: "EV Charging Products - Pre-Vetted Suppliers | SilkBridge",
-  description: "Browse CCS1, CCS2, NACS, Type 2 cables, portable chargers, and connectors. Each product category includes pre-vetted suppliers, specs, and red flags to avoid.",
-  openGraph: {
-    title: "EV Charging Products - Pre-Vetted Suppliers",
-    description: "Browse CCS1, CCS2, NACS, Type 2 cables, portable chargers, and connectors.",
+const products = [
+  {
+    slug: "ccs1-cable",
+    name: "CCS1 DC Charging Cables",
+    icon: Cable,
+    description: "150A-250A DC fast charging cables for CCS1 standard. UL 2251/2594 certified.",
+    specs: "150A-250A, UL 2251/2594",
+    priceRange: "$180-$450/unit",
+    supplierCount: 5,
+    color: "from-blue-500 to-blue-600",
   },
-};
+  {
+    slug: "ccs2-cable",
+    name: "CCS2 DC Charging Cables",
+    icon: Cable,
+    description: "European CCS2 DC charging cables. IEC 62196-3 compliant.",
+    specs: "150A-200A, IEC 62196-3",
+    priceRange: "$160-$420/unit",
+    supplierCount: 3,
+    color: "from-purple-500 to-purple-600",
+  },
+  {
+    slug: "nacs-cable",
+    name: "NACS (Tesla) Charging Cables",
+    icon: Zap,
+    description: "Tesla/North American Charging Standard cables. SAE J3400 compliant.",
+    specs: "250A, SAE J3400",
+    priceRange: "$200-$520/unit",
+    supplierCount: 4,
+    color: "from-orange-500 to-orange-600",
+  },
+  {
+    slug: "type2-cable",
+    name: "Type 2 AC Charging Cables",
+    icon: Cable,
+    description: "IEC 62196-2 Mode 3 AC charging cables. Most common in Europe & China.",
+    specs: "16A-32A, IEC 62196-2",
+    priceRange: "$28-$55/unit",
+    supplierCount: 6,
+    color: "from-green-500 to-green-600",
+  },
+  {
+    slug: "portable-evse",
+    name: "Portable EVSE Units",
+    icon: Package,
+    description: "Level 1/2 portable charging stations. UL/ETL listed for US market.",
+    specs: "Level 1/2, 16A-40A",
+    priceRange: "$55-$140/unit",
+    supplierCount: 3,
+    color: "from-teal-500 to-teal-600",
+  },
+  {
+    slug: "connectors",
+    name: "Connectors & Adapters",
+    icon: Plug,
+    description: "EVSE connectors, inlets, and cross-standard adapters.",
+    specs: "CCS, NACS, Type 1/2",
+    priceRange: "$18-$180/unit",
+    supplierCount: 4,
+    color: "from-indigo-500 to-indigo-600",
+  },
+];
 
 export default function ProductsPage() {
-  const products = getAllProducts();
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16 sm:py-24">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            Browse EV Charging Products
-          </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Each product category includes pre-vetted suppliers, technical specs, common mistakes to avoid, and red flags to watch for.
-          </p>
-        </div>
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-white">
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 px-6 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <FadeIn>
+              <div className="text-center mb-4">
+                <span className="inline-block px-4 py-1.5 text-sm font-semibold text-orange-600 uppercase tracking-wider mb-6">
+                  EVSE & Connector Product Database
+                </span>
+                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-[family-name:var(--font-serif)]">
+                  Browse Verified EVSE Products
+                </h1>
+                <p className="text-lg text-text-secondary max-w-3xl mx-auto leading-relaxed">
+                  Every charging cable, connector, and EVSE unit personally verified with manufacturers.
+                  Compare specs, certifications, pricing, and supplier options.
+                </p>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                <Link
+                  href="/sample-request"
+                  className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
+                >
+                  <Beaker size={20} />
+                  Request Product Samples
+                </Link>
+                <Link
+                  href="/suppliers"
+                  className="inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold px-8 py-4 rounded-lg transition-all hover:-translate-y-0.5"
+                >
+                  View All Suppliers
+                  <ChevronRight size={20} />
+                </Link>
+              </div>
+            </FadeIn>
+          </div>
+        </section>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <div
-              key={product.slug}
-              className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-lg overflow-hidden hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 flex flex-col"
-            >
-              {/* Product Image */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {product.category}
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {product.name}
-                </h3>
-
-                <p className="text-slate-300 text-sm mb-4 line-clamp-3">
-                  {product.description}
-                </p>
-
-                {/* Key Specs */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-sm">
-                    <span className="text-slate-400 w-24">Current:</span>
-                    <span className="text-slate-300 text-xs">{product.specs.current}</span>
-                  </div>
-                  <div className="flex items-center text-sm">
-                    <span className="text-slate-400 w-24">Voltage:</span>
-                    <span className="text-slate-300 text-xs">{product.specs.voltage}</span>
-                  </div>
-                </div>
-
-                {/* Price and Suppliers */}
-                <div className="border-t border-slate-800 pt-4 mt-auto">
-                  <div className="flex justify-between items-center mb-4">
-                    <div>
-                      <p className="text-xs text-slate-400">Price Range</p>
-                      <p className="text-lg font-semibold text-white">
-                        ${product.priceRange.min}-${product.priceRange.max}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-400">Suppliers</p>
-                      <p className="text-lg font-semibold text-blue-400">
-                        {product.suppliers.length}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
+        <section className="px-6 py-24">
+          <div className="max-w-7xl mx-auto">
+            <Stagger staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <StaggerItem key={product.slug}>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
+                    className="group block bg-white border-2 border-gray-200 hover:border-orange-400 rounded-2xl p-8 transition-all hover:shadow-lg hover:-translate-y-1"
                   >
-                    View Details & Suppliers
+                    <div className="flex items-start justify-between mb-6">
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${product.color} flex items-center justify-center`}>
+                        <product.icon size={28} className="text-white" />
+                      </div>
+                      <span className="text-xs font-semibold bg-orange-100 text-orange-700 px-3 py-1.5 rounded-full">
+                        {product.supplierCount} OEMs
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+                      {product.name}
+                    </h3>
+
+                    <p className="text-gray-600 text-sm mb-5 leading-relaxed">
+                      {product.description}
+                    </p>
+
+                    <div className="space-y-2 mb-6 pb-6 border-b border-gray-200">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Specifications</span>
+                        <span className="text-gray-900 font-medium">{product.specs}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-gray-500">Price Range</span>
+                        <span className="text-gray-900 font-medium">{product.priceRange}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-orange-600 font-semibold group-hover:gap-3 transition-all">
+                      View Details & Suppliers
+                      <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </Link>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom CTAs */}
-        <div className="mt-16 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Sample Program CTA */}
-          <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 backdrop-blur border border-orange-700/50 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Need Physical Samples?
-            </h2>
-            <p className="text-slate-300 mb-6">
-              Order pre-vetted samples before committing to bulk orders. We coordinate sample shipments, quality checks, and certification verification.
-            </p>
-            <Link
-              href="/sample-program"
-              className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-            >
-              Request Samples
-            </Link>
+                </StaggerItem>
+              ))}
+            </Stagger>
           </div>
-
-          {/* Supplier Directory CTA */}
-          <div className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-lg p-8">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Browse All Suppliers
-            </h2>
-            <p className="text-slate-300 mb-6">
-              If you already know what you need and want to browse all EVSE manufacturers directly, visit our supplier directory.
-            </p>
-            <Link
-              href="/suppliers"
-              className="inline-block bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-            >
-              View Supplier Directory
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
