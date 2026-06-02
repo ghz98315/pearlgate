@@ -20,10 +20,6 @@ const goodFit = [
     title: "Buyers with Quality Issues",
     description: "Your current supplier had fake certifications, wrong specs, or quality problems.",
   },
-  {
-    title: "First-Time China Sourcing",
-    description: "You're new to sourcing from China and need guidance on EV charging standards and suppliers.",
-  },
 ];
 
 const notGoodFit = [
@@ -38,6 +34,10 @@ const notGoodFit = [
   {
     title: "Non-EV Charging Products",
     description: "I only work with EV charging equipment — cables, connectors, chargers, adapters.",
+  },
+  {
+    title: "Looking for the Cheapest Option",
+    description: "I prioritize quality and compliance over rock-bottom pricing. If price is your only concern, this isn't a good fit.",
   },
 ];
 
@@ -70,7 +70,7 @@ export default function WhoShouldWorkWithMe() {
             <Stagger staggerDelay={0.1} className="space-y-4">
               {goodFit.map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="p-5 rounded-xl border-2 border-green-200 bg-green-50/50 hover:border-green-300 transition-colors">
+                  <div className="p-5 rounded-xl border-2 border-green-200 bg-green-50/50 hover:border-green-300 transition-colors min-h-[112px] flex flex-col">
                     <h4 className="font-semibold text-base text-gray-900">
                       {item.title}
                     </h4>
@@ -95,7 +95,7 @@ export default function WhoShouldWorkWithMe() {
             <Stagger staggerDelay={0.1} className="space-y-4">
               {notGoodFit.map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="p-5 rounded-xl border-2 border-red-200 bg-red-50/50 hover:border-red-300 transition-colors">
+                  <div className="p-5 rounded-xl border-2 border-red-200 bg-red-50/50 hover:border-red-300 transition-colors min-h-[112px] flex flex-col">
                     <h4 className="font-semibold text-base text-gray-900">
                       {item.title}
                     </h4>
