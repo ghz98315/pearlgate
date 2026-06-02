@@ -90,11 +90,11 @@ export default function Navbar() {
           <Link href="/factory-verification" className="text-white/80 hover:text-white text-sm transition-colors">
             Verification
           </Link>
-          <Link href="/about" className="text-white/80 hover:text-white text-sm transition-colors">
-            About
-          </Link>
           <Link href="/blog" className="text-white/80 hover:text-white text-sm transition-colors">
             Insights
+          </Link>
+          <Link href="/about" className="text-white/80 hover:text-white text-sm transition-colors">
+            About
           </Link>
 
           <Link
@@ -184,18 +184,18 @@ export default function Navbar() {
             Verification
           </Link>
           <Link
-            href="/about"
-            className="block text-white/80 hover:text-white text-sm"
-            onClick={() => setMobileOpen(false)}
-          >
-            About
-          </Link>
-          <Link
             href="/blog"
             className="block text-white/80 hover:text-white text-sm"
             onClick={() => setMobileOpen(false)}
           >
             Insights
+          </Link>
+          <Link
+            href="/about"
+            className="block text-white/80 hover:text-white text-sm"
+            onClick={() => setMobileOpen(false)}
+          >
+            About
           </Link>
           <Link
             href="/supplier-match"
