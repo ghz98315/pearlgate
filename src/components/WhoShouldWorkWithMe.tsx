@@ -25,7 +25,7 @@ const goodFit = [
 const notGoodFit = [
   {
     title: "Dropshipping / One-Piece Orders",
-    description: "I focus on B2B bulk orders (500+ units), not retail fulfillment.",
+    description: "I focus on B2B bulk orders (typically 500+ units minimum), not retail fulfillment or single-piece orders.",
   },
   {
     title: "Budget Below Certification Costs",
@@ -70,7 +70,7 @@ export default function WhoShouldWorkWithMe() {
             <Stagger staggerDelay={0.1} className="space-y-4">
               {goodFit.map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="p-5 rounded-xl border-2 border-green-200 bg-green-50/50 hover:border-green-300 transition-colors min-h-[112px] flex flex-col">
+                  <div className="p-5 rounded-xl border-2 border-green-200 bg-green-50/50 backdrop-blur-sm hover:border-green-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 min-h-[112px] flex flex-col">
                     <h4 className="font-semibold text-base text-gray-900">
                       {item.title}
                     </h4>
@@ -95,7 +95,7 @@ export default function WhoShouldWorkWithMe() {
             <Stagger staggerDelay={0.1} className="space-y-4">
               {notGoodFit.map((item) => (
                 <StaggerItem key={item.title}>
-                  <div className="p-5 rounded-xl border-2 border-red-200 bg-red-50/50 hover:border-red-300 transition-colors min-h-[112px] flex flex-col">
+                  <div className="p-5 rounded-xl border-2 border-red-200 bg-red-50/50 backdrop-blur-sm hover:border-red-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 min-h-[112px] flex flex-col">
                     <h4 className="font-semibold text-base text-gray-900">
                       {item.title}
                     </h4>
