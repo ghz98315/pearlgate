@@ -6,8 +6,8 @@ import { getAllPosts } from "@/lib/posts";
 import { Calendar, Clock } from "lucide-react";
 
 export const metadata = {
-  title: "Blog — PearlGate | China Sourcing Guides & Tips",
-  description: "Practical guides for sourcing from China. Learn how to find reliable suppliers, manage quality, and navigate Guangdong's industrial clusters.",
+  title: "Blog — PearlGate | EV Charging Supply Chain Guides & Sourcing Insights",
+  description: "Expert insights on sourcing EV charging equipment from China. Learn from 11+ years of supply chain experience, including BYD background. Covering standards, certifications, supplier verification, and market trends.",
 };
 
 export default function BlogPage() {

@@ -103,25 +103,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
 
           {/* CTA */}
-          <div className="mt-16 p-8 rounded-2xl bg-gray-50 border border-border text-center">
+          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-navy-50 to-orange-50 border border-navy-200 text-center">
             <h3 className="text-xl font-bold font-[family-name:var(--font-serif)]">
-              Need help sourcing?
+              Sourcing EV Charging Equipment from China?
             </h3>
             <p className="mt-2 text-text-secondary">
-              Send me your requirements — first quote is always free.
+              I'm based in the Pearl River Delta with 11 years of supply chain experience.
+              I help buyers find verified EV charging manufacturers, verify certifications, and coordinate factory visits.
             </p>
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
-                href="/quote"
+                href="/supplier-match"
                 className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all hover:-translate-y-0.5"
               >
-                Get a Free Quote
+                Get Matched with Suppliers
               </Link>
               <Link
-                href="/suppliers"
-                className="text-navy-700 hover:text-navy-900 font-semibold px-6 py-3 rounded-lg border border-border hover:bg-gray-50 transition-colors"
+                href="/factory-verification"
+                className="text-navy-700 hover:text-navy-900 font-semibold px-6 py-3 rounded-lg border border-navy-300 hover:bg-white transition-colors"
               >
-                Browse Verified Suppliers →
+                Factory Verification Service →
               </Link>
             </div>
           </div>
