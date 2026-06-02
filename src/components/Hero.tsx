@@ -46,23 +46,25 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-3xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
           >
-            Reliable EV Charging Supply Chain From China
-            <br />
-            <span className="text-orange-500">
-              — Helping overseas buyers source verified EV charging suppliers,
-              components, and manufacturing partners from the Pearl River Delta.
-            </span>
+            Stop Gambling on EV Charging Suppliers
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-6 text-lg text-white/75 leading-relaxed max-w-xl"
+            className="mt-6 text-xl text-orange-400 leading-relaxed max-w-2xl font-semibold"
           >
-            Carefully verified EV charging manufacturers specializing in cables,
-            adapters, portable chargers, and connectors. Former BYD factory manager
-            with 11 years of manufacturing experience. Submit your requirements —
-            we&apos;ll match you with verified options within 48 hours.
+            One fake UL cert = $100K+ loss. One wrong connector standard = entire container useless.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            className="mt-4 text-lg text-white/80 leading-relaxed max-w-xl"
+          >
+            I verify EV charging factories before you risk a dollar. Former BYD factory manager
+            based in Pearl River Delta. I check what others can&apos;t fake: real certifications,
+            test data, production lines.
           </motion.p>
 
           <motion.div
@@ -76,14 +78,14 @@ export default function Hero() {
               className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
               <Search size={18} />
-              Request Supplier Match
+              Get Free Factory Verification (48h)
             </Link>
             <Link
-              href="/blog"
+              href="/factory-verification"
               className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-medium px-7 py-3.5 rounded-lg text-base transition-all hover:-translate-y-0.5 backdrop-blur-sm"
             >
               <FileText size={18} />
-              Explore Insights
+              How I Verify Suppliers
             </Link>
           </motion.div>
 

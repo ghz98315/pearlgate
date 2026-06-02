@@ -6,27 +6,27 @@ import { FadeIn, Stagger, StaggerItem } from "./Animations";
 const painPoints = [
   {
     icon: AlertTriangle,
-    title: "Too many suppliers, no way to tell who's legit",
-    description: "Alibaba shows 10,000 results — but which one won't ghost you after payment?",
-    solution: "Every factory on PearlGate is personally verified by someone who managed Guangdong factories for 10+ years.",
+    title: "Fake UL certifications slip through",
+    description: "Factory shows you a UL certificate. Looks legit. You ship to the US. Customs rejects the entire container — certificate was fake. $100K+ loss, 3-month delay.",
+    solution: "I verify every UL certificate in the official database and cross-check with test reports. I've caught fake certs that would have cost buyers $500K+ in losses.",
   },
   {
     icon: MessageCircleWarning,
-    title: "Language barriers slow everything down",
-    description: "Spec sheets lost in translation. Factories misunderstand tolerances and timelines.",
-    solution: "We handle all factory communication in Mandarin, negotiate on your behalf, and translate specs precisely.",
+    title: "Wrong connector standard = useless product",
+    description: "You ordered CCS1 for the US market. Factory shipped CCS2 (European standard). Connectors physically incompatible. Entire batch is scrap unless you eat the reshipping cost.",
+    solution: "I speak the technical language — CCS1 vs CCS2, NACS vs J1772, Type 1 vs Type 2. I verify samples match specs before bulk production.",
   },
   {
     icon: ImageOff,
-    title: "Quality surprises after shipment",
-    description: "Containers arrive and 20% is defective. By then it's too late to fix anything.",
-    solution: "Our QC comes from someone who managed production lines. Problems caught before they leave port.",
+    title: "Cables overheat at rated current",
+    description: "Factory claims \"32A rated\" but uses undersized conductors. Cables overheat during testing. Fire hazard, UL failure, product recall nightmare.",
+    solution: "I check conductor sizing, cable construction drawings, and temperature rise test data. I know what automotive-grade actually means.",
   },
   {
     icon: Ban,
-    title: "Minimum orders are too high",
-    description: "You need 500 units, not 5,000 — but factories won't take small buyers seriously.",
-    solution: "Our network includes factories with flexible MOQs for first orders. We negotiate on your behalf.",
+    title: "Consumer-grade parts in automotive products",
+    description: "Factory uses consumer electronics components in EV charging equipment. Works in the lab, fails in -20°C winter or after 5,000 plug cycles. No refund after 6 months.",
+    solution: "Former BYD quality manager — I know the difference between consumer-grade and automotive-grade. I verify component suppliers and test cycle data.",
   },
 ];
 
@@ -39,10 +39,10 @@ export default function PainPoints() {
             Why PearlGate
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center font-[family-name:var(--font-serif)]">
-            Sourcing from China is broken.
+            EV Charging Sourcing Is High-Stakes
           </h2>
           <p className="mt-3 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            We fix the biggest problems buyers face every day.
+            One mistake can cost $100K+. Here are the disasters I help buyers avoid.
           </p>
         </FadeIn>
 
