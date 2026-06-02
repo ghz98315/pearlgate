@@ -88,19 +88,19 @@ export default function DatabasePreview() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <FadeIn>
           <p className="text-sm font-semibold text-orange-600 uppercase tracking-wider mb-3 text-center">
-            Verified Supplier Database
+            Verified EVSE & Connector Database
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center font-[family-name:var(--font-serif)]">
-            Browse by Product or Supplier
+            Browse by Charging Standard & EVSE Type
           </h2>
           <p className="mt-3 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            Every factory personally verified. Real certifications. Proven production capabilities.
+            Every charging equipment OEM personally verified. UL/IEC certifications checked. Proven connector production capabilities.
           </p>
         </FadeIn>
 
         {/* Product Categories Grid */}
         <div className="mt-16">
-          <h3 className="text-xl font-semibold mb-6">Browse by Product Category</h3>
+          <h3 className="text-xl font-semibold mb-6">Browse by Charging Standard & Connector Type</h3>
           <Stagger staggerDelay={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {productCategories.map((product) => (
               <StaggerItem key={product.name}>
@@ -113,7 +113,7 @@ export default function DatabasePreview() {
                       <product.icon size={24} className="text-white" />
                     </div>
                     <span className="text-xs font-semibold bg-orange-100 text-orange-700 px-3 py-1 rounded-full">
-                      {product.supplierCount} suppliers
+                      {product.supplierCount} OEMs
                     </span>
                   </div>
 
@@ -131,7 +131,7 @@ export default function DatabasePreview() {
                   </div>
 
                   <div className="flex items-center gap-1 text-sm font-medium text-orange-600 group-hover:gap-2 transition-all">
-                    View Suppliers
+                    View Certified OEMs
                     <ChevronRight size={16} />
                   </div>
                 </Link>
@@ -143,12 +143,12 @@ export default function DatabasePreview() {
         {/* Supplier Browse Section */}
         <div className="mt-20">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-semibold">Or Browse by Verified Supplier</h3>
+            <h3 className="text-xl font-semibold">Or Browse by Verified EVSE Manufacturer</h3>
             <Link
               href="/suppliers"
               className="text-sm font-medium text-orange-600 hover:text-orange-700 flex items-center gap-1"
             >
-              View All 7 Suppliers
+              View All 7 Charging Equipment OEMs
               <ChevronRight size={16} />
             </Link>
           </div>
@@ -202,17 +202,17 @@ export default function DatabasePreview() {
         <FadeIn delay={0.6}>
           <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700 text-center">
             <h3 className="text-2xl font-bold text-white font-[family-name:var(--font-serif)]">
-              Not Sure Which Supplier to Choose?
+              Not Sure Which EVSE Manufacturer to Choose?
             </h3>
             <p className="mt-3 text-white/80 text-lg max-w-2xl mx-auto">
-              Tell me your requirements. I'll recommend 2-3 verified factories that match your
-              specs, certifications, and budget. Free service, 48-hour turnaround.
+              Tell me your charging equipment specs. I'll recommend 2-3 UL/IEC-certified OEMs that match your
+              connector standards (CCS1/CCS2/NACS), certifications, and MOQ requirements. Free service, 48-hour turnaround.
             </p>
             <Link
               href="/supplier-match"
               className="inline-block mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/25"
             >
-              Get Free Supplier Match
+              Get Free EVSE Manufacturer Match
             </Link>
           </div>
         </FadeIn>

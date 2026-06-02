@@ -6,13 +6,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn } from "./Animations";
 
 const faqs = [
-  { question: "Is the inquiry really free?", answer: "Yes. Completely free, no strings attached. You submit your requirements, we match you with verified factories — no payment needed at any point." },
-  { question: "How is this different from Alibaba?", answer: "On Alibaba, you're sorting through thousands of unverified listings yourself. Here, every factory has been personally visited and vetted by someone with 10+ years of factory management experience. We do the filtering for you and only show factories we'd trust with our own orders." },
-  { question: "What's the minimum order?", answer: "Depends on the product, but we work with factories that accept orders as low as $500." },
-  { question: "What if quality doesn't match?", answer: "We inspect every order before shipping. If something's wrong, we negotiate with the factory before it leaves China." },
-  { question: "How long does the matching process take?", answer: "Typically 48 hours from inquiry to receiving 2-3 verified factory options with comparative quotes." },
-  { question: "Do you only source from Guangdong?", answer: "These are our core areas with the deepest factory relationships. For other regions or products, we can still help — just ask." },
-  { question: "What categories do you cover?", answer: "Hardware tools and molds are our strongest areas. We're expanding coverage — submit an inquiry and we'll let you know if we can help." },
+  { question: "Is the EVSE manufacturer matching really free?", answer: "Yes. Completely free, no strings attached. You submit your charging equipment specs, we match you with UL/IEC-certified OEMs — no payment needed at any point." },
+  { question: "How is this different from Alibaba for EVSE sourcing?", answer: "On Alibaba, you're sorting through thousands of unverified EVSE listings yourself. Here, every charging equipment OEM has been personally audited by a former BYD quality manager with 11+ years of charging infrastructure experience. We verify UL 2251/2594 and IEC 62196 certifications, check temperature rise test data, and only recommend OEMs we'd trust with our own charging network deployments." },
+  { question: "What's the minimum order for charging cables?", answer: "Depends on the connector type and certification. CCS1/CCS2 cables typically start at 500 units MOQ. NACS cables may require 1000 units. Portable EVSE can be as low as 500 units. We work with OEMs that understand early-stage charging network needs." },
+  { question: "What if the EVSE quality doesn't match certification specs?", answer: "We inspect every charging equipment order before shipping. If connector contact resistance, temperature rise, or insulation resistance doesn't match UL/IEC test data, we negotiate with the OEM before it leaves China. We check what matters: not just visual QC, but electrical testing." },
+  { question: "How long does the EVSE OEM matching process take?", answer: "Typically 48 hours from inquiry to receiving 2-3 UL/IEC-certified charging equipment OEM options with comparative quotes. We verify their CCS1/CCS2/NACS connector capabilities, liquid-cooled cable production, and certification compliance during this time." },
+  { question: "Do you only source EVSE from Pearl River Delta?", answer: "Pearl River Delta (Dongguan, Shenzhen, Guangzhou) is where 70%+ of global EV charging equipment is manufactured. This is our core focus with the deepest charging cable OEM relationships and certification lab access. For DC fast charging infrastructure needs outside this region, we can still help — just ask." },
+  { question: "What charging standards do you cover?", answer: "We specialize in CCS1 (North America), CCS2 (Europe/Global), NACS (Tesla/SAE J3400), Type 1 (J1772), Type 2 (Mennekes), and portable EVSE. We focus exclusively on EV charging equipment — not consumer electronics or general cables. If it's automotive-grade charging infrastructure, we can help." },
 ];
 
 export default function FAQ() {

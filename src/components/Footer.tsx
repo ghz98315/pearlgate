@@ -11,8 +11,8 @@ export default function Footer() {
               <Logo />
             </div>
             <p className="text-sm leading-relaxed">
-              Your sourcing partner in Guangdong&apos;s factories.
-              Former factory managers helping you source with confidence.
+              Your EVSE procurement partner in China&apos;s charging infrastructure supply chain.
+              Former BYD quality managers helping you source CCS/NACS connectors with confidence.
             </p>
           </div>
 

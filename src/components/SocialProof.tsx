@@ -19,7 +19,7 @@ export default function SocialProof() {
               20+
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              EV charging factories verified in Pearl River Delta since 2023
+              EVSE manufacturers & charging cable OEMs verified in Pearl River Delta since 2023
             </p>
           </div>
           <div>
@@ -27,7 +27,7 @@ export default function SocialProof() {
               $500K+
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              In fake certification losses prevented for buyers
+              In fake UL 2594/IEC 62196 certifications prevented for EVSE buyers
             </p>
           </div>
           <div>
@@ -35,7 +35,7 @@ export default function SocialProof() {
               11 Years
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              BYD factory experience (Quality Manager, 2013-2019)
+              BYD charging infrastructure experience (Quality Manager, 2013-2019)
             </p>
           </div>
         </div>

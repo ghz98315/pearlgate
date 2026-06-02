@@ -37,7 +37,7 @@ export default function Hero() {
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Pearl River Delta · Guangdong, China
             <span className="inline-block w-px h-3 bg-white/30 mx-1" />
-            <span className="text-green-400 font-semibold">EV Charging Focus</span>
+            <span className="text-green-400 font-semibold">CCS/NACS/Type2 Specialist</span>
           </motion.div>
 
           <motion.h1
@@ -46,7 +46,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-3xl lg:text-5xl font-bold text-white leading-tight font-[family-name:var(--font-serif)]"
           >
-            Stop Gambling on EV Charging Suppliers
+            Stop Gambling on EVSE Manufacturers
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-6 text-xl text-orange-400 leading-relaxed max-w-2xl font-semibold"
           >
-            One fake UL cert = $100K+ loss. One wrong connector standard = entire container useless.
+            One fake UL 2594 cert = $100K+ loss. One wrong connector standard (CCS1 vs CCS2) = entire container useless.
           </motion.p>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -62,9 +62,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-4 text-lg text-white/80 leading-relaxed max-w-xl"
           >
-            I verify EV charging factories before you risk a dollar. Former BYD factory manager
-            based in Pearl River Delta. I check what others can&apos;t fake: real certifications,
-            test data, production lines.
+            I audit EVSE manufacturers and charging cable OEMs before you deploy. Former BYD quality manager
+            specializing in CCS1/CCS2/NACS connector compliance and DC fast charging infrastructure.
+            I verify what others can&apos;t fake: UL/IEC certifications, temperature rise test data, liquid-cooled cable capabilities.
           </motion.p>
 
           <motion.div
@@ -97,19 +97,19 @@ export default function Hero() {
           >
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <ShieldCheck className="text-orange-500" size={20} />
-              <span className="text-xs text-white/60">Verified<br/>Network</span>
+              <span className="text-xs text-white/60">UL/IEC Certified<br/>Network</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <Zap className="text-orange-500" size={20} />
-              <span className="text-xs text-white/60">EV Charging<br/>Focus</span>
+              <span className="text-xs text-white/60">EVSE & Connector<br/>Specialist</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <Factory className="text-orange-500" size={20} />
-              <span className="text-xs text-white/60">11yr Factory<br/>Experience</span>
+              <span className="text-xs text-white/60">11yr Charging<br/>Infrastructure</span>
             </div>
             <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2.5">
               <Clock className="text-orange-500" size={20} />
-              <span className="text-xs text-white/60">48h Free<br/>Matching</span>
+              <span className="text-xs text-white/60">48h OEM<br/>Matching</span>
             </div>
           </motion.div>
         </div>

@@ -6,27 +6,27 @@ import { FadeIn, Stagger, StaggerItem } from "./Animations";
 const painPoints = [
   {
     icon: AlertTriangle,
-    title: "Fake UL certifications slip through",
-    description: "Factory shows you a UL certificate. Looks legit. You ship to the US. Customs rejects the entire container — certificate was fake. $100K+ loss, 3-month delay.",
-    solution: "I verify every UL certificate in the official database and cross-check with test reports. I've caught fake certs that would have cost buyers $500K+ in losses.",
+    title: "Fake UL 2594 certifications slip through",
+    description: "EVSE manufacturer shows you a UL 2594 certificate. Looks legit. You ship to the US. Customs rejects the entire container — certificate was fake. $100K+ loss, 3-month delay.",
+    solution: "I verify every UL 2251/2594 certificate in the official database and cross-check with test reports. I've caught fake EVSE certifications that would have cost buyers $500K+ in losses.",
   },
   {
     icon: MessageCircleWarning,
-    title: "Wrong connector standard = useless product",
-    description: "You ordered CCS1 for the US market. Factory shipped CCS2 (European standard). Connectors physically incompatible. Entire batch is scrap unless you eat the reshipping cost.",
-    solution: "I speak the technical language — CCS1 vs CCS2, NACS vs J1772, Type 1 vs Type 2. I verify samples match specs before bulk production.",
+    title: "Wrong connector standard = useless EVSE",
+    description: "You ordered CCS1 cables for the US charging network. OEM shipped CCS2 (European standard). Connectors physically incompatible with Type 1 vehicles. Entire batch is scrap unless you eat the reshipping cost.",
+    solution: "I speak the technical language — CCS1 vs CCS2, NACS vs J1772, Type 1 vs Type 2, IEC 62196-2 vs 62196-3. I verify connector samples match charging infrastructure specs before bulk production.",
   },
   {
     icon: ImageOff,
-    title: "Cables overheat at rated current",
-    description: "Factory claims \"32A rated\" but uses undersized conductors. Cables overheat during testing. Fire hazard, UL failure, product recall nightmare.",
-    solution: "I check conductor sizing, cable construction drawings, and temperature rise test data. I know what automotive-grade actually means.",
+    title: "DC charging cables overheat at rated current",
+    description: "EVSE manufacturer claims \"200A rated\" but uses undersized conductors. Cables overheat during DC fast charging sessions. Fire hazard, UL 2594 failure, product recall nightmare.",
+    solution: "I check conductor sizing (AWG/mm²), cable construction drawings, and temperature rise test data. I know what automotive-grade EVSE actually requires — not consumer electronics standards.",
   },
   {
     icon: Ban,
-    title: "Consumer-grade parts in automotive products",
-    description: "Factory uses consumer electronics components in EV charging equipment. Works in the lab, fails in -20°C winter or after 5,000 plug cycles. No refund after 6 months.",
-    solution: "Former BYD quality manager — I know the difference between consumer-grade and automotive-grade. I verify component suppliers and test cycle data.",
+    title: "Consumer-grade parts in charging equipment",
+    description: "OEM uses consumer electronics components in EVSE. Works in the lab, fails in -20°C winter or after 5,000 charging cycles. IEC 62752 non-compliance. No refund after 6 months.",
+    solution: "Former BYD quality manager — I know the difference between consumer-grade and automotive-grade charging infrastructure. I verify component suppliers, connector ratings, and flex cycle test data.",
   },
 ];
 
@@ -39,10 +39,10 @@ export default function PainPoints() {
             Why PearlGate
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center font-[family-name:var(--font-serif)]">
-            EV Charging Sourcing Is High-Stakes
+            EVSE Procurement Mistakes Cost $100K+
           </h2>
           <p className="mt-3 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            One mistake can cost $100K+. Here are the disasters I help buyers avoid.
+            Charging infrastructure sourcing disasters I help buyers avoid.
           </p>
         </FadeIn>
 

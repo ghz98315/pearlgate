@@ -17,22 +17,28 @@ const serif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: "PearlGate — Verified China Factory Database | Hardware & Mold Sourcing",
+  title: "PearlGate — Reliable EV Charging Supply Chain From China | EVSE & Connector Specialists",
   description:
-    "20+ personally-vetted factories in hardware tools and molds. Browse the database or submit your sourcing request — we'll match you with verified options in 48 hours.",
+    "Verified EVSE manufacturers and charging cable OEMs in Pearl River Delta. CCS1/CCS2/NACS connectors, DC fast charging cables, Level 2 EVSE. UL/IEC certified. Former BYD quality manager. Get matched with verified charging equipment suppliers in 48 hours.",
   keywords: [
-    "China factory database",
-    "verified Chinese suppliers",
-    "hardware tools supplier China",
-    "mold manufacturer China",
-    "Guangdong factory",
-    "Yangjiang knife supplier",
-    "Dongguan mold maker",
+    "EVSE manufacturer China",
+    "EV charging cable supplier",
+    "CCS1 cable OEM",
+    "CCS2 connector supplier",
+    "NACS cable manufacturer",
+    "DC fast charging cable",
+    "Type 2 charging cable",
+    "UL 2594 certified EVSE",
+    "IEC 62196 compliant",
+    "charging infrastructure supplier",
+    "Pearl River Delta EVSE",
+    "Dongguan charging cable",
+    "Shenzhen EVSE manufacturer",
   ],
   metadataBase: new URL("https://pearlgatesourcing.com"),
   openGraph: {
-    title: "PearlGate — Verified China Factory Database | Hardware & Mold Sourcing",
-    description: "20+ verified factories in Guangdong. Hardware tools and molds. Browse the database or get matched with 2-3 options in 48 hours.",
+    title: "PearlGate — Reliable EV Charging Supply Chain From China",
+    description: "Verified EVSE manufacturers in Pearl River Delta. CCS1/CCS2/NACS specialists. UL/IEC certified charging equipment. Get matched with 2-3 verified OEMs in 48 hours.",
     url: "https://pearlgatesourcing.com",
     siteName: "PearlGate",
     locale: "en_US",
@@ -40,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PearlGate — Verified China Factory Database",
-    description: "20+ verified factories in Guangdong. Hardware tools and molds. Free factory matching in 48 hours.",
+    title: "PearlGate — EV Charging Supply Chain Specialists",
+    description: "Verified EVSE manufacturers & charging cable OEMs. CCS1/CCS2/NACS connectors. UL/IEC certified. Free OEM matching in 48 hours.",
   },
   robots: {
     index: true,

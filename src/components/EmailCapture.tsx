@@ -10,8 +10,8 @@ interface EmailCaptureProps {
 }
 
 export default function EmailCapture({
-  title = "Get weekly sourcing tips + new factory alerts",
-  subtitle = "Join 100+ buyers who source smarter from China.",
+  title = "Get weekly EVSE sourcing insights + charging equipment OEM alerts",
+  subtitle = "Join 100+ buyers sourcing CCS/NACS connectors smarter from China.",
   source,
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");

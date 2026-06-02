@@ -5,34 +5,34 @@ import { FadeIn } from "./Animations";
 
 const comparisonData = [
   {
-    criterion: "EV Charging Expertise",
+    criterion: "EVSE & Connector Standards Expertise",
     alibaba: { status: "no", text: "General platform — thousands of categories" },
-    tradingCompany: { status: "no", text: "Source everything — no specialization" },
-    pearlgate: { status: "yes", text: "Only EV charging — cables, connectors, chargers" },
+    tradingCompany: { status: "no", text: "Source everything — no charging infrastructure specialization" },
+    pearlgate: { status: "yes", text: "Only EVSE & charging cables — CCS1/CCS2/NACS/Type2 specialist" },
   },
   {
-    criterion: "Certification Verification",
-    alibaba: { status: "no", text: "Can't verify — just photos from suppliers" },
-    tradingCompany: { status: "warning", text: "Accept certificates at face value" },
-    pearlgate: { status: "yes", text: "Verify in UL/TUV databases + check test reports" },
+    criterion: "UL 2251/2594 & IEC 62196 Verification",
+    alibaba: { status: "no", text: "Can't verify — just photos from EVSE sellers" },
+    tradingCompany: { status: "warning", text: "Accept charging equipment certificates at face value" },
+    pearlgate: { status: "yes", text: "Verify in UL/TUV databases + check temperature rise test reports" },
   },
   {
-    criterion: "Factory Experience",
+    criterion: "Charging Infrastructure Experience",
     alibaba: { status: "no", text: "No factory background" },
     tradingCompany: { status: "no", text: "Sales/trading background only" },
-    pearlgate: { status: "yes", text: "11 years BYD factory manager — production & QC" },
+    pearlgate: { status: "yes", text: "11 years BYD charging infrastructure — production & QC for EVSE" },
   },
   {
-    criterion: "Technical Knowledge",
-    alibaba: { status: "no", text: "Platform can't provide technical guidance" },
-    tradingCompany: { status: "no", text: "Limited understanding of specs/standards" },
-    pearlgate: { status: "yes", text: "Read test reports, check conductor sizing, verify standards compliance" },
+    criterion: "Technical Knowledge (Connector Standards)",
+    alibaba: { status: "no", text: "Platform can't provide EVSE technical guidance" },
+    tradingCompany: { status: "no", text: "Limited understanding of CCS/NACS specs/IEC standards" },
+    pearlgate: { status: "yes", text: "Read UL/IEC test reports, verify conductor sizing, check contact resistance data" },
   },
   {
     criterion: "Risk",
-    alibaba: { status: "warning", text: "You bear all risk — no pre-verification" },
-    tradingCompany: { status: "warning", text: "Partial risk transfer — still your problem if supplier fails" },
-    pearlgate: { status: "yes", text: "I verify before recommending — only work with proven factories" },
+    alibaba: { status: "warning", text: "You bear all risk — no EVSE pre-verification" },
+    tradingCompany: { status: "warning", text: "Partial risk transfer — still your problem if OEM certification fails" },
+    pearlgate: { status: "yes", text: "I verify UL/IEC compliance before recommending — only work with certified OEMs" },
   },
 ];
 
@@ -45,10 +45,10 @@ export default function WhyChooseMe() {
             Why Choose Me
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-center font-[family-name:var(--font-serif)]">
-            How I'm Different From The Alternatives
+            How I'm Different From EVSE Sourcing Alternatives
           </h2>
           <p className="mt-3 text-text-secondary text-center text-lg max-w-2xl mx-auto">
-            Not another middleman. A former factory manager who knows what to verify.
+            Not another middleman. A former BYD quality manager who knows CCS/NACS connector compliance.
           </p>
         </FadeIn>
 
@@ -60,13 +60,13 @@ export default function WhyChooseMe() {
                   {/* Empty header for criteria column */}
                 </th>
                 <th className="py-4 px-4 text-center">
-                  <div className="font-semibold text-base text-gray-600">Alibaba Direct</div>
+                  <div className="font-semibold text-base text-gray-600">Alibaba EVSE Listings</div>
                 </th>
                 <th className="py-4 px-4 text-center">
                   <div className="font-semibold text-base text-gray-600">Trading Company</div>
                 </th>
                 <th className="py-4 px-4 text-center bg-orange-50 rounded-t-xl">
-                  <div className="font-bold text-base text-orange-600">PearlGate (Me)</div>
+                  <div className="font-bold text-base text-orange-600">Charging Infrastructure Specialist</div>
                 </th>
               </tr>
             </thead>
@@ -119,10 +119,10 @@ export default function WhyChooseMe() {
         <FadeIn delay={0.4}>
           <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 text-center">
             <p className="text-lg font-semibold text-gray-900">
-              I don't take commission from factories. I charge buyers a transparent verification fee.
+              I don't take commission from EVSE manufacturers. I charge buyers a transparent verification fee.
             </p>
             <p className="mt-2 text-sm text-gray-700">
-              This means my incentive is finding you the right factory — not the one that pays me the highest commission.
+              This means my incentive is finding you the right UL/IEC-certified OEM — not the one that pays me the highest commission.
             </p>
           </div>
         </FadeIn>
