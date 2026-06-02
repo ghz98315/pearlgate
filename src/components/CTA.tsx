@@ -29,10 +29,10 @@ export default function CTA() {
               Submit EVSE Inquiry
             </Link>
             <Link
-              href="/suppliers"
+              href="/products"
               className="border border-white/20 hover:border-white/40 text-white/70 hover:text-white font-medium px-8 py-3.5 rounded-lg text-base transition-all"
             >
-              Browse Charging Equipment OEMs
+              Browse Products
             </Link>
           </div>
         </FadeIn>

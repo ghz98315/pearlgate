@@ -11,17 +11,17 @@ export default function SupplierBanner() {
               <Database size={24} className="text-orange-500" />
             </div>
             <div>
-              <h3 className="text-white font-semibold text-lg">Browse our Verified Supplier Database</h3>
+              <h3 className="text-white font-semibold text-lg">Browse EVSE & Charging Cable OEMs by Product</h3>
               <p className="text-white/60 text-sm mt-0.5">
-                Hand-picked factories across Guangdong. Each one personally visited and verified.
+                CCS1/CCS2/NACS cables, portable EVSE, connectors. Every OEM UL/IEC certified and personally verified.
               </p>
             </div>
           </div>
           <Link
-            href="/suppliers"
+            href="/products"
             className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all hover:-translate-y-0.5 whitespace-nowrap"
           >
-            View Suppliers <ArrowRight size={16} />
+            Browse Products <ArrowRight size={16} />
           </Link>
         </div>
       </div>
