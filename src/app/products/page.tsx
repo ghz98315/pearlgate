@@ -98,20 +98,37 @@ export default function ProductsPage() {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-          <div className="inline-block bg-slate-900/50 backdrop-blur border border-slate-800 rounded-lg p-8">
+        {/* Bottom CTAs */}
+        <div className="mt-16 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {/* Sample Program CTA */}
+          <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/20 backdrop-blur border border-orange-700/50 rounded-lg p-8">
             <h2 className="text-2xl font-bold text-white mb-4">
-              Need direct access to supplier list?
+              Need Physical Samples?
             </h2>
-            <p className="text-slate-300 mb-6 max-w-2xl">
-              If you already know what you need and want to browse all suppliers directly, visit our supplier directory.
+            <p className="text-slate-300 mb-6">
+              Order pre-vetted samples before committing to bulk orders. We coordinate sample shipments, quality checks, and certification verification.
+            </p>
+            <Link
+              href="/sample-program"
+              className="inline-block bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+            >
+              Request Samples
+            </Link>
+          </div>
+
+          {/* Supplier Directory CTA */}
+          <div className="bg-slate-900/50 backdrop-blur border border-slate-800 rounded-lg p-8">
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Browse All Suppliers
+            </h2>
+            <p className="text-slate-300 mb-6">
+              If you already know what you need and want to browse all EVSE manufacturers directly, visit our supplier directory.
             </p>
             <Link
               href="/suppliers"
               className="inline-block bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
             >
-              Browse All Suppliers
+              View Supplier Directory
             </Link>
           </div>
         </div>

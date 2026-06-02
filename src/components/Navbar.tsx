@@ -17,7 +17,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-white/80 hover:text-white text-sm transition-colors">Home</Link>
-          <Link href="/suppliers" className="text-white/80 hover:text-white text-sm transition-colors">Suppliers</Link>
+          <Link href="/products" className="text-white/80 hover:text-white text-sm transition-colors">Products</Link>
           <Link href="/factory-verification" className="text-white/80 hover:text-white text-sm transition-colors">Verification</Link>
           <Link href="/about" className="text-white/80 hover:text-white text-sm transition-colors">About</Link>
           <Link href="/blog" className="text-white/80 hover:text-white text-sm transition-colors">Insights</Link>
@@ -42,7 +42,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden bg-navy-900 border-t border-white/10 px-6 py-4 space-y-3">
           <Link href="/" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Home</Link>
-          <Link href="/suppliers" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Suppliers</Link>
+          <Link href="/products" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Products</Link>
           <Link href="/factory-verification" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Verification</Link>
           <Link href="/about" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>About</Link>
           <Link href="/blog" className="block text-white/80 hover:text-white text-sm" onClick={() => setOpen(false)}>Insights</Link>
