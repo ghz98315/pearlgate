@@ -29,7 +29,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4">Contact</h4>
             <ul className="space-y-2 text-sm">
-              <li>hello@pearlgatesourcing.com</li>
+              <li>Alex.Guan@pearlgatesourcing.com</li>
               <li>Based in Guangdong, China</li>
               <li>
                 <a

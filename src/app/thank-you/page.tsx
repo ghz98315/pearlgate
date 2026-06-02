@@ -91,12 +91,12 @@ export default function ThankYouPage() {
                   </a>
 
                   <a
-                    href="mailto:hello@pearlgatesourcing.com"
+                    href="mailto:Alex.Guan@pearlgatesourcing.com"
                     className="flex flex-col items-center gap-2 p-4 transition-all border-2 border-gray-200 rounded-lg hover:border-orange-400 hover:-translate-y-1"
                   >
                     <Mail size={32} className="text-blue-600" />
                     <span className="font-semibold text-gray-900">Email</span>
-                    <span className="text-sm text-gray-600">hello@pearlgatesourcing.com</span>
+                    <span className="text-sm text-gray-600">Alex.Guan@pearlgatesourcing.com</span>
                   </a>
 
                   <a

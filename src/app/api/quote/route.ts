@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   try {
     await Promise.all([
       resend.emails.send({
-        from: "PearlGate <hello@pearlgatesourcing.com>",
+        from: "PearlGate <Alex.Guan@pearlgatesourcing.com>",
         to: data.email,
         subject: "We received your sourcing request — PearlGate",
         html: buildCustomerConfirmationEmail(data),
