@@ -25,7 +25,7 @@ interface RequestSampleData {
   productUrl: string;
 }
 
-function generateReferenceId(): string {
+async function generateReferenceId(): Promise<string> {
   const date = new Date();
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -33,7 +33,52 @@ function generateReferenceId(): string {
   const hours = String(date.getHours()).padStart(2, "0");
   const minutes = String(date.getMinutes()).padStart(2, "0");
   const seconds = String(date.getSeconds()).padStart(2, "0");
-  return `PG-${year}${month}${day}-${hours}${minutes}${seconds}`;
+  const dateStr = `${year}${month}${day}`;
+  const timeStr = `${hours}${minutes}${seconds}`;
+
+  // 查询今天这个时间戳已有的最大编号
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    // 如果没有数据库，默认使用 001
+    return `PG-${dateStr}-${timeStr}001`;
+  }
+
+  try {
+    const { createClient } = await import("@supabase/supabase-js");
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // 查询今天这个时间的最大编号
+    const { data, error } = await supabase
+      .from("sample_requests")
+      .select("reference_id")
+      .like("reference_id", `PG-${dateStr}-${timeStr}%`)
+      .order("reference_id", { ascending: false })
+      .limit(1);
+
+    if (error) {
+      console.error("查询 Reference ID 失败:", error);
+      return `PG-${dateStr}-${timeStr}001`;
+    }
+
+    // 计算下一个编号
+    let nextNumber = 1;
+    if (data && data.length > 0) {
+      const lastId = data[0].reference_id;
+      // 提取最后3位数字
+      const lastNumberStr = lastId.slice(-3);
+      const lastNumber = parseInt(lastNumberStr, 10);
+      nextNumber = lastNumber + 1;
+    }
+
+    const numberStr = String(nextNumber).padStart(3, "0");
+    return `PG-${dateStr}-${timeStr}${numberStr}`;
+  } catch (error) {
+    console.error("生成 Reference ID 出错:", error);
+    // 后备方案
+    return `PG-${dateStr}-${timeStr}001`;
+  }
 }
 
 async function saveToDatabase(data: SampleRequestData) {
@@ -42,11 +87,16 @@ async function saveToDatabase(data: SampleRequestData) {
 
   if (!supabaseUrl || !supabaseKey) {
     console.log("⚠️  Supabase 未配置，跳过数据库保存");
+    console.log("NEXT_PUBLIC_SUPABASE_URL:", supabaseUrl ? "已配置" : "未配置");
+    console.log("SUPABASE_SERVICE_ROLE_KEY:", supabaseKey ? "已配置" : "未配置");
     return;
   }
 
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
+
+    console.log("🔄 正在保存到 Supabase...");
+    console.log("Reference ID:", data.referenceId);
 
     const { data: result, error } = await supabase
       .from("sample_requests")
@@ -74,14 +124,19 @@ async function saveToDatabase(data: SampleRequestData) {
       .select();
 
     if (error) {
-      console.error("❌ Supabase 保存失败:", error);
+      console.error("❌ Supabase 保存失败:");
+      console.error("错误代码:", error.code);
+      console.error("错误消息:", error.message);
+      console.error("错误详情:", error.details);
       throw error;
     }
 
-    console.log("✅ 成功保存到 Supabase:", data.referenceId);
+    console.log("✅ 成功保存到 Supabase!");
+    console.log("记录 ID:", result?.[0]?.id);
     return result;
   } catch (error) {
-    console.error("❌ 保存到数据库时出错:", error);
+    console.error("❌ 保存到数据库时出错:");
+    console.error(error);
     // 不抛出错误，继续处理（邮件仍会发送）
   }
 }
@@ -108,7 +163,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 生成 Reference ID
-    const referenceId = generateReferenceId();
+    const referenceId = await generateReferenceId();
 
     const emailData: SampleRequestData = {
       ...data,

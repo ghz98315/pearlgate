@@ -197,70 +197,70 @@ export function buildSampleRequestNotificationEmail(data: SampleRequestData): st
   <h2 style="font-size: 18px; color: #ea580c; margin-bottom: 8px;">New Sample Request</h2>
   <p style="color: #64748b; font-size: 13px; margin-top: 0;">Reference: <strong>${data.referenceId}</strong> · Submitted at ${new Date().toISOString()}</p>
 
-  <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px;">
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; table-layout: fixed;">
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; width: 180px; color: #475569;">Full Name</td>
-      <td style="padding: 10px 0;">${data.fullName}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.fullName}</td>
     </tr>
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Company</td>
-      <td style="padding: 10px 0;">${data.company}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.company}</td>
     </tr>
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Email</td>
-      <td style="padding: 10px 0;"><a href="mailto:${data.email}">${data.email}</a></td>
+      <td style="padding: 10px 0; word-break: break-word;"><a href="mailto:${data.email}">${data.email}</a></td>
     </tr>
     ${data.whatsapp ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">WhatsApp/Phone</td>
-      <td style="padding: 10px 0;">${data.whatsapp}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.whatsapp}</td>
     </tr>` : ""}
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Country</td>
-      <td style="padding: 10px 0;">${data.country}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.country}</td>
     </tr>
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Target Market</td>
-      <td style="padding: 10px 0;">${data.targetMarket}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.targetMarket}</td>
     </tr>
   </table>
 
   <h3 style="font-size: 16px; margin-top: 24px; margin-bottom: 12px; color: #0f172a;">Product Details</h3>
-  <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <table style="width: 100%; border-collapse: collapse; font-size: 14px; table-layout: fixed;">
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; width: 180px; color: #475569;">Product</td>
-      <td style="padding: 10px 0;">${data.productName}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.productName}</td>
     </tr>
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Category</td>
-      <td style="padding: 10px 0;">${data.productCategory}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.productCategory}</td>
     </tr>
     <tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Product URL</td>
-      <td style="padding: 10px 0;"><a href="${data.productUrl}">${data.productUrl}</a></td>
+      <td style="padding: 10px 0; word-break: break-all;"><a href="${data.productUrl}">${data.productUrl}</a></td>
     </tr>
     ${data.chargingStandard ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Charging Standard</td>
-      <td style="padding: 10px 0;">${data.chargingStandard}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.chargingStandard}</td>
     </tr>` : ""}
     ${data.certificationsNeeded.length > 0 ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Certifications</td>
-      <td style="padding: 10px 0;">${data.certificationsNeeded.join(", ")}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.certificationsNeeded.join(", ")}</td>
     </tr>` : ""}
     ${data.intendedUse ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Intended Use</td>
-      <td style="padding: 10px 0;">${data.intendedUse}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.intendedUse}</td>
     </tr>` : ""}
     ${data.estimatedVolume ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Estimated Volume</td>
-      <td style="padding: 10px 0;">${data.estimatedVolume}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.estimatedVolume}</td>
     </tr>` : ""}
     ${data.oemRequirements ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">OEM Requirements</td>
-      <td style="padding: 10px 0;">${data.oemRequirements}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.oemRequirements}</td>
     </tr>` : ""}
     ${data.message ? `<tr style="border-bottom: 1px solid #e2e8f0;">
       <td style="padding: 10px 0; font-weight: 600; color: #475569;">Message</td>
-      <td style="padding: 10px 0;">${data.message}</td>
+      <td style="padding: 10px 0; word-break: break-word;">${data.message}</td>
     </tr>` : ""}
   </table>
 
