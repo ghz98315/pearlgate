@@ -1,3 +1,6 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, MessageSquare, Mail } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -5,8 +8,8 @@ import Footer from "@/components/Footer";
 import { FadeIn } from "@/components/Animations";
 
 export default function ThankYouPage() {
-  // In a real implementation, you'd get this from URL params or session storage
-  const referenceId = "PG-20260602-XXX";
+  const searchParams = useSearchParams();
+  const referenceId = searchParams.get("ref") || "PG-XXXXXXXX-XXX";
 
   return (
     <>

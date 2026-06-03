@@ -172,9 +172,12 @@ export default function RequestSampleModal({
 
       if (!response.ok) throw new Error("Submission failed");
 
+      const result = await response.json();
+
       setIsSuccess(true);
       setTimeout(() => {
-        window.location.href = "/thank-you";
+        // 传递 Reference ID 到 Thank You 页面
+        window.location.href = `/thank-you?ref=${encodeURIComponent(result.referenceId || '')}`;
       }, 1500);
     } catch (error) {
       console.error("Submission error:", error);

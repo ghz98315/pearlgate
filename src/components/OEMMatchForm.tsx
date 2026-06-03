@@ -123,7 +123,10 @@ export default function OEMMatchForm({ onSuccess }: OEMMatchFormProps) {
 
       if (!response.ok) throw new Error("Submission failed");
 
-      window.location.href = "/thank-you";
+      const result = await response.json();
+
+      // 传递 Reference ID 到 Thank You 页面
+      window.location.href = `/thank-you?ref=${encodeURIComponent(result.referenceId || '')}`;
     } catch (error) {
       console.error("Submission error:", error);
       setErrors({ submit: "Failed to submit. Please try again." });
