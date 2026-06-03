@@ -347,6 +347,14 @@ export default function RequestSampleModal({
                   )}
                 </div>
               </div>
+            </div>
+
+            {/* Optional Product Details - Moved to bottom */}
+            <div className="pt-6 space-y-4 border-t border-gray-200">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold text-gray-900">Product Details (Optional)</h3>
+                <span className="text-sm text-gray-500">All fields optional</span>
+              </div>
 
               <div>
                 <label htmlFor="chargingStandard" className="block mb-1.5 text-sm font-medium text-gray-700">

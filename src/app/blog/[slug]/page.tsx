@@ -5,30 +5,105 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EmailCapture from "@/components/EmailCapture";
 import ReadingProgress from "@/components/ReadingProgress";
-import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
+import { createClient } from '@supabase/supabase-js';
+import { generateSEOMetadata } from '@/lib/seo';
 
-export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+async function getPost(slug: string) {
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('slug', slug)
+    .eq('published', true)
+    .single();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return data;
+}
+
+async function getAllPosts() {
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('slug')
+    .eq('published', true);
+
+  if (error) {
+    return [];
+  }
+
+  return data || [];
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) return {};
-  return {
-    title: `${post.title} — PearlGate`,
+
+  return generateSEOMetadata({
+    title: post.title,
     description: post.description,
-  };
+    image: post.image || undefined,
+    url: `/blog/${slug}`,
+    type: 'article',
+    publishedTime: post.date,
+    tags: [post.category, 'EV Charging', 'China Sourcing', 'Manufacturing'],
+  });
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPost(slug);
   if (!post) notFound();
+
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: post.image || 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80',
+    datePublished: post.date,
+    dateModified: post.updated_at || post.date,
+    author: {
+      '@type': 'Person',
+      name: 'PearlGate',
+      url: 'https://pearlgate.com/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'PearlGate',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://pearlgate.com/logo.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://pearlgate.com/blog/${slug}`,
+    },
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       <ReadingProgress />
       <main className="pt-32 pb-24 min-h-screen bg-white">
@@ -56,22 +131,24 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </span>
             <span className="flex items-center gap-1">
               <Clock size={14} />
-              {post.readTime}
+              {post.read_time}
             </span>
           </div>
 
-          <div className="relative mt-8 h-64 lg:h-80 rounded-2xl overflow-hidden">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          {post.image && (
+            <div className="relative mt-8 h-64 lg:h-80 rounded-2xl overflow-hidden">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
 
           <div className="mt-12 space-y-6">
-            {post.content.split("\n\n").map((block, i) => {
+            {post.content.split("\n\n").map((block: string, i: number) => {
               if (block.startsWith("## ")) {
                 return <h2 key={i} className="text-2xl font-bold mt-10 mb-4 font-[family-name:var(--font-serif)]">{block.replace("## ", "")}</h2>;
               }

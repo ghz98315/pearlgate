@@ -1,24 +1,66 @@
-import Image from "next/image";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { getAllPosts } from "@/lib/posts";
-import { Calendar, Clock } from "lucide-react";
+import { createClient } from '@supabase/supabase-js';
+import BlogSearchClient from '@/components/BlogSearchClient';
+import { generateSEOMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Blog — PearlGate | EV Charging Supply Chain Guides & Sourcing Insights",
-  description: "Expert insights on sourcing EV charging equipment from China. Learn from 11+ years of supply chain experience, including BYD background. Covering standards, certifications, supplier verification, and market trends.",
-};
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+export const metadata = generateSEOMetadata({
+  title: 'Blog — EV Charging Supply Chain Guides & Sourcing Insights',
+  description: 'Expert insights on sourcing EV charging equipment from China. Learn from 11+ years of supply chain experience, including BYD background. Covering standards, certifications, supplier verification, and market trends.',
+  url: '/blog',
+  type: 'website',
+});
+
+async function getPosts() {
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  const { data, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .eq('published', true)
+    .order('date', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching posts:', error);
+    return [];
+  }
+
+  return data || [];
+}
+
+export default async function BlogPage() {
+  const posts = await getPosts();
+
+  // JSON-LD for blog list
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'PearlGate Blog',
+    description: 'Expert insights on sourcing EV charging equipment from China',
+    url: 'https://pearlgate.com/blog',
+    blogPost: posts.map(post => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.description,
+      image: post.image,
+      datePublished: post.date,
+      url: `https://pearlgate.com/blog/${post.slug}`,
+    })),
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       <main className="pt-32 pb-24 min-h-screen bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl mb-12">
             <h1 className="text-3xl lg:text-5xl font-bold font-[family-name:var(--font-serif)]">
               Sourcing Guides
             </h1>
@@ -28,47 +70,13 @@ export default function BlogPage() {
             </p>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1"
-              >
-                <div className="relative h-52 overflow-hidden">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
-                  <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-medium px-3 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                </div>
+          <BlogSearchClient initialPosts={posts} />
 
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold leading-snug group-hover:text-navy-700 transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="mt-3 text-text-secondary text-sm leading-relaxed">
-                    {post.description}
-                  </p>
-                  <div className="mt-4 flex items-center gap-4 text-xs text-text-secondary">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {post.readTime}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          {posts.length === 0 && (
+            <div className="mt-16 text-center text-text-secondary">
+              暂无博客文章
+            </div>
+          )}
         </div>
       </main>
       <Footer />

@@ -6,8 +6,9 @@ import { CheckCircle2, ArrowRight, MessageSquare, Mail } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FadeIn } from "@/components/Animations";
+import { Suspense } from "react";
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const searchParams = useSearchParams();
   const referenceId = searchParams.get("ref") || "PG-XXXXXXXX-XXX";
 
@@ -137,5 +138,20 @@ export default function ThankYouPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <ThankYouContent />
+    </Suspense>
   );
 }
