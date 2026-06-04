@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { FadeIn } from '@/components/Animations';
 
@@ -47,6 +47,25 @@ const testimonials: Testimonial[] = [
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // 自动切换功能
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % testimonials.length);
+    }, 5000); // 每 5 秒切换一次
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const handleDotClick = (index: number) => {
+    setActiveIndex(index);
+    setIsPaused(true);
+    // 点击后暂停 10 秒，然后继续自动切换
+    setTimeout(() => setIsPaused(false), 10000);
+  };
 
   return (
     <section className="py-24 bg-gradient-to-br from-navy-50 to-white">
@@ -119,7 +138,7 @@ export default function Testimonials() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => handleDotClick(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   index === activeIndex
                     ? 'bg-orange-500 w-8'
