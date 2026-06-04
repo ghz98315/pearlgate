@@ -7,6 +7,9 @@ import { generateSEOMetadata } from '@/lib/seo';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+// 使用动态渲染，确保始终显示最新博客数据
+export const dynamic = 'force-dynamic';
+
 export const metadata = generateSEOMetadata({
   title: 'Blog — EV Charging Supply Chain Guides & Sourcing Insights',
   description: 'Expert insights on sourcing EV charging equipment from China. Learn from 11+ years of supply chain experience, including BYD background. Covering standards, certifications, supplier verification, and market trends.',
