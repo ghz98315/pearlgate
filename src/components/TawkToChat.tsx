@@ -10,7 +10,31 @@ export default function TawkToChat() {
 
     // 如果没有配置，不加载
     if (!TAWK_PROPERTY_ID || !TAWK_WIDGET_ID) {
-      console.log('Tawk.to not configured. Add NEXT_PUBLIC_TAWK_PROPERTY_ID and NEXT_PUBLIC_TAWK_WIDGET_ID to environment variables.');
+      console.log('Tawk.to not configured. To enable live chat:');
+      console.log('1. Sign up at https://www.tawk.to/');
+      console.log('2. Get your Property ID and Widget ID');
+      console.log('3. Add to Vercel environment variables:');
+      console.log('   NEXT_PUBLIC_TAWK_PROPERTY_ID=your_property_id');
+      console.log('   NEXT_PUBLIC_TAWK_WIDGET_ID=your_widget_id');
+      console.log('');
+      console.log('Note: IDs must be lowercase alphanumeric only (no special characters)');
+      return;
+    }
+
+    // 验证 ID 格式（必须是小写字母数字）
+    const isValidId = (id: string) => /^[a-z0-9]+$/.test(id);
+
+    if (!isValidId(TAWK_PROPERTY_ID)) {
+      console.error('Invalid TAWK_PROPERTY_ID format. Must be lowercase alphanumeric only.');
+      console.log('Current value:', TAWK_PROPERTY_ID);
+      console.log('Example valid format: 5f9a1b2c3d4e5f6g7h8i9j0k');
+      return;
+    }
+
+    if (!isValidId(TAWK_WIDGET_ID)) {
+      console.error('Invalid TAWK_WIDGET_ID format. Must be lowercase alphanumeric only.');
+      console.log('Current value:', TAWK_WIDGET_ID);
+      console.log('Example valid format: default or 1a2b3c4d');
       return;
     }
 
@@ -39,17 +63,17 @@ export default function TawkToChat() {
 
       // 设置访客信息（如果有）
       Tawk_API.onLoad = function() {
-        // 可以在这里设置访客属性
-        // Tawk_API.setAttributes({
-        //   'name': 'Visitor Name',
-        //   'email': 'visitor@email.com',
-        // });
+        console.log('Tawk.to chat loaded successfully');
       };
 
-      // 自定义欢迎消息
-      Tawk_API.onChatMaximized = function() {
-        // 聊天窗口打开时的行为
+      // 错误处理
+      Tawk_API.onChatError = function(error: any) {
+        console.error('Tawk.to error:', error);
       };
+    };
+
+    script.onerror = () => {
+      console.error('Failed to load Tawk.to script. Check your Property ID and Widget ID.');
     };
 
     return () => {
