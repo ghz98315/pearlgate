@@ -189,26 +189,26 @@ export default async function BlogPostPage({
                     .toLowerCase()
                     .replace(/[^\w\s-]/g, '')
                     .replace(/\s+/g, '-');
-                  return <h2 id={id} className="text-3xl font-bold mt-14 mb-6 font-serif text-navy-900 scroll-mt-24" {...props}>{children}</h2>;
+                  return <h2 id={id} className="text-2xl font-bold mt-14 mb-6 font-serif text-navy-900 scroll-mt-24" {...props}>{children}</h2>;
                 },
                 h3: ({node, children, ...props}) => {
                   const id = String(children)
                     .toLowerCase()
                     .replace(/[^\w\s-]/g, '')
                     .replace(/\s+/g, '-');
-                  return <h3 id={id} className="text-2xl font-semibold mt-12 mb-5 font-serif text-navy-800 scroll-mt-24" {...props}>{children}</h3>;
+                  return <h3 id={id} className="text-xl font-semibold mt-12 mb-5 font-serif text-navy-800 scroll-mt-24" {...props}>{children}</h3>;
                 },
-                h4: ({node, ...props}) => <h4 className="text-xl font-semibold mt-10 mb-4 text-navy-800" {...props} />,
-                h5: ({node, ...props}) => <h5 className="text-lg font-semibold mt-8 mb-3 text-navy-700" {...props} />,
-                h6: ({node, ...props}) => <h6 className="text-base font-semibold mt-6 mb-2 text-navy-700" {...props} />,
+                h4: ({node, ...props}) => <h4 className="text-lg font-semibold mt-10 mb-4 text-navy-800" {...props} />,
+                h5: ({node, ...props}) => <h5 className="text-base font-semibold mt-8 mb-3 text-navy-700" {...props} />,
+                h6: ({node, ...props}) => <h6 className="text-[15px] font-semibold mt-6 mb-2 text-navy-700" {...props} />,
 
                 // 段落
-                p: ({node, ...props}) => <p className="text-lg text-text-secondary leading-relaxed mb-6" {...props} />,
+                p: ({node, ...props}) => <p className="text-[15px] text-text-secondary leading-relaxed mb-6" {...props} />,
 
                 // 无序列表
                 ul: ({node, ...props}) => <ul className="my-6 ml-6 space-y-3 list-disc marker:text-navy-400" {...props} />,
                 ol: ({node, ...props}) => <ol className="my-6 ml-6 space-y-3 list-decimal marker:text-navy-400" {...props} />,
-                li: ({node, ...props}) => <li className="text-lg text-text-secondary leading-relaxed pl-2" {...props} />,
+                li: ({node, ...props}) => <li className="text-[15px] text-text-secondary leading-relaxed pl-2" {...props} />,
 
                 // 链接
                 a: ({node, ...props}) => <a className="text-navy-700 font-medium underline hover:text-navy-900 transition-colors" {...props} />,
