@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 
 interface Heading {
   id: string;
   text: string;
-  level: number;
 }
 
 export default function TableOfContents({ content }: { content: string }) {
@@ -14,19 +12,18 @@ export default function TableOfContents({ content }: { content: string }) {
   const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
-    // 解析 Markdown 中的标题
-    const headingRegex = /^(#{2,3})\s+(.+)$/gm;
+    // 只解析 H2 标题
+    const headingRegex = /^#{2}\s+(.+)$/gm;
     const matches = Array.from(content.matchAll(headingRegex));
 
     const parsedHeadings = matches.map(match => {
-      const level = match[1].length;
-      const text = match[2].trim();
+      const text = match[1].trim();
       const id = text
         .toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-');
 
-      return { id, text, level };
+      return { id, text };
     });
 
     setHeadings(parsedHeadings);
@@ -37,7 +34,7 @@ export default function TableOfContents({ content }: { content: string }) {
         document.getElementById(h.id)
       ).filter(Boolean);
 
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 150;
 
       for (let i = headingElements.length - 1; i >= 0; i--) {
         const element = headingElements[i];
@@ -57,36 +54,40 @@ export default function TableOfContents({ content }: { content: string }) {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="hidden xl:block sticky top-24 w-64 ml-12">
-      <div className="border-l-2 border-navy-200 pl-4">
-        <h3 className="text-sm font-semibold text-navy-900 mb-4 uppercase tracking-wide">
-          On This Page
-        </h3>
-        <ul className="space-y-2">
-          {headings.map((heading) => (
-            <li key={heading.id}>
-              <a
-                href={`#${heading.id}`}
-                className={`block text-sm transition-colors ${
-                  heading.level === 3 ? 'pl-4' : ''
-                } ${
-                  activeId === heading.id
-                    ? 'text-navy-900 font-medium'
-                    : 'text-navy-600 hover:text-navy-900'
-                }`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById(heading.id)?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  });
-                }}
-              >
-                {heading.text}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <nav className="hidden xl:block w-64 shrink-0">
+      <div className="sticky top-32">
+        <div className="border-l-2 border-navy-200 pl-6">
+          <h3 className="text-xs font-bold text-navy-500 mb-4 uppercase tracking-wider">
+            Contents
+          </h3>
+          <ul className="space-y-3">
+            {headings.map((heading) => (
+              <li key={heading.id}>
+                <a
+                  href={`#${heading.id}`}
+                  className={`block text-sm leading-snug transition-all ${
+                    activeId === heading.id
+                      ? 'text-navy-900 font-semibold border-l-2 border-navy-900 -ml-[2px] pl-[22px]'
+                      : 'text-navy-600 hover:text-navy-900 pl-6'
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.getElementById(heading.id);
+                    if (element) {
+                      const top = element.offsetTop - 100;
+                      window.scrollTo({
+                        top,
+                        behavior: 'smooth',
+                      });
+                    }
+                  }}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </nav>
   );
