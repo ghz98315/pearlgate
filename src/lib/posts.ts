@@ -9,16 +9,18 @@ export interface BlogPost {
   content: string;
 }
 
-export const posts: BlogPost[] = [
-  {
-    slug: "how-to-find-reliable-ev-charging-suppliers-china",
-    title: "How to Find Reliable EV Charging Suppliers in China",
-    description: "China manufactures 70% of the world's EV charging equipment. Here's how to identify trustworthy factories in the Pearl River Delta and avoid costly mistakes.",
-    date: "2026-06-12",
-    readTime: "7 min read",
-    category: "Supplier Verification",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80",
-    content: `China's Pearl River Delta — specifically Dongguan, Shenzhen, and Guangzhou — produces roughly 70% of the world's EV charging equipment. If you're sourcing EV charging cables, connectors, portable chargers, or wallbox components, this region is where the manufacturing happens.
+// 注意：这个文件已废弃，文章现在存储在 Supabase 数据库中
+// BlogPreview 组件应该从数据库读取文章
+// 保留空数组以避免破坏现有引用
+export const posts: BlogPost[] = [];
+
+export function getPostBySlug(slug: string): BlogPost | undefined {
+  return posts.find((p) => p.slug === slug);
+}
+
+export function getAllPosts(): BlogPost[] {
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
 
 But with thousands of electronics factories claiming EV capabilities, how do you find one that actually understands automotive-grade requirements? After working with Pearl River Delta manufacturers for years, here's what I look for.
 
