@@ -171,13 +171,16 @@ export async function POST(req: NextRequest) {
         title: body.title,
         slug: body.slug,
         content: body.content,
+        description: body.metaDescription, // 旧字段兼容
         meta_description: body.metaDescription,
         meta_title: body.metaTitle || body.title,
         focus_keyword: body.focusKeyword || "",
         keywords: body.keywords || [],
         category: body.category,
         tags: body.tags || [],
-        featured_image: featuredImageUrl,
+        featured_image: featuredImageUrl || body.featuredImage || "",
+        image: featuredImageUrl || body.featuredImage || "", // 旧字段兼容
+        date: new Date().toISOString(), // 旧字段兼容
         read_time: body.readTime,
         status: body.status || "draft",
         author: body.author || "Alex Guan",
