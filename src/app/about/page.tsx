@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MapSection from "@/components/MapSection";
 import {
   AlertTriangle, ShieldCheck, Factory, Users, FileCheck, CheckCircle, XCircle,
   Zap, Building, Wrench, Globe, TrendingUp, Target, Layers, MapPin, Clock,
@@ -426,52 +427,12 @@ export default function AboutPage() {
                       <span className="text-white/80"><strong className="text-white">Guangzhou:</strong> Final assembly & logistics</span>
                     </div>
                   </div>
+                  <p className="mt-6 text-white/60 text-sm">
+                    Click on map markers to see details about each manufacturing hub.
+                  </p>
                 </div>
-                <div className="relative h-64 rounded-xl overflow-hidden border border-white/20 bg-navy-800/50">
-                  {/* Simple Map Visualization */}
-                  <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="relative w-full h-full">
-                      {/* Dongguan */}
-                      <div className="absolute top-[20%] left-[30%] group">
-                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
-                          Dongguan
-                        </div>
-                      </div>
-                      {/* Shenzhen */}
-                      <div className="absolute bottom-[25%] left-[45%]">
-                        <div className="w-5 h-5 bg-orange-400 rounded-full animate-pulse" />
-                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold text-orange-200">
-                          Shenzhen
-                        </div>
-                      </div>
-                      {/* Huizhou */}
-                      <div className="absolute top-[35%] right-[25%]">
-                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
-                          Huizhou
-                        </div>
-                      </div>
-                      {/* Guangzhou */}
-                      <div className="absolute top-[45%] left-[20%]">
-                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
-                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
-                          Guangzhou
-                        </div>
-                      </div>
-                      {/* Connection lines */}
-                      <svg className="absolute inset-0 w-full h-full opacity-30">
-                        <line x1="30%" y1="20%" x2="45%" y2="75%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
-                        <line x1="45%" y1="75%" x2="75%" y2="35%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
-                        <line x1="30%" y1="20%" x2="20%" y2="45%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
-                      </svg>
-                      {/* 100km radius circle */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-orange-400/20 rounded-full" />
-                    </div>
-                  </div>
-                  <div className="absolute bottom-4 left-4 text-white/80 text-sm">
-                    Pearl River Delta - 100km Supply Chain
-                  </div>
+                <div>
+                  <MapSection />
                 </div>
               </div>
             </div>
