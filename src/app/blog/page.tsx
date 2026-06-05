@@ -23,8 +23,8 @@ async function getPosts() {
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
-    .eq('published', true)
-    .order('date', { ascending: false });
+    .eq('status', 'published')
+    .order('published_at', { ascending: false });
 
   if (error) {
     console.error('Error fetching posts:', error);
@@ -47,10 +47,14 @@ export default async function BlogPage() {
     blogPost: posts.map(post => ({
       '@type': 'BlogPosting',
       headline: post.title,
-      description: post.description,
-      image: post.image,
-      datePublished: post.date,
+      description: post.meta_description || post.excerpt,
+      image: post.featured_image,
+      datePublished: post.published_at,
       url: `https://pearlgate.com/blog/${post.slug}`,
+      author: {
+        '@type': 'Person',
+        name: post.author || 'Alex Guan',
+      },
     })),
   };
 

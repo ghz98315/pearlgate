@@ -19,7 +19,7 @@ async function getPost(slug: string) {
     .from('blog_posts')
     .select('*')
     .eq('slug', slug)
-    .eq('published', true)
+    .eq('status', 'published')
     .single();
 
   if (error || !data) {
@@ -35,7 +35,7 @@ async function getAllPosts() {
   const { data, error } = await supabase
     .from('blog_posts')
     .select('slug')
-    .eq('published', true);
+    .eq('status', 'published');
 
   if (error) {
     return [];
@@ -55,13 +55,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   return generateSEOMetadata({
-    title: post.title,
-    description: post.description,
-    image: post.image || undefined,
+    title: post.meta_title || post.title,
+    description: post.meta_description || post.excerpt,
+    image: post.featured_image || post.og_image || undefined,
     url: `/blog/${slug}`,
     type: 'article',
-    publishedTime: post.date,
-    tags: [post.category, 'EV Charging', 'China Sourcing', 'Manufacturing'],
+    publishedTime: post.published_at || post.date,
+    tags: [post.category, ...(post.tags || []), 'EV Charging', 'China Sourcing'],
   });
 }
 
@@ -75,13 +75,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    description: post.description,
-    image: post.image || 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80',
-    datePublished: post.date,
-    dateModified: post.updated_at || post.date,
+    description: post.meta_description || post.excerpt,
+    image: post.featured_image || 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80',
+    datePublished: post.published_at || post.date,
+    dateModified: post.updated_at || post.published_at || post.date,
     author: {
       '@type': 'Person',
-      name: 'PearlGate',
+      name: post.author || 'Alex Guan',
       url: 'https://pearlgate.com/about',
     },
     publisher: {
@@ -127,7 +127,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-4 flex items-center gap-4 text-sm text-text-secondary">
             <span className="flex items-center gap-1">
               <Calendar size={14} />
-              {new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              {new Date(post.published_at || post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
             </span>
             <span className="flex items-center gap-1">
               <Clock size={14} />
@@ -135,10 +135,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </span>
           </div>
 
-          {post.image && (
+          {(post.featured_image || post.image) && (
             <div className="relative mt-8 h-64 lg:h-80 rounded-2xl overflow-hidden">
               <Image
-                src={post.image}
+                src={post.featured_image || post.image}
                 alt={post.title}
                 fill
                 className="object-cover"

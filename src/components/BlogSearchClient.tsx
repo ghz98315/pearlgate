@@ -8,12 +8,17 @@ import { Calendar, Clock, Search, X } from "lucide-react";
 interface BlogPost {
   slug: string;
   title: string;
-  description: string;
-  image: string | null;
-  date: string;
+  description?: string;
+  meta_description?: string;
+  excerpt?: string;
+  image?: string | null;
+  featured_image?: string | null;
+  date?: string;
+  published_at?: string;
   read_time: string;
   category: string;
   content: string;
+  tags?: string[];
 }
 
 export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogPost[] }) {
@@ -114,45 +119,51 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
 
       {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {filteredPosts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1"
-          >
-            <div className="relative h-52 overflow-hidden">
-              <Image
-                src={post.image || 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80'}
-                alt={post.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
-              <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-medium px-3 py-1 rounded-full">
-                {post.category}
-              </span>
-            </div>
+        {filteredPosts.map((post) => {
+          const imageUrl = post.featured_image || post.image || 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80';
+          const description = post.meta_description || post.description || post.excerpt || '';
+          const publishDate = post.published_at || post.date || '';
 
-            <div className="p-6">
-              <h2 className="text-xl font-semibold leading-snug group-hover:text-navy-700 transition-colors">
-                {searchQuery ? highlightText(post.title, searchQuery) : post.title}
-              </h2>
-              <p className="mt-3 text-text-secondary text-sm leading-relaxed">
-                {searchQuery ? highlightText(post.description, searchQuery) : post.description}
-              </p>
-              <div className="mt-4 flex items-center gap-4 text-xs text-text-secondary">
-                <span className="flex items-center gap-1">
-                  <Calendar size={12} />
-                  {new Date(post.date).toLocaleDateString("zh-CN", { month: "short", day: "numeric", year: "numeric" })}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock size={12} />
-                  {post.read_time}
+          return (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1"
+            >
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src={imageUrl}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
+                <span className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-xs font-medium px-3 py-1 rounded-full">
+                  {post.category}
                 </span>
               </div>
-            </div>
-          </Link>
-        ))}
+
+              <div className="p-6">
+                <h2 className="text-xl font-semibold leading-snug group-hover:text-navy-700 transition-colors">
+                  {searchQuery ? highlightText(post.title, searchQuery) : post.title}
+                </h2>
+                <p className="mt-3 text-text-secondary text-sm leading-relaxed">
+                  {searchQuery ? highlightText(description, searchQuery) : description}
+                </p>
+                <div className="mt-4 flex items-center gap-4 text-xs text-text-secondary">
+                  <span className="flex items-center gap-1">
+                    <Calendar size={12} />
+                    {new Date(publishDate).toLocaleDateString("zh-CN", { month: "short", day: "numeric", year: "numeric" })}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} />
+                    {post.read_time}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
       {filteredPosts.length === 0 && (
