@@ -40,12 +40,15 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
     // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
-      results = results.filter(post =>
-        post.title.toLowerCase().includes(query) ||
-        post.description.toLowerCase().includes(query) ||
-        post.content.toLowerCase().includes(query) ||
-        post.category.toLowerCase().includes(query)
-      );
+      results = results.filter(post => {
+        const description = post.meta_description || post.description || post.excerpt || '';
+        return (
+          post.title.toLowerCase().includes(query) ||
+          description.toLowerCase().includes(query) ||
+          post.content.toLowerCase().includes(query) ||
+          post.category.toLowerCase().includes(query)
+        );
+      });
     }
 
     setFilteredPosts(results);
