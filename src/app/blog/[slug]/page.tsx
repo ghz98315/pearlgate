@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import EmailCapture from "@/components/EmailCapture";
 import ReadingProgress from "@/components/ReadingProgress";
 import TableOfContents from "@/components/TableOfContents";
+import ImageZoom from "@/components/ImageZoom";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { createClient } from '@supabase/supabase-js';
 import { generateSEOMetadata } from '@/lib/seo';
@@ -244,11 +245,11 @@ export default async function BlogPostPage({
                 td: ({node, ...props}) => <td className="px-6 py-4 text-text-secondary border border-navy-200" {...props} />,
 
                 // 图片
-                img: ({node, ...props}) => (
-                  <span className="block my-10">
-                    <img className="rounded-lg shadow-lg w-full" {...props} />
-                  </span>
-                ),
+                img: ({node, src, alt, ...props}: any) => {
+                  // 提取 caption（从 alt 或下一行的斜体文本）
+                  const caption = alt || '';
+                  return <ImageZoom src={src || ''} alt={caption} caption={caption} />;
+                },
               }}
             >
               {post.content}
