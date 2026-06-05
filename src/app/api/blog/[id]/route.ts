@@ -117,6 +117,7 @@ export async function PUT(
     if (body.readTime !== undefined) updateData.read_time = body.readTime;
     if (body.status !== undefined) updateData.status = body.status;
     if (body.author !== undefined) updateData.author = body.author;
+    if (body.published_at !== undefined) updateData.published_at = body.published_at;
 
     // 旧字段兼容
     if (body.description !== undefined) updateData.meta_description = body.description;
