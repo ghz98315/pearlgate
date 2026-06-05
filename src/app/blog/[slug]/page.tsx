@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EmailCapture from "@/components/EmailCapture";
 import ReadingProgress from "@/components/ReadingProgress";
+import TableOfContents from "@/components/TableOfContents";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { createClient } from '@supabase/supabase-js';
 import { generateSEOMetadata } from '@/lib/seo';
@@ -134,14 +135,17 @@ export default async function BlogPostPage({
       <Navbar />
       <ReadingProgress />
       <main className="pt-32 pb-24 min-h-screen bg-white">
-        <article className="max-w-3xl mx-auto px-6 lg:px-12">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1 text-text-secondary hover:text-navy-700 text-sm transition-colors mb-8"
-          >
-            <ArrowLeft size={14} />
-            Back to all articles
-          </Link>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex gap-12">
+            {/* 主内容区 */}
+            <article className="flex-1 max-w-3xl">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1 text-text-secondary hover:text-navy-700 text-sm transition-colors mb-8"
+              >
+                <ArrowLeft size={14} />
+                Back to all articles
+              </Link>
 
           <span className="inline-block bg-navy-900/5 text-navy-700 text-xs font-medium px-3 py-1 rounded-full">
             {post.category}
@@ -178,10 +182,22 @@ export default async function BlogPostPage({
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
-                // 标题
-                h1: ({node, ...props}) => <h1 className="text-4xl font-bold mt-16 mb-8 font-serif text-navy-900" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-3xl font-bold mt-14 mb-6 font-serif text-navy-900" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-2xl font-semibold mt-12 mb-5 font-serif text-navy-800" {...props} />,
+                // 标题（添加 ID，跳过 H1）
+                h1: () => null, // 跳过 H1，页面已有标题
+                h2: ({node, children, ...props}) => {
+                  const id = String(children)
+                    .toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/\s+/g, '-');
+                  return <h2 id={id} className="text-3xl font-bold mt-14 mb-6 font-serif text-navy-900 scroll-mt-24" {...props}>{children}</h2>;
+                },
+                h3: ({node, children, ...props}) => {
+                  const id = String(children)
+                    .toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/\s+/g, '-');
+                  return <h3 id={id} className="text-2xl font-semibold mt-12 mb-5 font-serif text-navy-800 scroll-mt-24" {...props}>{children}</h3>;
+                },
                 h4: ({node, ...props}) => <h4 className="text-xl font-semibold mt-10 mb-4 text-navy-800" {...props} />,
                 h5: ({node, ...props}) => <h5 className="text-lg font-semibold mt-8 mb-3 text-navy-700" {...props} />,
                 h6: ({node, ...props}) => <h6 className="text-base font-semibold mt-6 mb-2 text-navy-700" {...props} />,
@@ -273,6 +289,11 @@ export default async function BlogPostPage({
             />
           </div>
         </article>
+
+        {/* 侧边栏目录 */}
+        <TableOfContents content={post.content} />
+      </div>
+    </div>
       </main>
       <Footer />
     </>
