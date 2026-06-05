@@ -174,8 +174,35 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          <div className="mt-12 prose prose-lg max-w-none prose-headings:font-serif prose-h1:text-3xl prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-text-secondary prose-p:leading-relaxed prose-li:text-text-secondary prose-a:text-navy-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-navy-900 prose-code:text-navy-700 prose-code:bg-navy-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-navy-900 prose-pre:text-white">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <div className="mt-12 prose prose-lg max-w-none
+            prose-headings:font-serif
+            prose-h1:text-3xl prose-h1:mb-6
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
+            prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
+            prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
+            prose-li:text-text-secondary prose-li:my-2
+            prose-ul:my-6 prose-ol:my-6
+            prose-a:text-navy-700 prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-navy-900 prose-strong:font-semibold
+            prose-code:text-navy-700 prose-code:bg-navy-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
+            prose-pre:bg-navy-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-4
+            prose-blockquote:border-l-4 prose-blockquote:border-navy-300 prose-blockquote:pl-4 prose-blockquote:italic
+            prose-table:border-collapse prose-table:w-full prose-table:my-8
+            prose-th:bg-navy-50 prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:font-semibold prose-th:border prose-th:border-navy-200
+            prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-navy-200
+            prose-img:rounded-lg prose-img:shadow-md">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                table: ({node, ...props}) => (
+                  <div className="overflow-x-auto my-8">
+                    <table className="min-w-full border-collapse border border-navy-200" {...props} />
+                  </div>
+                ),
+                p: ({node, ...props}) => <p className="mb-6" {...props} />,
+                br: () => <br className="my-4" />,
+              }}
+            >
               {post.content}
             </ReactMarkdown>
           </div>
