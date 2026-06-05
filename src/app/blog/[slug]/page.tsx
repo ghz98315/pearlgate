@@ -9,6 +9,8 @@ import ReadingProgress from "@/components/ReadingProgress";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { createClient } from '@supabase/supabase-js';
 import { generateSEOMetadata } from '@/lib/seo';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -172,36 +174,10 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          <div className="mt-12 space-y-6">
-            {post.content.split("\n\n").map((block: string, i: number) => {
-              if (block.startsWith("## ")) {
-                return <h2 key={i} className="text-2xl font-bold mt-10 mb-4 font-[family-name:var(--font-serif)]">{block.replace("## ", "")}</h2>;
-              }
-              if (block.startsWith("### ")) {
-                return <h3 key={i} className="text-xl font-semibold mt-8 mb-3 font-[family-name:var(--font-serif)]">{block.replace("### ", "")}</h3>;
-              }
-              if (block.startsWith("- ")) {
-                const items = block.split("\n").filter(l => l.startsWith("- "));
-                return (
-                  <ul key={i} className="list-disc pl-6 space-y-2 text-text-secondary leading-relaxed">
-                    {items.map((item, j) => (
-                      <li key={j}>{item.replace("- ", "")}</li>
-                    ))}
-                  </ul>
-                );
-              }
-              if (block.match(/^\d+\./)) {
-                const items = block.split("\n").filter(l => l.match(/^\d+\./));
-                return (
-                  <ol key={i} className="list-decimal pl-6 space-y-2 text-text-secondary leading-relaxed">
-                    {items.map((item, j) => (
-                      <li key={j}>{item.replace(/^\d+\.\s*/, "")}</li>
-                    ))}
-                  </ol>
-                );
-              }
-              return <p key={i} className="text-text-secondary leading-relaxed text-lg">{block}</p>;
-            })}
+          <div className="mt-12 prose prose-lg max-w-none prose-headings:font-serif prose-h1:text-3xl prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-text-secondary prose-p:leading-relaxed prose-li:text-text-secondary prose-a:text-navy-700 prose-a:no-underline hover:prose-a:underline prose-strong:text-navy-900 prose-code:text-navy-700 prose-code:bg-navy-50 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-navy-900 prose-pre:text-white">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.content}
+            </ReactMarkdown>
           </div>
 
           {/* CTA */}
