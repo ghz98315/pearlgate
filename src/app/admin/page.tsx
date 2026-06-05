@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Database, FileText, Mail, Copy, Download } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const MDEditor = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default),
+  { ssr: false }
+);
 
 type Tab = "suppliers" | "blog" | "emails";
 
@@ -144,6 +150,7 @@ function SupplierForm() {
 
 function BlogForm() {
   const [output, setOutput] = useState("");
+  const [markdownContent, setMarkdownContent] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -158,7 +165,7 @@ function BlogForm() {
       readTime: data.get("readTime"),
       category: data.get("category"),
       image: data.get("image"),
-      content: data.get("content"),
+      content: markdownContent, // 使用 state 中的 markdown 内容
     };
 
     setOutput(JSON.stringify(post, null, 2));
@@ -176,7 +183,26 @@ function BlogForm() {
           <Input name="category" label="Category" placeholder="e.g., Sourcing Guide" />
         </div>
         <Input name="image" label="Cover Image URL" />
-        <Textarea name="content" label="Content (Markdown)" rows={12} />
+
+        {/* Markdown Editor with Preview */}
+        <div>
+          <label className="block text-sm font-medium mb-2">Content (Markdown)</label>
+          <div data-color-mode="light">
+            <MDEditor
+              value={markdownContent}
+              onChange={(val) => setMarkdownContent(val || "")}
+              height={500}
+              preview="live"
+              hideToolbar={false}
+              enableScroll={true}
+              visibleDragbar={true}
+            />
+          </div>
+          <p className="text-xs text-gray-500 mt-2">
+            💡 Tip: Use the toolbar for formatting, or write Markdown directly. Preview updates in real-time.
+          </p>
+        </div>
+
         <button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
           Generate JSON
         </button>
