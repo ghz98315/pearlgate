@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, DM_Serif_Display } from "next/font/google";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import TawkToChat from "@/components/TawkToChat";
+// import TawkToChat from "@/components/TawkToChat"; // 暂时禁用 Tawk.to
 import "./globals.css";
 
 const inter = Inter({
@@ -83,7 +83,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen antialiased">
         {children}
-        <TawkToChat />
+        {/* <TawkToChat /> */}
+        {/* Tawk.to 暂时禁用，需要时取消注释即可恢复 */}
       </body>
     </html>
   );
