@@ -12,15 +12,20 @@ import { generateSEOMetadata } from '@/lib/seo';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-async function getPost(slug: string) {
+async function getPost(slug: string, preview: boolean = false) {
   const supabase = createClient(supabaseUrl, supabaseKey);
 
-  const { data, error } = await supabase
+  let query = supabase
     .from('blog_posts')
     .select('*')
-    .eq('slug', slug)
-    .eq('status', 'published')
-    .single();
+    .eq('slug', slug);
+
+  // 如果不是预览模式，只查询已发布的
+  if (!preview) {
+    query = query.eq('status', 'published');
+  }
+
+  const { data, error } = await query.single();
 
   if (error || !data) {
     return null;
@@ -51,7 +56,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = await getPost(slug, false); // 元数据只用于已发布文章
   if (!post) return {};
 
   return generateSEOMetadata({
@@ -65,9 +70,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   });
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params,
+  searchParams
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const { preview } = await searchParams;
+
+  // 预览模式：允许查看草稿
+  const isPreview = preview === 'true';
+  const post = await getPost(slug, isPreview);
+
   if (!post) notFound();
 
   // JSON-LD structured data for SEO
@@ -100,6 +116,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      {isPreview && (
+        <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-center py-2 text-sm font-medium">
+          🔍 预览模式 - 此文章为草稿状态，仅你可见
+        </div>
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
