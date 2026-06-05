@@ -52,7 +52,7 @@ export default function InteractiveMap() {
   const centerLng = 113.8;
 
   return (
-    <div className="w-full h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-white/20 shadow-lg">
+    <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 shadow-lg">
       <MapContainer
         center={[centerLat, centerLng]}
         zoom={9}
