@@ -174,38 +174,70 @@ export default async function BlogPostPage({
             </div>
           )}
 
-          <div className="mt-12 prose prose-lg max-w-none
-            prose-headings:font-serif
-            prose-h1:text-3xl prose-h1:mb-6
-            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6
-            prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
-            prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-6
-            prose-li:text-text-secondary prose-li:my-2
-            prose-ul:my-6 prose-ol:my-6
-            prose-a:text-navy-700 prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-navy-900 prose-strong:font-semibold
-            prose-code:text-navy-700 prose-code:bg-navy-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
-            prose-pre:bg-navy-900 prose-pre:text-white prose-pre:rounded-lg prose-pre:p-4
-            prose-blockquote:border-l-4 prose-blockquote:border-navy-300 prose-blockquote:pl-4 prose-blockquote:italic
-            prose-table:border-collapse prose-table:w-full prose-table:my-8
-            prose-th:bg-navy-50 prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:font-semibold prose-th:border prose-th:border-navy-200
-            prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-navy-200
-            prose-img:rounded-lg prose-img:shadow-md">
+          <article className="mt-12 max-w-none">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
+                // 标题
+                h1: ({node, ...props}) => <h1 className="text-4xl font-bold mt-16 mb-8 font-serif text-navy-900" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-3xl font-bold mt-14 mb-6 font-serif text-navy-900" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-2xl font-semibold mt-12 mb-5 font-serif text-navy-800" {...props} />,
+                h4: ({node, ...props}) => <h4 className="text-xl font-semibold mt-10 mb-4 text-navy-800" {...props} />,
+                h5: ({node, ...props}) => <h5 className="text-lg font-semibold mt-8 mb-3 text-navy-700" {...props} />,
+                h6: ({node, ...props}) => <h6 className="text-base font-semibold mt-6 mb-2 text-navy-700" {...props} />,
+
+                // 段落
+                p: ({node, ...props}) => <p className="text-lg text-text-secondary leading-relaxed mb-6" {...props} />,
+
+                // 无序列表
+                ul: ({node, ...props}) => <ul className="my-6 ml-6 space-y-3 list-disc marker:text-navy-400" {...props} />,
+                ol: ({node, ...props}) => <ol className="my-6 ml-6 space-y-3 list-decimal marker:text-navy-400" {...props} />,
+                li: ({node, ...props}) => <li className="text-lg text-text-secondary leading-relaxed pl-2" {...props} />,
+
+                // 链接
+                a: ({node, ...props}) => <a className="text-navy-700 font-medium underline hover:text-navy-900 transition-colors" {...props} />,
+
+                // 强调
+                strong: ({node, ...props}) => <strong className="font-semibold text-navy-900" {...props} />,
+                em: ({node, ...props}) => <em className="italic text-navy-800" {...props} />,
+
+                // 代码
+                code: ({node, inline, ...props}: any) =>
+                  inline ? (
+                    <code className="bg-navy-50 text-navy-700 px-2 py-0.5 rounded text-sm font-mono" {...props} />
+                  ) : (
+                    <code className="block bg-navy-900 text-white p-4 rounded-lg overflow-x-auto text-sm font-mono my-6" {...props} />
+                  ),
+
+                // 引用块
+                blockquote: ({node, ...props}) => (
+                  <blockquote className="border-l-4 border-navy-300 pl-6 py-2 my-8 italic text-navy-700 bg-navy-50/50" {...props} />
+                ),
+
+                // 分割线
+                hr: ({node, ...props}) => <hr className="my-12 border-t-2 border-navy-200" {...props} />,
+
+                // 表格
                 table: ({node, ...props}) => (
-                  <div className="overflow-x-auto my-8">
-                    <table className="min-w-full border-collapse border border-navy-200" {...props} />
+                  <div className="overflow-x-auto my-10">
+                    <table className="min-w-full border-collapse border-2 border-navy-200 rounded-lg" {...props} />
                   </div>
                 ),
-                p: ({node, ...props}) => <p className="mb-6" {...props} />,
-                br: () => <br className="my-4" />,
+                thead: ({node, ...props}) => <thead className="bg-navy-100" {...props} />,
+                th: ({node, ...props}) => <th className="px-6 py-4 text-left font-semibold text-navy-900 border border-navy-200" {...props} />,
+                td: ({node, ...props}) => <td className="px-6 py-4 text-text-secondary border border-navy-200" {...props} />,
+
+                // 图片
+                img: ({node, ...props}) => (
+                  <span className="block my-10">
+                    <img className="rounded-lg shadow-lg w-full" {...props} />
+                  </span>
+                ),
               }}
             >
               {post.content}
             </ReactMarkdown>
-          </div>
+          </article>
 
           {/* CTA */}
           <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-navy-50 to-orange-50 border border-navy-200 text-center">
