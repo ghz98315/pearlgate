@@ -427,16 +427,50 @@ export default function AboutPage() {
                     </div>
                   </div>
                 </div>
-                <div className="relative h-64 rounded-xl overflow-hidden border border-white/20">
-                  <Image
-                    src="https://images.unsplash.com/photo-1513593771513-7b58b6c4af38?w=800&q=80"
-                    alt="Pearl River Delta Manufacturing Hub"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 to-transparent" />
+                <div className="relative h-64 rounded-xl overflow-hidden border border-white/20 bg-navy-800/50">
+                  {/* Simple Map Visualization */}
+                  <div className="absolute inset-0 flex items-center justify-center p-8">
+                    <div className="relative w-full h-full">
+                      {/* Dongguan */}
+                      <div className="absolute top-[20%] left-[30%] group">
+                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
+                          Dongguan
+                        </div>
+                      </div>
+                      {/* Shenzhen */}
+                      <div className="absolute bottom-[25%] left-[45%]">
+                        <div className="w-5 h-5 bg-orange-400 rounded-full animate-pulse" />
+                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-bold text-orange-200">
+                          Shenzhen
+                        </div>
+                      </div>
+                      {/* Huizhou */}
+                      <div className="absolute top-[35%] right-[25%]">
+                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
+                          Huizhou
+                        </div>
+                      </div>
+                      {/* Guangzhou */}
+                      <div className="absolute top-[45%] left-[20%]">
+                        <div className="w-4 h-4 bg-orange-500 rounded-full animate-pulse" />
+                        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold text-orange-300">
+                          Guangzhou
+                        </div>
+                      </div>
+                      {/* Connection lines */}
+                      <svg className="absolute inset-0 w-full h-full opacity-30">
+                        <line x1="30%" y1="20%" x2="45%" y2="75%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
+                        <line x1="45%" y1="75%" x2="75%" y2="35%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
+                        <line x1="30%" y1="20%" x2="20%" y2="45%" stroke="#fb923c" strokeWidth="1" strokeDasharray="4,4" />
+                      </svg>
+                      {/* 100km radius circle */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-orange-400/20 rounded-full" />
+                    </div>
+                  </div>
                   <div className="absolute bottom-4 left-4 text-white/80 text-sm">
-                    Pearl River Delta Manufacturing Ecosystem
+                    Pearl River Delta - 100km Supply Chain
                   </div>
                 </div>
               </div>
@@ -477,8 +511,8 @@ export default function AboutPage() {
                 <div className="relative w-32 h-32 flex-shrink-0">
                   <div className="absolute inset-0 rounded-xl overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80"
-                      alt="Alex Guan"
+                      src="/alex-guan-profile.jpg"
+                      alt="Alex Guan - Former BYD Quality Manager"
                       fill
                       className="object-cover"
                     />
@@ -487,9 +521,10 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-2xl font-bold mb-3">11 Years at BYD</h3>
                   <p className="text-white/80 leading-relaxed">
-                    NPI Engineer → Engineering Manager → After-Sales Director. Managed 100+ person teams
-                    delivering 30-40 projects/year for Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS.
-                    My job was catching supplier problems before they became $500K recalls.
+                    NPI Engineer → Engineering Manager → Quality Manager. Managed manufacturing quality
+                    for Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS across 30-40 projects/year.
+                    Specialized in process control, supplier coordination, and catching quality issues
+                    before they became costly recalls.
                   </p>
                 </div>
               </div>
