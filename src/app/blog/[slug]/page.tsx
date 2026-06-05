@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,6 +12,9 @@ import { generateSEOMetadata } from '@/lib/seo';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+// 动态渲染
+export const dynamic = 'force-dynamic';
 
 async function getPost(slug: string, preview: boolean = false) {
   const supabase = createClient(supabaseUrl, supabaseKey);
