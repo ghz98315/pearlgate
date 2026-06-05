@@ -54,21 +54,21 @@ export default function TableOfContents({ content }: { content: string }) {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="hidden xl:block w-64 shrink-0">
+    <nav className="hidden xl:block w-72 shrink-0 ml-16">
       <div className="sticky top-32">
-        <div className="border-l-2 border-navy-200 pl-6">
-          <h3 className="text-xs font-bold text-navy-500 mb-4 uppercase tracking-wider">
-            Contents
+        <div className="pl-8">
+          <h3 className="text-sm font-semibold text-gray-900 mb-6">
+            In This Article
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-5">
             {headings.map((heading) => (
               <li key={heading.id}>
                 <a
                   href={`#${heading.id}`}
-                  className={`block text-sm leading-snug transition-all ${
+                  className={`block text-[15px] leading-relaxed transition-colors ${
                     activeId === heading.id
-                      ? 'text-navy-900 font-semibold border-l-2 border-navy-900 -ml-[2px] pl-[22px]'
-                      : 'text-navy-600 hover:text-navy-900 pl-6'
+                      ? 'text-gray-900 font-medium'
+                      : 'text-gray-500 hover:text-gray-700'
                   }`}
                   onClick={(e) => {
                     e.preventDefault();

@@ -231,7 +231,7 @@ export default async function BlogPostPage({
                 ),
 
                 // 分割线
-                hr: ({node, ...props}) => <hr className="my-12 border-t-2 border-navy-200" {...props} />,
+                hr: ({node, ...props}) => <hr className="my-12 border-t border-gray-300" {...props} />,
 
                 // 表格
                 table: ({node, ...props}) => (
