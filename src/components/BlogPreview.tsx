@@ -8,6 +8,9 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+// 禁用缓存，每次请求都重新获取
+export const revalidate = 0;
+
 export default async function BlogPreview() {
   // 从数据库获取最新 3 篇已发布文章
   const { data: posts } = await supabase

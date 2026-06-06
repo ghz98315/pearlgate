@@ -16,6 +16,9 @@ import EmailCapture from "@/components/EmailCapture";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
+// 每次请求都重新生成页面（因为包含动态博客内容）
+export const revalidate = 0;
+
 export default function Home() {
   return (
     <>
