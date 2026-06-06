@@ -6,6 +6,13 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
+// 验证 Admin Token
+function verifyAuth(req: NextRequest): boolean {
+  const authHeader = req.headers.get("authorization");
+  const token = authHeader?.replace("Bearer ", "");
+  return token === process.env.ADMIN_TOKEN;
+}
+
 // GET /api/blog/[id] - 获取单篇文章详情
 export async function GET(
   request: NextRequest,
@@ -90,6 +97,14 @@ export async function PUT(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    // 验证认证
+    if (!verifyAuth(request)) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
     const { id } = await context.params;
 
@@ -175,6 +190,14 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    // 验证认证
+    if (!verifyAuth(request)) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     const { id } = await context.params;
 
     if (!id) {
