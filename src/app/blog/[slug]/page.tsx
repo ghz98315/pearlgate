@@ -168,21 +168,24 @@ export default async function BlogPostPage({
           </div>
 
           {(post.featured_image || post.image) && (
-            <div className="relative mt-8 h-64 lg:h-80 rounded-2xl overflow-hidden">
+            <div className="relative mt-8 h-64 lg:h-96 rounded-2xl overflow-hidden bg-gray-100">
               <Image
                 src={post.featured_image || post.image}
                 alt={post.title}
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>
           )}
 
           <article className="mt-12 max-w-none">
-            <ReactMarkdown
-              remarkPlugins={[remarkGfm]}
-              components={{
+            {(() => {
+              let imageCount = 0; // 跟踪图片数量
+              return (
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
                 // 标题（添加 ID，跳过 H1）
                 h1: () => null, // 跳过 H1，页面已有标题
                 h2: ({node, children, ...props}) => {
@@ -246,6 +249,11 @@ export default async function BlogPostPage({
 
                 // 图片
                 img: ({node, src, alt, ...props}: any) => {
+                  imageCount++;
+                  // 跳过第一张图片（已作为封面图显示）
+                  if (imageCount === 1) {
+                    return null;
+                  }
                   // 提取 caption（从 alt 或下一行的斜体文本）
                   const caption = alt || '';
                   return <ImageZoom src={src || ''} alt={caption} caption={caption} />;
@@ -254,6 +262,8 @@ export default async function BlogPostPage({
             >
               {post.content}
             </ReactMarkdown>
+              );
+            })()}
           </article>
 
           {/* CTA */}
