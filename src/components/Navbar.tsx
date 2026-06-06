@@ -90,6 +90,9 @@ export default function Navbar() {
           <Link href="/factory-verification" className="text-white/80 hover:text-white text-sm transition-colors">
             Verification
           </Link>
+          <Link href="/resources" className="text-white/80 hover:text-white text-sm transition-colors">
+            Resources
+          </Link>
           <Link href="/blog" className="text-white/80 hover:text-white text-sm transition-colors">
             Insights
           </Link>
@@ -182,6 +185,13 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
           >
             Verification
+          </Link>
+          <Link
+            href="/resources"
+            className="block text-white/80 hover:text-white text-sm"
+            onClick={() => setMobileOpen(false)}
+          >
+            Resources
           </Link>
           <Link
             href="/blog"
