@@ -81,7 +81,7 @@ export default async function BlogPage() {
 
           {posts.length === 0 && (
             <div className="mt-16 text-center text-text-secondary">
-              暂无博客文章
+              No blog posts yet
             </div>
           )}
         </div>

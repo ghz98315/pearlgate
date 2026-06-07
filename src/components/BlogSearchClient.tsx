@@ -75,7 +75,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input
             type="text"
-            placeholder="搜索博客标题、内容或分类..."
+            placeholder="Search articles by title, content, or category..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-12 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -102,7 +102,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              {category === 'all' ? '全部' : category}
+              {category === 'all' ? 'All' : category}
             </button>
           ))}
         </div>
@@ -110,10 +110,10 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
         {/* Results Count */}
         {(searchQuery || selectedCategory !== 'all') && (
           <div className="text-sm text-gray-600">
-            找到 {filteredPosts.length} 篇文章
+            Found {filteredPosts.length} article{filteredPosts.length !== 1 ? 's' : ''}
             {searchQuery && (
               <span className="ml-2">
-                包含 "<span className="font-medium">{searchQuery}</span>"
+                containing "<span className="font-medium">{searchQuery}</span>"
               </span>
             )}
           </div>
@@ -175,10 +175,10 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
             <Search size={64} className="mx-auto" />
           </div>
           <h3 className="text-xl font-semibold text-gray-900 mb-2">
-            没有找到相关文章
+            No articles found
           </h3>
           <p className="text-gray-600 mb-6">
-            试试其他关键词或浏览全部分类
+            Try different keywords or browse all categories
           </p>
           <button
             onClick={() => {
@@ -187,7 +187,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
             }}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            清除筛选
+            Clear filters
           </button>
         </div>
       )}
