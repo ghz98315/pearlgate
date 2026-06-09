@@ -6,6 +6,7 @@ import {
   buildSampleRequestNotificationEmail,
   type SampleRequestData,
 } from "@/lib/emails";
+import { upsertLead, extractRequestMeta } from "@/lib/leads";
 
 interface RequestSampleData {
   fullName: string;
@@ -176,6 +177,30 @@ export async function POST(request: NextRequest) {
 
     // 保存到数据库
     await saveToDatabase(emailData);
+
+    // 同步到统一 leads 表(邮箱闭环)
+    const reqMeta = extractRequestMeta(request);
+    await upsertLead({
+      email: data.email,
+      source: "sample_request",
+      fullName: data.fullName,
+      company: data.company,
+      country: data.country,
+      whatsapp: data.whatsapp || null,
+      metadata: {
+        referenceId,
+        productName: data.productName,
+        productCategory: data.productCategory,
+        productUrl: data.productUrl || null,
+        targetMarket: data.targetMarket,
+        chargingStandard: data.chargingStandard || null,
+        certificationsNeeded: data.certificationsNeeded || [],
+        intendedUse: data.intendedUse || null,
+        estimatedVolume: data.estimatedVolume || null,
+        oemRequirements: data.oemRequirements || null,
+      },
+      ...reqMeta,
+    });
 
     // 如果没有 API Key，只保存数据库，不发送邮件
     if (!apiKey) {

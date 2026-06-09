@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createUser } from "@/lib/auth";
+import { upsertLead, extractRequestMeta } from "@/lib/leads";
 
 export async function POST(request: NextRequest) {
   const { email, password, name } = await request.json();
@@ -17,6 +18,16 @@ export async function POST(request: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: "Email already registered" }, { status: 409 });
   }
+
+  // 同步到统一 leads 表(邮箱闭环)
+  const reqMeta = extractRequestMeta(request);
+  await upsertLead({
+    email,
+    source: "register",
+    fullName: name,
+    metadata: { userId: user.id },
+    ...reqMeta,
+  });
 
   return NextResponse.json({ success: true });
 }

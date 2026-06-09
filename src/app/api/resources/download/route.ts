@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { upsertLead, extractRequestMeta } from '@/lib/leads';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -56,6 +57,21 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // 同步到统一 leads 表(邮箱闭环)
+    const reqMeta = extractRequestMeta(request);
+    await upsertLead({
+      email,
+      source: 'resource_download',
+      fullName: name,
+      company: company || null,
+      metadata: {
+        resourceName: resource_name,
+        productInterest: product_interest || null,
+        downloadId: data[0].id,
+      },
+      ...reqMeta,
+    });
 
     return NextResponse.json({
       success: true,

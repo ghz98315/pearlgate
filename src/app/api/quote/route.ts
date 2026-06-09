@@ -5,6 +5,7 @@ import {
   buildAdminNotificationEmail,
   type QuoteFormData,
 } from "@/lib/emails";
+import { upsertLead, extractRequestMeta } from "@/lib/leads";
 
 export async function POST(request: NextRequest) {
   const data: QuoteFormData = await request.json();
@@ -13,11 +14,32 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
 
+  const meta = extractRequestMeta(request);
+  const leadResult = await upsertLead({
+    email: data.email,
+    source: "quote",
+    fullName: data.name,
+    company: data.company ?? null,
+    metadata: {
+      category: data.category,
+      product: data.product,
+      quantity: data.quantity,
+      targetPrice: data.targetPrice ?? null,
+      details: data.details ?? null,
+      formSource: data.source ?? null,
+    },
+    ...meta,
+  });
+
   const apiKey = process.env.RESEND_API_KEY;
   const adminEmail = process.env.ADMIN_EMAIL || "delivered@resend.dev";
 
   if (!apiKey) {
-    return NextResponse.json({ success: true, emailSent: false });
+    return NextResponse.json({
+      success: true,
+      emailSent: false,
+      leadSaved: leadResult.ok,
+    });
   }
 
   const resend = new Resend(apiKey);
@@ -39,8 +61,16 @@ export async function POST(request: NextRequest) {
       }),
     ]);
 
-    return NextResponse.json({ success: true, emailSent: true });
+    return NextResponse.json({
+      success: true,
+      emailSent: true,
+      leadSaved: leadResult.ok,
+    });
   } catch {
-    return NextResponse.json({ success: true, emailSent: false });
+    return NextResponse.json({
+      success: true,
+      emailSent: false,
+      leadSaved: leadResult.ok,
+    });
   }
 }

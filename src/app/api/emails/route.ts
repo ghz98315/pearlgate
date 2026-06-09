@@ -1,52 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { upsertLead, extractRequestMeta, type LeadSource } from "@/lib/leads";
 
-const DATA_FILE = path.join(process.cwd(), "data", "emails.json");
+const ALLOWED_SOURCES: LeadSource[] = [
+  "newsletter",
+  "quote",
+  "sample_request",
+  "resource_download",
+  "register",
+];
 
-interface EmailEntry {
-  email: string;
-  source: string;
-  timestamp: string;
-}
-
-async function readEmails(): Promise<EmailEntry[]> {
-  try {
-    const data = await fs.readFile(DATA_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+function coerceSource(raw: unknown): LeadSource {
+  if (typeof raw === "string" && (ALLOWED_SOURCES as string[]).includes(raw)) {
+    return raw as LeadSource;
   }
-}
-
-async function writeEmails(emails: EmailEntry[]): Promise<void> {
-  await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
-  await fs.writeFile(DATA_FILE, JSON.stringify(emails, null, 2));
+  return "newsletter";
 }
 
 export async function POST(request: NextRequest) {
-  const { email, source } = await request.json();
+  let payload: { email?: string; source?: string };
+  try {
+    payload = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
 
+  const email = payload.email?.toString() ?? "";
   if (!email || !email.includes("@")) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  const emails = await readEmails();
-  const exists = emails.some((e) => e.email === email);
+  const source = coerceSource(payload.source);
+  const meta = extractRequestMeta(request);
 
-  if (!exists) {
-    emails.push({
-      email,
-      source: source || "unknown",
-      timestamp: new Date().toISOString(),
-    });
-    await writeEmails(emails);
+  const result = await upsertLead({
+    email,
+    source,
+    metadata: { rawSource: payload.source ?? null },
+    ...meta,
+  });
+
+  if (!result.ok) {
+    return NextResponse.json(
+      { error: result.error ?? "save_failed" },
+      { status: 500 }
+    );
   }
 
-  return NextResponse.json({ success: true });
-}
-
-export async function GET() {
-  const emails = await readEmails();
-  return NextResponse.json(emails);
+  return NextResponse.json({ success: true, isNew: result.isNew });
 }

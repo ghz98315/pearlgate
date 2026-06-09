@@ -1,18 +1,45 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Database, FileText, Mail, Copy, Download } from "lucide-react";
+import { useState, useSyncExternalStore } from "react";
+import { Database, FileText, Users, Copy, Lock } from "lucide-react";
 import dynamic from "next/dynamic";
+import LeadsList from "@/components/admin/LeadsList";
 
 const MDEditor = dynamic(
   () => import("@uiw/react-md-editor").then((mod) => mod.default),
   { ssr: false }
 );
 
-type Tab = "suppliers" | "blog" | "emails";
+type Tab = "suppliers" | "blog" | "leads";
+
+const AUTH_KEY = "admin_authenticated";
+const authStoreSubscribers = new Set<() => void>();
+
+function subscribeAuth(cb: () => void) {
+  authStoreSubscribers.add(cb);
+  const handler = () => cb();
+  window.addEventListener("storage", handler);
+  return () => {
+    authStoreSubscribers.delete(cb);
+    window.removeEventListener("storage", handler);
+  };
+}
+function getAuthSnapshot() {
+  return sessionStorage.getItem(AUTH_KEY) === "true";
+}
+function notifyAuthChange() {
+  authStoreSubscribers.forEach((cb) => cb());
+}
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<Tab>("suppliers");
+  const authed = useSyncExternalStore(
+    subscribeAuth,
+    getAuthSnapshot,
+    () => false
+  );
+
+  if (!authed) return <PasswordGate onSuccess={notifyAuthChange} />;
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 lg:p-12">
@@ -20,21 +47,79 @@ export default function AdminPage() {
         <h1 className="text-2xl font-bold font-[family-name:var(--font-serif)]">
           PearlGate Admin
         </h1>
-        <p className="text-text-secondary text-sm mt-1">Manage suppliers, blog posts, and email subscribers.</p>
+        <p className="text-text-secondary text-sm mt-1">Manage suppliers, blog posts, and leads.</p>
 
         {/* Tabs */}
         <div className="mt-6 flex gap-2 border-b border-border">
           <TabButton active={activeTab === "suppliers"} onClick={() => setActiveTab("suppliers")} icon={Database} label="Suppliers" />
           <TabButton active={activeTab === "blog"} onClick={() => setActiveTab("blog")} icon={FileText} label="Blog" />
-          <TabButton active={activeTab === "emails"} onClick={() => setActiveTab("emails")} icon={Mail} label="Emails" />
+          <TabButton active={activeTab === "leads"} onClick={() => setActiveTab("leads")} icon={Users} label="Leads" />
         </div>
 
         <div className="mt-8">
           {activeTab === "suppliers" && <SupplierForm />}
           {activeTab === "blog" && <BlogForm />}
-          {activeTab === "emails" && <EmailList />}
+          {activeTab === "leads" && <LeadsList />}
         </div>
       </div>
+    </div>
+  );
+}
+
+function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
+  const [pwd, setPwd] = useState("");
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    setErr(null);
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: pwd }),
+      });
+      if (!res.ok) {
+        setErr("Invalid password");
+        return;
+      }
+      sessionStorage.setItem(AUTH_KEY, "true");
+      sessionStorage.setItem("admin_password", pwd);
+      onSuccess();
+    } catch {
+      setErr("Login failed");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <form onSubmit={submit} className="bg-white rounded-2xl border border-border p-8 w-full max-w-sm">
+        <div className="flex items-center gap-2 mb-2">
+          <Lock size={18} />
+          <h2 className="font-semibold">Admin login</h2>
+        </div>
+        <p className="text-xs text-text-secondary mb-4">Enter the admin password to continue.</p>
+        <input
+          type="password"
+          autoFocus
+          value={pwd}
+          onChange={(e) => setPwd(e.target.value)}
+          placeholder="Password"
+          className="w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20 mb-3"
+        />
+        {err && <p className="text-xs text-red-600 mb-3">{err}</p>}
+        <button
+          type="submit"
+          disabled={busy || !pwd}
+          className="w-full bg-navy-900 hover:bg-navy-700 disabled:opacity-50 text-white font-medium py-2.5 rounded-lg text-sm"
+        >
+          {busy ? "Signing in…" : "Sign in"}
+        </button>
+      </form>
     </div>
   );
 }
@@ -217,62 +302,6 @@ function BlogForm() {
             </button>
           </div>
           <pre className="bg-navy-900 text-white p-4 rounded-lg text-xs overflow-x-auto max-h-96">{output}</pre>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function EmailList() {
-  const [emails, setEmails] = useState<{ email: string; source: string; timestamp: string }[]>([]);
-
-  useEffect(() => {
-    fetch("/api/emails").then(r => r.json()).then(setEmails).catch(() => {});
-  }, []);
-
-  const exportCSV = () => {
-    const csv = "email,source,timestamp\n" + emails.map(e => `${e.email},${e.source},${e.timestamp}`).join("\n");
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "pearlgate_emails.csv";
-    a.click();
-  };
-
-  return (
-    <div>
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold">Collected Emails ({emails.length})</h2>
-        {emails.length > 0 && (
-          <button onClick={exportCSV} className="flex items-center gap-1 text-sm text-navy-700 hover:text-navy-900 font-medium">
-            <Download size={14} /> Export CSV
-          </button>
-        )}
-      </div>
-
-      {emails.length === 0 ? (
-        <p className="text-text-secondary text-sm">No emails collected yet.</p>
-      ) : (
-        <div className="bg-white rounded-lg border border-border overflow-hidden">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="text-left px-4 py-3 font-medium">Email</th>
-                <th className="text-left px-4 py-3 font-medium">Source</th>
-                <th className="text-left px-4 py-3 font-medium">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {emails.map((e, i) => (
-                <tr key={i} className="border-t border-border">
-                  <td className="px-4 py-3">{e.email}</td>
-                  <td className="px-4 py-3 text-text-secondary">{e.source}</td>
-                  <td className="px-4 py-3 text-text-secondary">{new Date(e.timestamp).toLocaleDateString()}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       )}
     </div>

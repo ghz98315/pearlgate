@@ -1,48 +1,97 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { promises as fs } from "fs";
-import path from "path";
+import bcrypt from "bcryptjs";
+import { getSupabaseAdmin } from "./supabase";
 
-const USERS_FILE = path.join(process.cwd(), "data", "users.json");
+const BCRYPT_ROUNDS = 10;
 
-interface StoredUser {
+export interface AuthUser {
   id: string;
   email: string;
   name: string;
-  password: string;
-  createdAt: string;
 }
 
-async function readUsers(): Promise<StoredUser[]> {
-  try {
-    const data = await fs.readFile(USERS_FILE, "utf-8");
-    return JSON.parse(data);
-  } catch {
-    return [];
+function normalizeEmail(raw: string): string {
+  return raw.trim().toLowerCase();
+}
+
+export async function createUser(
+  email: string,
+  password: string,
+  name: string
+): Promise<AuthUser | null> {
+  const normalized = normalizeEmail(email);
+  const supabase = getSupabaseAdmin();
+
+  const { data: existing, error: selErr } = await supabase
+    .from("auth_users")
+    .select("id")
+    .eq("email", normalized)
+    .maybeSingle();
+
+  if (selErr) {
+    console.error("[auth] createUser select 失败:", selErr);
+    return null;
   }
-}
+  if (existing) return null;
 
-async function writeUsers(users: StoredUser[]): Promise<void> {
-  await fs.mkdir(path.dirname(USERS_FILE), { recursive: true });
-  await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
-}
+  const password_hash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
-export async function createUser(email: string, password: string, name: string): Promise<StoredUser | null> {
-  const users = await readUsers();
-  if (users.some((u) => u.email === email)) return null;
+  const { data: inserted, error: insErr } = await supabase
+    .from("auth_users")
+    .insert([{ email: normalized, password_hash, name }])
+    .select("id, email, name")
+    .single();
 
-  const newUser: StoredUser = {
-    id: crypto.randomUUID(),
-    email,
-    name,
-    password,
-    createdAt: new Date().toISOString(),
+  if (insErr || !inserted) {
+    console.error("[auth] createUser insert 失败:", insErr);
+    return null;
+  }
+
+  return {
+    id: inserted.id as string,
+    email: inserted.email as string,
+    name: inserted.name as string,
   };
+}
 
-  users.push(newUser);
-  await writeUsers(users);
-  return newUser;
+async function verifyCredentials(
+  email: string,
+  password: string
+): Promise<AuthUser | null> {
+  const normalized = normalizeEmail(email);
+  const supabase = getSupabaseAdmin();
+
+  const { data, error } = await supabase
+    .from("auth_users")
+    .select("id, email, name, password_hash")
+    .eq("email", normalized)
+    .maybeSingle();
+
+  if (error) {
+    console.error("[auth] verify select 失败:", error);
+    return null;
+  }
+  if (!data) return null;
+
+  const ok = await bcrypt.compare(password, data.password_hash as string);
+  if (!ok) return null;
+
+  // 异步更新 last_login_at,失败不影响登录
+  void supabase
+    .from("auth_users")
+    .update({ last_login_at: new Date().toISOString() })
+    .eq("id", data.id as string)
+    .then(({ error: updErr }) => {
+      if (updErr) console.error("[auth] last_login_at 更新失败:", updErr);
+    });
+
+  return {
+    id: data.id as string,
+    email: data.email as string,
+    name: data.name as string,
+  };
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -59,14 +108,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
-
-        const users = await readUsers();
-        const user = users.find(
-          (u) => u.email === credentials.email && u.password === credentials.password
+        return verifyCredentials(
+          String(credentials.email),
+          String(credentials.password)
         );
-
-        if (!user) return null;
-        return { id: user.id, email: user.email, name: user.name };
       },
     }),
   ],
