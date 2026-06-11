@@ -3,14 +3,12 @@ import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
 import WhoShouldWorkWithMe from "@/components/WhoShouldWorkWithMe";
 import PainPoints from "@/components/PainPoints";
-import WhyChooseMe from "@/components/WhyChooseMe";
+import WhyPearlGate from "@/components/WhyPearlGate";
 import DatabasePreview from "@/components/DatabasePreview";
 import Services from "@/components/Services";
-import WhyGuangdong from "@/components/WhyGuangdong";
 import Process from "@/components/Process";
 import Testimonials from "@/components/Testimonials";
 import BlogPreview from "@/components/BlogPreview";
-import Trust from "@/components/Trust";
 import FAQ from "@/components/FAQ";
 import EmailCapture from "@/components/EmailCapture";
 import CTA from "@/components/CTA";
@@ -28,14 +26,12 @@ export default function Home() {
         <SocialProof />
         <WhoShouldWorkWithMe />
         <PainPoints />
-        <WhyChooseMe />
+        <WhyPearlGate />
         <DatabasePreview />
         <Services />
         <Testimonials />
-        <WhyGuangdong />
         <Process />
         <BlogPreview />
-        <Trust />
         <FAQ />
         <div className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
