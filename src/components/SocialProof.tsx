@@ -21,7 +21,7 @@ export default function SocialProof() {
           </div>
           <div>
             <p className="text-3xl font-bold text-navy-900 font-[family-name:var(--font-serif)]">
-              11 Years
+              12 Years
             </p>
             <p className="mt-1 text-sm text-text-secondary">
               BYD manufacturing experience (NPI Engineer → Quality Manager, 2012–2024)

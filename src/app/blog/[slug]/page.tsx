@@ -272,7 +272,7 @@ export default async function BlogPostPage({
               Sourcing EV Charging Equipment from China?
             </h3>
             <p className="mt-2 text-text-secondary">
-              I'm based in the Pearl River Delta with 11 years of supply chain experience.
+              I'm based in the Pearl River Delta with 12 years of supply chain experience.
               I help buyers find verified EV charging manufacturers, verify certifications, and coordinate factory visits.
             </p>
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

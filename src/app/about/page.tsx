@@ -13,7 +13,7 @@ import {
 
 export const metadata: Metadata = {
   title: "About — PearlGate | Solving EV Charging Sourcing Problems You've Actually Experienced",
-  description: "Fake certifications? Quality disasters? Lost money to scam suppliers? 11 years in BYD manufacturing taught me how to prevent these problems.",
+  description: "Fake certifications? Quality disasters? Lost money to scam suppliers? 12 years in BYD manufacturing taught me how to prevent these problems.",
 };
 
 const painPoints = [
@@ -47,7 +47,7 @@ const whyUs = [
   {
     icon: Factory,
     title: "Manufacturing Insider Perspective",
-    description: "11 years inside BYD managing Dell, Toshiba, Lenovo projects. I know what 'factory-verified' actually means for EV components.",
+    description: "12 years inside BYD managing Dell, Toshiba, Lenovo projects. I know what 'factory-verified' actually means for EV components.",
   },
   {
     icon: ShieldCheck,
@@ -84,7 +84,7 @@ const whyEVCharging = [
   {
     icon: Layers,
     title: "Our Deep Expertise",
-    description: "11 years at BYD managing EV component quality for global brands. We understand this supply chain inside-out.",
+    description: "12 years at BYD managing EV component quality for global brands. We understand this supply chain inside-out.",
   },
 ];
 
@@ -186,7 +186,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto mb-8">
-              11 years managing manufacturing at BYD for Dell, Toshiba, Lenovo taught me exactly
+              12 years managing manufacturing at BYD for Dell, Toshiba, Lenovo taught me exactly
               how suppliers cut corners and scam overseas buyers. <strong className="text-white">Your supplier problems are our specialty.</strong>
             </p>
 
@@ -481,7 +481,7 @@ export default function AboutPage() {
                     />
                   </div>
                   <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-3 py-1 shadow-md border border-gray-200">
-                    <span className="text-xs font-medium text-navy-700">11yr BYD</span>
+                    <span className="text-xs font-medium text-navy-700">12yr BYD</span>
                   </div>
                 </div>
 
@@ -496,7 +496,7 @@ export default function AboutPage() {
                   </h3>
 
                   <p className="mt-5 text-gray-600 leading-relaxed">
-                    11 years at BYD as NPI Engineer &rarr; Engineering Manager &rarr; Quality Manager.
+                    12 years at BYD as NPI Engineer &rarr; Engineering Manager &rarr; Quality Manager.
                     Managed manufacturing quality for Dell, Toshiba, Lenovo, Huawei, Siemens, and
                     ASUS &mdash; 30-40 projects a year &mdash; before specialising in EVSE and charging-cable
                     sourcing for overseas buyers.
@@ -535,7 +535,7 @@ export default function AboutPage() {
 
                   <div className="mt-7 flex flex-wrap gap-3 text-sm text-gray-700">
                     <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
-                      11+ Years at BYD
+                      12+ Years at BYD
                     </span>
                     <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
                       EV Charging OEM Support

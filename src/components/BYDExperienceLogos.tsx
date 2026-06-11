@@ -41,7 +41,7 @@ export default function BYDExperienceLogos() {
         <FadeIn delay={0.3}>
           <p className="text-center text-xs text-text-secondary/70 mt-10 lg:mt-12 max-w-2xl mx-auto leading-relaxed">
             Logos represent global brands whose manufacturing quality Alex managed during
-            11 years at BYD (2012–2024), not current PearlGate engagements. Trademarks are
+            12 years at BYD (2012–2024), not current PearlGate engagements. Trademarks are
             property of their respective owners.
           </p>
         </FadeIn>

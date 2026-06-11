@@ -36,7 +36,7 @@ const comparisonData = [
     tradingCompany: { status: "no", text: "Sales/trading background only" },
     pearlgate: {
       status: "yes",
-      text: "11 years BYD charging infrastructure — production & QC for EVSE",
+      text: "12 years BYD charging infrastructure — production & QC for EVSE",
     },
   },
   {
@@ -86,7 +86,7 @@ export default function WhyPearlGate() {
                     />
                   </div>
                   <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-3 py-1 shadow-md border border-border">
-                    <span className="text-xs font-medium text-navy-700">11yr BYD</span>
+                    <span className="text-xs font-medium text-navy-700">12yr BYD</span>
                   </div>
                 </div>
               </Float>
@@ -98,7 +98,7 @@ export default function WhyPearlGate() {
                   &ldquo;I&apos;ve been inside hundreds of factories — now I go in for you.&rdquo;
                 </h2>
                 <p className="mt-4 text-text-secondary leading-relaxed">
-                  11 years at BYD as NPI Engineer → Engineering Manager → Quality Manager.
+                  12 years at BYD as NPI Engineer → Engineering Manager → Quality Manager.
                   Managed manufacturing quality for Dell, Toshiba, Lenovo, Huawei, Siemens, and
                   ASUS — 30-40 projects a year — before specialising in EVSE and charging-cable
                   sourcing for overseas buyers.
@@ -108,7 +108,7 @@ export default function WhyPearlGate() {
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3 text-sm text-text-secondary">
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
-                    <Counter target={11} suffix="+" /> Years at BYD
+                    <Counter target={12} suffix="+" /> Years at BYD
                   </span>
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
                     EV Charging OEM Support
