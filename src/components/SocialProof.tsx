@@ -24,7 +24,7 @@ export default function SocialProof() {
               11 Years
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              BYD charging infrastructure experience (Quality Manager, 2013-2019)
+              BYD manufacturing experience (NPI Engineer → Quality Manager, 2012–2024)
             </p>
           </div>
         </div>
