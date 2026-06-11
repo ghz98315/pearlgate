@@ -1,14 +1,3 @@
-import Image from "next/image";
-
-const countries = [
-  { name: "United States", code: "us" },
-  { name: "United Kingdom", code: "gb" },
-  { name: "Germany", code: "de" },
-  { name: "Australia", code: "au" },
-  { name: "Canada", code: "ca" },
-  { name: "Netherlands", code: "nl" },
-];
-
 export default function SocialProof() {
   return (
     <section className="py-12 bg-white border-b border-gray-100">
@@ -37,26 +26,6 @@ export default function SocialProof() {
             <p className="mt-1 text-sm text-text-secondary">
               BYD charging infrastructure experience (Quality Manager, 2013-2019)
             </p>
-          </div>
-        </div>
-
-        <div className="mt-10 pt-8 border-t border-gray-200">
-          <p className="text-center text-sm font-semibold text-gray-600 mb-4">
-            Trusted by buyers from
-          </p>
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            {countries.map((c) => (
-              <div key={c.code} className="flex items-center gap-2">
-                <Image
-                  src={`https://flagcdn.com/w40/${c.code}.png`}
-                  alt={c.name}
-                  width={24}
-                  height={16}
-                  className="rounded-sm shadow-sm"
-                />
-                <span className="text-xs font-medium text-gray-600">{c.name}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>
