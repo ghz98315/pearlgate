@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
     source: "quote",
     fullName: data.name,
     company: data.company ?? null,
+    productInterest: [data.category, data.product].filter(Boolean).join(" - "),
     metadata: {
       category: data.category,
       product: data.product,

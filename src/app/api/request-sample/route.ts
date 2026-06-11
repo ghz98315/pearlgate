@@ -187,6 +187,9 @@ export async function POST(request: NextRequest) {
       company: data.company,
       country: data.country,
       whatsapp: data.whatsapp || null,
+      productInterest: [data.productCategory, data.productName]
+        .filter(Boolean)
+        .join(" - "),
       metadata: {
         referenceId,
         productName: data.productName,

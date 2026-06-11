@@ -65,6 +65,7 @@ export async function POST(request: NextRequest) {
       source: 'resource_download',
       fullName: name,
       company: company || null,
+      productInterest: product_interest || null,
       metadata: {
         resourceName: resource_name,
         productInterest: product_interest || null,

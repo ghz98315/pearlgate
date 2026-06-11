@@ -22,6 +22,7 @@ export interface UpsertLeadInput {
   company?: string | null;
   country?: string | null;
   whatsapp?: string | null;
+  productInterest?: string | null;
   metadata?: Record<string, unknown>;
   userAgent?: string | null;
   ipAddress?: string | null;
@@ -71,7 +72,7 @@ export async function upsertLead(
   try {
     const { data: existing, error: selectErr } = await supabase
       .from("leads")
-      .select("id, sources, score, full_name, company, country, whatsapp")
+      .select("id, sources, score, full_name, company, country, whatsapp, product_interest")
       .eq("email", email)
       .maybeSingle();
 
@@ -99,6 +100,8 @@ export async function upsertLead(
         company: existing.company ?? input.company ?? null,
         country: existing.country ?? input.country ?? null,
         whatsapp: existing.whatsapp ?? input.whatsapp ?? null,
+        product_interest:
+          existing.product_interest ?? input.productInterest ?? null,
       };
 
       const { error: updErr } = await supabase
@@ -121,6 +124,7 @@ export async function upsertLead(
             company: input.company ?? null,
             country: input.country ?? null,
             whatsapp: input.whatsapp ?? null,
+            product_interest: input.productInterest ?? null,
             sources: [input.source],
             score,
           },

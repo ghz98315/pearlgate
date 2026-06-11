@@ -9,6 +9,7 @@ interface LeadRow {
   full_name: string | null;
   company: string | null;
   country: string | null;
+  product_interest: string | null;
   sources: string[];
   score: number;
   status: string;
@@ -108,7 +109,7 @@ export default function LeadsList() {
 
   const exportCSV = () => {
     const header =
-      "email,full_name,company,country,sources,score,status,event_count,first_seen_at,last_seen_at\n";
+      "email,full_name,company,country,product_interest,sources,score,status,event_count,first_seen_at,last_seen_at\n";
     const rows = leads
       .map((l) => {
         const cells = [
@@ -116,6 +117,7 @@ export default function LeadsList() {
           l.full_name ?? "",
           l.company ?? "",
           l.country ?? "",
+          l.product_interest ?? "",
           (l.sources ?? []).join("|"),
           l.score,
           l.status,
@@ -202,6 +204,7 @@ export default function LeadsList() {
               <tr>
                 <th className="text-left px-4 py-3 font-medium">Email</th>
                 <th className="text-left px-4 py-3 font-medium">Name / Company</th>
+                <th className="text-left px-4 py-3 font-medium">Product Interest</th>
                 <th className="text-left px-4 py-3 font-medium">Sources</th>
                 <th className="text-left px-4 py-3 font-medium">Score</th>
                 <th className="text-left px-4 py-3 font-medium">Events</th>
@@ -220,6 +223,9 @@ export default function LeadsList() {
                   <td className="px-4 py-3 text-text-secondary">
                     {l.full_name ?? "—"}
                     {l.company ? <span className="text-xs"> · {l.company}</span> : null}
+                  </td>
+                  <td className="px-4 py-3 text-text-secondary text-xs max-w-[180px] truncate" title={l.product_interest ?? ""}>
+                    {l.product_interest ?? "—"}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
@@ -322,6 +328,7 @@ function LeadDetail({
               <Field label="Name" value={data.lead.full_name ?? "—"} />
               <Field label="Company" value={data.lead.company ?? "—"} />
               <Field label="Country" value={data.lead.country ?? "—"} />
+              <Field label="Product Interest" value={data.lead.product_interest ?? "—"} />
               <Field label="Sources" value={(data.lead.sources ?? []).join(", ")} />
               <Field label="First seen" value={new Date(data.lead.first_seen_at).toLocaleString()} />
               <Field label="Last seen" value={new Date(data.lead.last_seen_at).toLocaleString()} />
