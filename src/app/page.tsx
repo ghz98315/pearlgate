@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
+import BYDExperienceLogos from "@/components/BYDExperienceLogos";
 import WhoShouldWorkWithMe from "@/components/WhoShouldWorkWithMe";
 import PainPoints from "@/components/PainPoints";
 import WhyPearlGate from "@/components/WhyPearlGate";
@@ -24,6 +25,7 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProof />
+        <BYDExperienceLogos />
         <WhoShouldWorkWithMe />
         <PainPoints />
         <WhyPearlGate />
