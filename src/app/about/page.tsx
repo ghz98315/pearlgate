@@ -466,27 +466,87 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Credentials */}
-            <div className="mt-16 p-8 bg-navy-900 rounded-2xl text-white">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="relative w-32 h-32 flex-shrink-0">
-                  <div className="absolute inset-0 rounded-xl overflow-hidden">
+            {/* Meet Alex */}
+            <div className="mt-16 p-8 lg:p-10 bg-white rounded-2xl border border-gray-200 shadow-sm">
+              <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
+                <div className="relative w-44 h-44 lg:w-56 lg:h-56 shrink-0 mx-auto lg:mx-0">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-navy-700 to-orange-500 opacity-20" />
+                  <div className="absolute inset-2 rounded-full overflow-hidden bg-navy-900/10">
                     <Image
                       src="/alex-guan-profile.jpg"
-                      alt="Alex Guan - Former BYD Quality Manager"
+                      alt="Alex Guan — Former BYD Quality Manager"
                       fill
                       className="object-cover"
+                      sizes="(max-width: 1024px) 176px, 224px"
                     />
                   </div>
+                  <div className="absolute -bottom-2 -right-2 bg-white rounded-full px-3 py-1 shadow-md border border-gray-200">
+                    <span className="text-xs font-medium text-navy-700">11yr BYD</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">11 Years at BYD</h3>
-                  <p className="text-white/80 leading-relaxed">
-                    NPI Engineer → Engineering Manager → Quality Manager. Managed manufacturing quality
-                    for Dell, Toshiba, Lenovo, Huawei, Siemens, ASUS across 30-40 projects/year.
-                    Specialized in process control, supplier coordination, and catching quality issues
-                    before they became costly recalls.
+
+                <div className="flex-1">
+                  <p className="text-xs lg:text-sm font-semibold text-orange-600 uppercase tracking-wider mb-3">
+                    Meet Alex
                   </p>
+                  <h3 className="text-2xl lg:text-3xl font-bold font-[family-name:var(--font-serif)] text-gray-900 leading-tight">
+                    I&apos;ve Been Inside Hundreds<br />
+                    of Factories &mdash; Now I Go In<br />
+                    For You.
+                  </h3>
+
+                  <p className="mt-5 text-gray-600 leading-relaxed">
+                    11 years at BYD as NPI Engineer &rarr; Engineering Manager &rarr; Quality Manager.
+                    Managed manufacturing quality for Dell, Toshiba, Lenovo, Huawei, Siemens, and
+                    ASUS &mdash; 30-40 projects a year &mdash; before specialising in EVSE and charging-cable
+                    sourcing for overseas buyers.
+                  </p>
+                  <p className="mt-3 text-gray-600 leading-relaxed">
+                    Based in Shenzhen, China&apos;s EV charging manufacturing hub.
+                  </p>
+
+                  <div className="mt-7">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">
+                      Career Timeline
+                    </p>
+                    <ol className="space-y-2.5">
+                      <li className="flex items-baseline gap-3 text-sm">
+                        <span className="font-bold text-navy-900 tabular-nums w-12 shrink-0">2012</span>
+                        <span className="text-gray-300">&rarr;</span>
+                        <span className="text-gray-700">NPI Engineer at BYD</span>
+                      </li>
+                      <li className="flex items-baseline gap-3 text-sm">
+                        <span className="font-bold text-navy-900 tabular-nums w-12 shrink-0">2016</span>
+                        <span className="text-gray-300">&rarr;</span>
+                        <span className="text-gray-700">Engineering Manager</span>
+                      </li>
+                      <li className="flex items-baseline gap-3 text-sm">
+                        <span className="font-bold text-navy-900 tabular-nums w-12 shrink-0">2021</span>
+                        <span className="text-gray-300">&rarr;</span>
+                        <span className="text-gray-700">Quality Manager</span>
+                      </li>
+                      <li className="flex items-baseline gap-3 text-sm">
+                        <span className="font-bold text-navy-900 tabular-nums w-12 shrink-0">2025</span>
+                        <span className="text-gray-300">&rarr;</span>
+                        <span className="font-medium text-orange-600">Founder, PearlGate</span>
+                      </li>
+                    </ol>
+                  </div>
+
+                  <div className="mt-7 flex flex-wrap gap-3 text-sm text-gray-700">
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+                      11+ Years at BYD
+                    </span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+                      EV Charging OEM Support
+                    </span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+                      Factory Audit &amp; QC Expertise
+                    </span>
+                    <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200 inline-flex items-center gap-1">
+                      <span aria-hidden="true">📍</span> Shenzhen, China
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

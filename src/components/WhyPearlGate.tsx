@@ -103,18 +103,21 @@ export default function WhyPearlGate() {
                   ASUS — 30-40 projects a year — before specialising in EVSE and charging-cable
                   sourcing for overseas buyers.
                 </p>
+                <p className="mt-3 text-text-secondary leading-relaxed">
+                  Based in Shenzhen, China&apos;s EV charging manufacturing hub.
+                </p>
                 <div className="mt-6 flex flex-wrap gap-3 text-sm text-text-secondary">
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
-                    <Counter target={11} suffix="+" /> years at BYD
+                    <Counter target={11} suffix="+" /> Years at BYD
                   </span>
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
-                    <Counter target={20} suffix="+" /> verified factory partners
+                    EV Charging OEM Support
                   </span>
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
-                    CCS / NACS / Type2 specialist
+                    Factory Audit &amp; QC Expertise
                   </span>
-                  <span className="bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full border border-orange-200 font-medium">
-                    24h on-site factory visits
+                  <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border inline-flex items-center gap-1">
+                    <span aria-hidden="true">📍</span> Shenzhen, China
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-4">
