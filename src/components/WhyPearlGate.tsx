@@ -2,17 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {
-  X,
-  Check,
-  AlertTriangle,
-  ExternalLink,
-  Factory,
-  Anchor,
-  MapPinCheck,
-  Globe,
-} from "lucide-react";
-import { FadeIn, Float, Counter, Stagger, StaggerItem } from "./Animations";
+import { X, Check, AlertTriangle, ExternalLink } from "lucide-react";
+import { FadeIn, Float, Counter } from "./Animations";
 
 const comparisonData = [
   {
@@ -74,29 +65,6 @@ const comparisonData = [
   },
 ];
 
-const guangdongPoints = [
-  {
-    icon: Factory,
-    label: "Complete clusters",
-    detail: "EVSE / cable / connector OEMs within 2h drive",
-  },
-  {
-    icon: Anchor,
-    label: "Direct port access",
-    detail: "Guangzhou & Shenzhen — fastest EVSE shipping lanes",
-  },
-  {
-    icon: MapPinCheck,
-    label: "On-the-ground",
-    detail: "Any factory visit within 24h — not remote",
-  },
-  {
-    icon: Globe,
-    label: "Export-ready",
-    detail: "English-speaking factories, mature logistics",
-  },
-];
-
 export default function WhyPearlGate() {
   return (
     <section className="bg-white">
@@ -145,6 +113,9 @@ export default function WhyPearlGate() {
                   <span className="bg-gray-50 px-3 py-1.5 rounded-full border border-border">
                     CCS / NACS / Type2 specialist
                   </span>
+                  <span className="bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full border border-orange-200 font-medium">
+                    24h on-site factory visits
+                  </span>
                 </div>
                 <div className="mt-6 flex items-center gap-4">
                   <Link
@@ -154,7 +125,7 @@ export default function WhyPearlGate() {
                     Read my full story →
                   </Link>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/alexguan-evchargig"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-text-secondary hover:text-navy-700 text-sm transition-colors"
@@ -276,37 +247,6 @@ export default function WhyPearlGate() {
               </p>
             </div>
           </FadeIn>
-        </div>
-      </div>
-
-      {/* ============ C. Guangdong proof strip (compressed) ============ */}
-      <div className="bg-gray-50 border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-12">
-          <FadeIn>
-            <p className="text-xs lg:text-sm font-semibold text-navy-700 uppercase tracking-wider text-center mb-6">
-              And I&apos;m based where it matters — Pearl River Delta, Guangdong
-            </p>
-          </FadeIn>
-          <Stagger
-            staggerDelay={0.08}
-            className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6"
-          >
-            {guangdongPoints.map((p) => (
-              <StaggerItem key={p.label}>
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center shrink-0">
-                    <p.icon size={18} className="text-navy-700" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-gray-900">{p.label}</p>
-                    <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">
-                      {p.detail}
-                    </p>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
         </div>
       </div>
     </section>
