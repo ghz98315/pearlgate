@@ -80,11 +80,9 @@ WHERE l.id = sub.lead_id
 - 价值：抽象的"我能做" → 具体的"我做过"，转化率最高的信任建立模式
 - ⚠️ 前提：你能给我 2-3 个真实项目（可脱敏）
 
-**T3 — 修两处残留的 "BYD charging infrastructure" 不准确表述**
-- `WhyPearlGate.tsx:39` 对比表
-- `supplier-match/page.tsx:327` Expert Guidance 卡
-- 改成 "BYD manufacturing background, now specialising in EVSE"
-- 工作量：5 分钟
+**T3 — 修两处残留的 "BYD charging infrastructure" 不准确表述** ✅ 已完成 (`4a73ee9`)
+- ~~`WhyPearlGate.tsx:39` 对比表~~ → "12 years BYD manufacturing background, now specialising in EVSE production & QC"
+- ~~`supplier-match/page.tsx:327` Expert Guidance 卡~~ → "12 years BYD manufacturing background, now specialising in EVSE. Evaluate suppliers using OEM-level criteria."
 
 ### 🟡 等摄影素材到位后做（解锁条件: §2 决策 1）
 
