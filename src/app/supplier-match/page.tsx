@@ -324,7 +324,7 @@ export default function SupplierMatchPage() {
                 {
                   icon: Lightbulb,
                   title: "Expert Guidance",
-                  desc: "12 years BYD charging infrastructure experience. Evaluate suppliers using OEM-level criteria.",
+                  desc: "12 years BYD manufacturing background, now specialising in EVSE. Evaluate suppliers using OEM-level criteria.",
                 },
                 {
                   icon: TrendingUp,

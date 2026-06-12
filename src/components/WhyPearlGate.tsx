@@ -36,7 +36,7 @@ const comparisonData = [
     tradingCompany: { status: "no", text: "Sales/trading background only" },
     pearlgate: {
       status: "yes",
-      text: "12 years BYD charging infrastructure — production & QC for EVSE",
+      text: "12 years BYD manufacturing background, now specialising in EVSE production & QC",
     },
   },
   {
