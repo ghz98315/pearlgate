@@ -2,7 +2,7 @@
 
 > 写于: 2026-06-12
 > 上次会话最终 commit: `001c9d4`
-> 关联文档: [3erp.com 学习笔记](./landing-page-3erp-lessons.md) · [产品页样品入口设计](./sample-type.md)
+> 关联文档: [3erp.com 学习笔记](./landing-page-3erp-lessons.md) · [产品页样品入口设计](./sample-type.md) · [摄影需求清单](./photography-brief-2026-06-12.md)
 
 按 4 个维度切：**还没收尾的 / 卡在你这边的 / 下一阶段做的 / 长期 backlog**。
 每条都标了优先级和依赖关系。
@@ -54,7 +54,7 @@ WHERE l.id = sub.lead_id
 
 | 决策点 | 选项 | 影响 |
 |---|---|---|
-| **摄影素材** | A. 找产品摄影师在合作 OEM 工厂拍一天<br>B. 用手机自己拍（够用即可）<br>C. 暂时不动 | 决定 P3 / Hero 替换 / Meet Alex editorial split 能否启动 |
+| **摄影素材** | A. 找产品摄影师在合作 OEM 工厂拍一天<br>B. 用手机自己拍（够用即可）<br>C. 暂时不动 | 决定 P3 / Hero 替换 / Meet Alex editorial split 能否启动<br>具体拍什么见 [photography-brief-2026-06-12.md](./photography-brief-2026-06-12.md)<br>**注意**: 主推 portable / cable / wallbox,不是 DC 快充桩 |
 | **GA 数据** | 你看下 GA → Engagement → Pages → 首页：滚动深度 / 跳出率 / 各 section 停留 | 决定下一步该砍掉哪些 section、哪些 CTA 该加强 |
 | **sample-type.md 产品页样品入口** | 要做 / 暂缓 | 这是一条独立大动作，影响产品页结构 |
 | **CCS/NACS 技术专长**怎么放 | chip 里加回 / 放对比表 / 单做 capability 卡片 | chip 改版后这个核心专长没显眼锚点了 |
