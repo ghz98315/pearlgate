@@ -33,7 +33,7 @@ export default function Footer() {
               <li>Based in Guangdong, China</li>
               <li>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/alexguan-evcharging"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

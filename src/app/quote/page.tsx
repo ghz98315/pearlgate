@@ -68,7 +68,7 @@ export default function QuotePage() {
             </p>
             <p className="mt-8 text-sm text-text-secondary">
               In the meantime, feel free to connect with me on{" "}
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600">
+              <a href="https://www.linkedin.com/in/alexguan-evcharging" target="_blank" rel="noopener noreferrer" className="text-orange-500 hover:text-orange-600">
                 LinkedIn
               </a>.
             </p>

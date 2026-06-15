@@ -128,7 +128,7 @@ export default function WhyPearlGate() {
                     Read my full story →
                   </Link>
                   <a
-                    href="https://www.linkedin.com/in/alexguan-evchargig"
+                    href="https://www.linkedin.com/in/alexguan-evcharging"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-text-secondary hover:text-navy-700 text-sm transition-colors"

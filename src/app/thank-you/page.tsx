@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, MessageSquare, Mail } from "lucide-react";
+import { CheckCircle2, ArrowRight, MessageSquare, Mail, ExternalLink } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FadeIn } from "@/components/Animations";
@@ -104,14 +104,14 @@ function ThankYouContent() {
                   </a>
 
                   <a
-                    href="https://linkedin.com/company/[TO_BE_CONFIGURED]"
+                    href="https://www.linkedin.com/in/alexguan-evcharging"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col items-center gap-2 p-4 transition-all border-2 border-gray-200 rounded-lg hover:border-orange-400 hover:-translate-y-1"
                   >
-                    <Mail size={32} className="text-blue-700" />
+                    <ExternalLink size={32} className="text-blue-700" />
                     <span className="font-semibold text-gray-900">LinkedIn</span>
-                    <span className="text-sm text-gray-600">[Configure URL]</span>
+                    <span className="text-sm text-gray-600">Connect with Alex</span>
                   </a>
                 </div>
               </div>
