@@ -38,6 +38,9 @@
 | lead magnet | `/checklist` 落地页 + EmailCapture 支持 PDF 下载 | `d467068` |
 | 认证改写 | 5 处材料统一新框架 + PDF 上线 + HTML 样本 | `b4f7435` |
 | 资源中心 | `/resources` 加第 4 张卡(7-Point),网格改 2×2 | `e2017f0` |
+| 每日节奏 + 加连接 | 每日动作手册 + LinkedIn 加连接细化(分层/搜索词) | `5e5ed2b` |
+| LinkedIn 第二批 | 6 条成稿(编号 6-11),共 11 条 | `4816dc8` |
+| 文档整理 | 10 份推广文档按三类合并为 3 份(执行手册/帖文库/弹药)+ 保留策略/进度/PDF样本 | `065350b` |
 
 **两个 lead magnet 入口已上线**:`/checklist`(外联引流用)+ `/resources`(站内发现,4 份 PDF 都收邮箱下载)。
 
