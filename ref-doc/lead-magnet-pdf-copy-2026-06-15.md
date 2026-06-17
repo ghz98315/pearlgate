@@ -66,9 +66,9 @@ After 12 years on the manufacturing side, I've learned that the buyers who get b
 Is this a real factory, or a trading company in disguise? Verify the business license and that the registered scope of business actually includes *manufacturing* — not just wholesale/trade.
 → *Red flag: company name on the quote doesn't match the name on certificates or the bank account.*
 
-**2. Certification Authenticity**
-The most abused certificate in EVSE is CE. Is it a genuine **Notified Body** assessment, or a **self-declaration** dressed up to look official? Verify UL file numbers in UL's public database; cross-check the cert's product model against what you're actually buying.
-→ *Red flag: a CE certificate with no Notified Body 4-digit number where one is required.*
+**2. Certification — Required, or Nice to Have?**
+Most buyers get this backwards. First ask whether your *market* legally requires a formal cert (UL/ETL for some US channels, CE conformity for EU importers). If it does, expect a higher price and a minimum volume — a real certificate carries recurring cost that gets amortized over units. If it doesn't, a factory that genuinely builds to the test standard may not hold a live cert, and that's fine. What matters: a real, current certificate **or** a full test report proving the product meets IEC 61851-1 / UL 2594 / IEC 62752.
+→ *Red flag: a forged or "borrowed" certificate — or neither a cert nor any test data, with vague answers when you ask for the report.*
 
 **3. Production Capacity**
 Can they actually deliver your volume, on your timeline? Ask how much of their capacity is *already committed*, and for their last 3 months' real on-time delivery rate — not a promise.

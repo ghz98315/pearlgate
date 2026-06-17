@@ -78,22 +78,28 @@ A huge share of "factories" on B2B platforms are trading companies that subcontr
 
 ---
 
-### 2. Certification Authenticity — Real cert, or a self-declaration dressed up?
+### 2. Certification — Do you actually need it, and does the factory truly meet the standard?
 
-**What to check:**
-- For **CE** (EU market): Is it a **self-declaration**, or issued/tested by a **Notified Body**? For most EVSE this is the single most abused certificate.
-- For **UL / cUL** (US/Canada): verify the UL file number directly in UL's online database (UL Product iQ)
-- For **TÜV / SGS / Intertek (ETL)**: cross-check the certificate number on the certifying body's website
-- Match the **certificate's product model** against the model you're actually buying — not a similar one
+This is the check most buyers get backwards. They demand "UL certified" or "CE certified" across the board — and either overpay for paperwork they don't need, or get fooled by a certificate that proves nothing.
 
-**Why it matters:**
-CE in particular is widely misunderstood. For many product categories a manufacturer can legally "self-declare" CE — but EVSE safety-critical components often require a Notified Body assessment. A self-declared CE on a product that needs Notified Body involvement is worthless at customs and dangerous in the field.
+The smarter framing is two separate questions: **(A) does your market legally require formal certification, and (B) does the factory actually meet the test requirements — with or without the certificate?**
 
-**Red flags:**
-- CE certificate with no Notified Body 4-digit number where one is required
-- Certificate model number "close but not identical" to your order
-- Supplier reluctant to share the full certificate (only shows a logo or a photo of the mark)
-- UL file number that doesn't resolve in UL's public database
+**Reality most buyers don't know:**
+Plenty of legitimate factories build to the full test standard (hipot, insulation, temperature rise, etc.) but **don't hold a live certificate**. A UL Listing or a CE Notified-Body certificate carries real recurring cost — annual fees, factory audits, re-testing — that only makes sense when amortized over volume. For a small buyer in a market that doesn't enforce it, insisting on a certified product just raises your unit price and forces a higher MOQ. **No certificate does not mean the product fails the standard.**
+
+**So check, in order:**
+1. **Does your target market / sales channel legally require it?** (e.g. a US retailer or AHJ may require a UL/ETL mark; an EU importer is liable for CE conformity; Amazon/marketplaces have their own rules.) If yes → you need the real, current certificate, and you should expect a higher price + minimum volume to amortize the cert cost.
+2. **If a certificate is presented — is it genuine and current?**
+   - **CE**: self-declaration vs. **Notified Body** assessment (4-digit NB number). For safety-critical EVSE parts a Notified Body is often required.
+   - **UL / cUL / ETL**: verify the file number in the issuer's public database (UL Product iQ etc.).
+   - Match the **certificate's model** to the model you're buying, and check the **expiry / valid-to date**.
+3. **If there's no certificate — can they prove the product still meets the standard?** Ask for the **full test report** against IEC 61851-1 / IEC 62752 / UL 2594 etc., the test house, and the test date. A factory that genuinely builds to standard can show data even without a live cert.
+
+**Real red flags (these are the dangerous ones):**
+- A **forged or "borrowed" certificate** (belongs to another company / another model)
+- **Neither a certificate nor any test data** — and vague answers when you ask for the report
+- Certificate **expired** or model "close but not identical" to your order
+- Supplier insists you need a costly certification when your market clearly doesn't — or hides that the certified price requires a much higher MOQ
 
 **Standards to map your product against:**
 - EVSE general safety (international): IEC 61851-1
@@ -102,7 +108,7 @@ CE in particular is widely misunderstood. For many product categories a manufact
 - US wallbox / EVSE: UL 2594; connectors UL 2251
 - Portable chargers (in-cable control & protection device, IC-CPD): IEC 62752
 
-**Can you check this yourself?** The databases are public, but knowing *which* certification a given product legally requires — and spotting a self-declaration masquerading as a tested cert — is exactly where buyers get burned.
+**Can you check this yourself?** The certificate databases are public. But knowing *whether your specific market even requires certification*, reading a test report to confirm a non-certified factory actually meets the standard, and judging when a certified product is worth the price premium — that's the judgment buyers pay for.
 
 ---
 

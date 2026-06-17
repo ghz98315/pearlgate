@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVSE Supplier Verification Checklist — PDF Sample</title>
+<style>
+  /* ---- 打印/导出设置:浏览器 Ctrl+P → 另存为 PDF,选 A4、无页边距 ---- */
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --navy-900: #0f1f3d;
+    --navy-800: #15294f;
+    --navy-700: #1d3a6b;
+    --orange:   #f97316;
+    --orange-d: #ea580c;
+    --ink:      #1e293b;
+    --muted:    #64748b;
+    --line:     #e2e8f0;
+    --amber-bg: #fffbeb;
+    --amber-bd: #fcd34d;
+    --amber-tx: #92400e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: #cbd5e1; /* 屏幕预览时的灰底,打印时不显示 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 每一页 = 一张 A4 */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 12mm auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,.18); /* 仅屏幕预览 */
+  }
+  .pad { padding: 22mm 20mm; }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    .screen-hint { display: none !important; }
+  }
+
+  /* 屏幕顶部提示条 */
+  .screen-hint {
+    max-width: 210mm; margin: 16px auto 0; padding: 12px 18px;
+    background: #1e293b; color: #fff; border-radius: 8px;
+    font-size: 13px; line-height: 1.5;
+  }
+  .screen-hint b { color: #fbbf24; }
+
+  /* ---------- 封面页 ---------- */
+  .cover {
+    background: linear-gradient(150deg, var(--navy-900), var(--navy-700));
+    color: #fff;
+    min-height: 297mm;
+    display: flex; flex-direction: column;
+    padding: 30mm 20mm;
+  }
+  .cover .brand { font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: #cbd5e1; }
+  .cover .brand b { color: var(--orange); }
+  .badge {
+    display: inline-block; margin-top: 40mm;
+    background: rgba(249,115,22,.18); border: 1px solid var(--orange);
+    color: #fdba74; font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 999px; letter-spacing: .04em;
+    width: fit-content;
+  }
+  .cover h1 {
+    font-size: 40px; line-height: 1.12; margin-top: 18px; font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  .cover h1 .accent { color: var(--orange); }
+  .cover .lede { font-size: 17px; color: rgba(255,255,255,.82); margin-top: 22px; max-width: 150mm; line-height: 1.5; }
+  .cover .pull {
+    margin-top: auto; border-left: 3px solid var(--orange);
+    padding: 10px 0 10px 18px; font-size: 16px; font-style: italic;
+    color: rgba(255,255,255,.9); max-width: 150mm; line-height: 1.5;
+  }
+  .cover .author { margin-top: 26px; font-size: 13.5px; color: rgba(255,255,255,.7); line-height: 1.6; }
+  .cover .author b { color: #fff; }
+
+  /* ---------- 正文页 ---------- */
+  .eyebrow { color: var(--orange-d); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+  h2.section { font-size: 26px; font-weight: 800; margin-top: 6px; letter-spacing: -.01em; }
+  .intro { color: var(--muted); font-size: 14px; line-height: 1.6; margin-top: 12px; max-width: 165mm; }
+
+  .check {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .check:first-of-type { border-top: none; }
+  .num {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--orange); color: #fff; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check h3 { font-size: 15.5px; font-weight: 700; }
+  .check p { font-size: 13px; color: #475569; line-height: 1.55; margin-top: 3px; }
+  .flag { font-size: 12px; color: var(--orange-d); margin-top: 5px; font-style: italic; }
+
+  .note {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--amber-bg); border: 1px solid var(--amber-bd);
+    border-radius: 12px; padding: 14px 16px; margin-top: 18px;
+  }
+  .note .ic { color: var(--amber-tx); font-size: 18px; flex: none; }
+  .note p { font-size: 13px; color: var(--amber-tx); line-height: 1.55; }
+
+  /* 正文页瘦身:让 标题+引言+7点+黄框 收进同一张 A4 */
+  .checks-page .pad { padding: 17mm 20mm; }
+  .checks-page .intro { margin-top: 10px; }
+  .checks-page .check { padding: 11px 0; }
+  .checks-page .check p { margin-top: 3px; line-height: 1.5; }
+  .checks-page .flag { margin-top: 4px; }
+  .checks-page .note { margin-top: 14px; break-inside: avoid; page-break-inside: avoid; }
+
+  /* ---------- CTA 页 ---------- */
+  .cta-page { display: flex; flex-direction: column; min-height: 297mm; padding: 30mm 20mm; }
+  .cta-page h2 { font-size: 30px; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; }
+  .cta-page .body { color: #475569; font-size: 15px; line-height: 1.65; margin-top: 16px; max-width: 160mm; }
+  .deliver { list-style: none; margin: 22px 0; }
+  .deliver li { font-size: 14.5px; padding: 9px 0 9px 28px; position: relative; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .deliver li::before { content: "✓"; position: absolute; left: 0; color: var(--orange); font-weight: 800; }
+  .price {
+    background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+    color: #fff; border-radius: 14px; padding: 22px 24px; margin-top: 8px;
+  }
+  .price .big { font-size: 22px; font-weight: 800; }
+  .price .big span { color: var(--orange); }
+  .price .sub { font-size: 13.5px; color: rgba(255,255,255,.8); margin-top: 6px; }
+  .contact { margin-top: auto; border-top: 2px solid var(--line); padding-top: 20px; font-size: 14px; line-height: 2; color: var(--ink); }
+  .contact .row b { display: inline-block; width: 22px; }
+  .contact a { color: var(--orange-d); text-decoration: none; }
+  .sign { margin-top: 18px; font-size: 13px; color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="screen-hint">
+  这是 PDF 样本预览。<b>导出 PDF:</b> 浏览器按 Ctrl/Cmd + P → 目标选「另存为 PDF」→ 纸张 A4 →
+  边距「无」→ 勾选「背景图形」。共 3 页(封面 / 7 点正文 / 报价 CTA)。灰底与本提示条不会进 PDF。
+</div>
+
+<!-- ============ 第 1 页:封面 ============ -->
+<section class="page cover">
+  <div class="brand">Pearl<b>Gate</b> Sourcing</div>
+
+  <span class="badge">FREE BUYER'S GUIDE</span>
+  <h1>The 7-Point EVSE<br>Supplier Verification<br><span class="accent">Checklist</span></h1>
+  <p class="lede">The exact checks I run before recommending any China supplier of
+    portable chargers, charging cables, or wallboxes.</p>
+
+  <blockquote class="pull">
+    Most sourcing failures aren't bad luck. They're predictable — and catchable
+    before you wire a single dollar.
+  </blockquote>
+
+  <p class="author">
+    <b>Alex Guan</b> — 12 years in manufacturing &amp; quality control<br>
+    NPI Engineer → Engineering Manager → Quality Manager at BYD<br>
+    Now sourcing EVSE for overseas buyers · Shenzhen, China
+  </p>
+</section>
+
+<!-- ============ 第 2 页:7 点正文 ============ -->
+<section class="page checks-page">
+  <div class="pad">
+    <p class="eyebrow">Before you pay a deposit</p>
+    <h2 class="section">Run these 7 checks.</h2>
+    <p class="intro">After 12 years on the manufacturing side, I've learned that the buyers who
+      get burned almost always skipped the same handful of checks. Here's the short version of
+      what I run on every supplier.</p>
+
+    <div style="margin-top:10px">
+      <div class="check">
+        <div class="num">1</div>
+        <div>
+          <h3>Business Legitimacy</h3>
+          <p>Real factory, or a trading company in disguise? Verify the business license and that the
+            registered scope of business actually includes <i>manufacturing</i> — not just wholesale/trade.</p>
+          <p class="flag">Red flag: company name on the quote doesn't match the certificates or the bank account.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">2</div>
+        <div>
+          <h3>Certification — Required, or Nice to Have?</h3>
+          <p>First ask whether your <i>market</i> legally requires a formal cert. If yes, expect a higher
+            price + minimum volume (a real cert carries recurring cost, amortized over units). If not, a factory
+            that truly builds to standard may not hold a live cert — what matters is a genuine certificate <b>or</b>
+            a full test report (IEC 61851-1 / UL 2594 / IEC 62752).</p>
+          <p class="flag">Red flag: a forged or "borrowed" certificate — or neither a cert nor any test data.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">3</div>
+        <div>
+          <h3>Production Capacity</h3>
+          <p>Can they deliver your volume, on your timeline? Ask how much capacity is <i>already committed</i>,
+            and for their last 3 months' real on-time delivery rate — not a promise.</p>
+          <p class="flag">Red flag: vague answers on current capacity utilization.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">4</div>
+        <div>
+          <h3>Quality Control System</h3>
+          <p>Do they test every unit, or sample and pray? For safety-critical tests like hipot and ground
+            continuity, the answer must be <b>100%</b>, not sampled. Look for a working aging station and calibrated equipment.</p>
+          <p class="flag">Red flag: hipot test logs that look identical across batches — a sign of fabricated data.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">5</div>
+        <div>
+          <h3>Component &amp; BOM Transparency</h3>
+          <p>What's actually inside? The #1 cost-down trick is the golden-sample bait-and-switch.
+            Under-spec copper in a charging cable runs hot — a real fire risk.</p>
+          <p class="flag">Red flag: refusal to disclose component brands, or cable weight noticeably below spec.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">6</div>
+        <div>
+          <h3>Target-Market Compliance</h3>
+          <p>Right standard, right connector, right paperwork. CCS1 and CCS2 are physically incompatible —
+            ship the wrong one and the whole container is scrap.</p>
+          <p class="flag">Red flag: the supplier never asks which market you're shipping to.</p>
+        </div>
+      </div>
+
+      <div class="check">
+        <div class="num">7</div>
+        <div>
+          <h3>Communication &amp; Responsiveness</h3>
+          <p>Pre-sale is a supplier's best behavior. If responses are slow, vague, or non-technical <i>now</i>,
+            it gets far worse once your money is gone and there's a dispute.</p>
+          <p class="flag">Red flag: only a salesperson relaying messages, never an engineer.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="ic">⚠</div>
+      <p><b>If you only have time for three, never skip #2, #4, and #6.</b>
+        Those are the ones that turn into total losses — not just headaches.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第 3 页:CTA / 报价 ============ -->
+<section class="page cta-page">
+  <p class="eyebrow">Want a second pair of eyes?</p>
+  <h2>Want these 7 checks run on<br>a specific supplier?</h2>
+  <p class="body">That's exactly what I do. For a single named supplier, I deliver a documented,
+    evidence-backed report — so you know what you're paying for before the deposit leaves your account.</p>
+
+  <ul class="deliver">
+    <li>A documented report scoring all 7 points (pass / risk / fail, with evidence)</li>
+    <li>A live video factory walk-through</li>
+    <li>Certification database verification (UL / CE / Notified Body)</li>
+    <li>A red-flag summary you can act on before you wire a deposit</li>
+  </ul>
+
+  <div class="price">
+    <div class="big">Supplier Verification Report — from <span>$490</span></div>
+    <div class="sub">100% credited toward your fee if you go on to full sourcing.</div>
+  </div>
+
+  <div class="contact">
+    <div class="row"><b>✉</b> <a href="mailto:Alex.Guan@pearlgatesourcing.com">Alex.Guan@pearlgatesourcing.com</a></div>
+    <div class="row"><b>in</b> linkedin.com/in/alexguan-evcharging</div>
+    <div class="row"><b>🌐</b> pearlgatesourcing.com</div>
+    <p class="sign">— Alex Guan, PearlGate Sourcing · Shenzhen, China</p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
     "The exact 7 checks a 12-year manufacturing QC insider runs before recommending any China supplier of EV chargers, cables, and wallboxes. Free download.",
 };
 
-// 你用 Canva/Docs 排好 PDF 后放到 public/checklist.pdf 即可,无需改代码。
-const CHECKLIST_PDF_URL = "/checklist.pdf";
+// Lead magnet PDF — 放在 public/resources/ 下,URL 即去掉 public 的路径。
+const CHECKLIST_PDF_URL = "/resources/evse-supplier-verification-checklist.pdf";
 
 const checks = [
   {
@@ -21,8 +21,8 @@ const checks = [
   },
   {
     n: 2,
-    title: "Certification Authenticity",
-    desc: "The most abused certificate in EVSE is CE. Genuine Notified Body assessment, or a self-declaration dressed up?",
+    title: "Certification — Required, or Nice to Have?",
+    desc: "Does your market legally require a cert, or does a factory that truly builds to standard just not hold one? Verify a genuine certificate — or the full test report behind it.",
   },
   {
     n: 3,

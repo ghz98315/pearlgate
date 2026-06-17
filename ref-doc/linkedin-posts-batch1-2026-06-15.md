@@ -30,48 +30,50 @@
 
 # 📝 第 1 条 — 开场/CTA(建议首发)
 
-**主题**:CE 证书陷阱(来自清单第 2 点)
-**为什么首发**:这是最反直觉、最有"专家揭秘"感的一条,适合立人设。带软 CTA。
+**主题**:别逼每个供应商都给 UL/CE 证书(来自清单第 2 点,新框架)
+**为什么首发**:反直觉 + 反"行业常识",最有专家揭秘感。普通 sourcing agent 喊"一律要认证",你说"先搞清楚你需不需要",立刻区隔出内行身份。带软 CTA。
 
 ---
 
 **正文(直接复制):**
 
 ```
-Most EVSE buyers think a "CE certificate" means the product is safe and compliant.
+"Is it UL certified?"
 
-For charging equipment, that assumption can cost you an entire container.
+It's the first question most buyers ask a Chinese EVSE supplier. And it's often the wrong one.
 
-Here's the trap:
+Here's what 12 years on the manufacturing side taught me:
 
-CE comes in two very different forms.
+A formal certificate — a UL Listing, a CE Notified-Body assessment — carries real recurring cost. Annual fees. Factory audits. Re-testing. That cost only makes sense when it's amortized over volume.
 
-1. Self-declaration — the manufacturer signs a piece of paper saying "we comply." No independent testing required.
+So a lot of legitimate factories build to the full test standard — hipot, insulation, temperature rise, the works — but don't hold a live certificate. Not because the product fails. Because the paperwork isn't worth it for their typical order size.
 
-2. Notified Body assessment — an accredited third party actually tested the product. You'll see a 4-digit number next to the CE mark.
+No certificate ≠ a bad product.
 
-For safety-critical EV charging equipment, many products legally require the Notified Body route.
+The right questions are two separate ones:
 
-But plenty of suppliers hand you a self-declared CE, printed to look identical, and let you assume the rest.
+1. Does YOUR market actually require it?
+A US retail channel or AHJ may demand a UL/ETL mark. An EU importer is liable for CE conformity. If so — you need the real, current certificate, and you should expect a higher price and a higher minimum order to absorb the cert cost.
 
-Result: it passes "inspection" on their end, then gets stopped at EU customs — or worse, fails in the field.
+2. Does the factory actually meet the standard — with or without the cert?
+If no certificate is required, ask for the full test report instead: tested against IEC 61851-1 / UL 2594 / IEC 62752, by whom, on what date. A factory that genuinely builds to standard can show the data.
 
-How to check in 30 seconds:
-→ Look for a 4-digit number beside the CE mark
-→ No number where one is required = self-declaration = a red flag
-→ Ask for the full certificate, not a photo of the logo
+The real red flag isn't "no certificate."
 
-I spent 12 years in manufacturing QC before moving into EVSE sourcing. This is the first thing I check on any supplier — and it's the one most buyers skip.
+It's a forged or borrowed certificate — or neither a cert NOR any test data, with vague answers when you ask for the report.
 
-If you're sourcing chargers or cables from China and want a hand verifying a specific supplier's certs, my DMs are open.
+Buyers who understand this stop overpaying for paperwork they don't need, and stop trusting paperwork that proves nothing.
+
+If you're sourcing chargers or cables from China and want a second pair of eyes on whether you actually need certification — and whether a supplier truly meets it — my DMs are open.
 
 #EVCharging #Sourcing #SupplyChain #EVSE #ChinaManufacturing
 ```
 
 **中文运营备注:**
-- 软 CTA 在倒数第二段("my DMs are open"),不强推,姿态是"帮忙"不是"卖货"
-- 没有外链,纯文字,LinkedIn 最爱这种
-- 钩子第一行就抛反直觉观点,信息流里勾人
+- 这是**修正版**——原稿暗示"没正规证书=有问题",和真实情况矛盾。新版立场:没证书 ≠ 不合格,关键看市场要不要 + 工厂达不达标。
+- 反直觉钩子("'Is it UL certified?' 往往是错问题")最能立内行人设,区隔于喊"一律要认证"的普通中介
+- 软 CTA 在结尾,姿态是"帮你判断需不需要",顺势引出 $490 验证服务的真实价值
+- 纯文字无外链,LinkedIn 算法友好
 
 ---
 

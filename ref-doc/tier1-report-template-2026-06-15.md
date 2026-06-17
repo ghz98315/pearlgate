@@ -66,7 +66,7 @@
 **Total score:** [ __ / 35 ]
 
 **One-paragraph summary:**
-[2-4 sentences. The single most important finding first. Example: "Shenzhen XX Technology is a legitimate manufacturer with real production capacity for Type 2 portable chargers. However, the CE certificate provided is a self-declaration where a Notified Body assessment is required for the EU market — this must be resolved before any order. Two other medium risks are noted below."]
+[2-4 sentences. The single most important finding first. Example: "Shenzhen XX Technology is a legitimate manufacturer with real production capacity for Type 2 portable chargers. The buyer's EU resale channel does not mandate a factory-held certificate, and XX provided a full IEC 62752 test report from a recognized lab dated within 12 months — acceptable. One medium risk: the test report model is a close variant of the ordered model and should be reconfirmed. Two other items noted below."]
 
 **Top 3 action items:**
 1. [Most urgent — e.g. "Require Notified-Body CE certificate before deposit"]
@@ -80,7 +80,7 @@
 | # | Check | Verdict | Score |
 |---|---|---|---|
 | 1 | Business Legitimacy | ✅/⚠️/❌ | _ / 5 |
-| 2 | Certification Authenticity | ✅/⚠️/❌ | _ / 5 |
+| 2 | Certification & Compliance | ✅/⚠️/❌ | _ / 5 |
 | 3 | Production Capacity | ✅/⚠️/❌ | _ / 5 |
 | 4 | Quality Control System | ✅/⚠️/❌ | _ / 5 |
 | 5 | Component & BOM Transparency | ✅/⚠️/❌ | _ / 5 |
@@ -111,22 +111,35 @@
 
 ---
 
-### 2. Certification Authenticity — Verdict: [ ✅/⚠️/❌ ]  Score: [ _ /5 ]
+### 2. Certification & Compliance — Verdict: [ ✅/⚠️/❌ ]  Score: [ _ /5 ]
 
-| Certificate | Type | Status | Evidence |
-|---|---|---|---|
-| CE | Self-declaration / Notified Body | [Valid / Invalid / Wrong type] | [NB number, screenshot] |
-| UL / cUL | [file number] | [Resolves in UL Product iQ? Y/N] | [screenshot] |
-| TÜV / SGS / Intertek | [cert number] | [Verified on issuer site? Y/N] | [screenshot] |
-| Other | [ ] | [ ] | [ ] |
+**Does the buyer's target market / channel legally require formal certification?** [Yes / No — and why. e.g. "US retail channel requires a UL/ETL mark" or "Low-volume EU resale, importer holds CE conformity — no factory cert mandated"]
 
-**Standard required for this product/market:** [e.g. "IEC 61851-1 + IEC 62752 for an EU IC-CPD portable charger; CE requires Notified Body involvement for the protection device"]
+> Note for the buyer: a real certificate carries recurring cost (annual fees, audits, re-testing) amortized over volume. If certification IS required, expect a higher unit price and minimum order. If it is NOT required, a factory that genuinely builds to standard without a live cert is acceptable — verify via test report instead.
+
+**A) If a certificate is presented:**
+
+| Certificate | Type | Status | Expiry | Evidence |
+|---|---|---|---|---|
+| CE | Self-declaration / Notified Body | [Valid / Invalid / Wrong type] | [date] | [NB number, screenshot] |
+| UL / cUL / ETL | [file number] | [Resolves in issuer database? Y/N] | [date] | [screenshot] |
+| TÜV / SGS / other | [cert number] | [Verified on issuer site? Y/N] | [date] | [screenshot] |
 
 **Does the certificate model match the ordered model?** [Yes / No — note discrepancy]
 
-**Assessment:** [The single most-abused area. Be specific about self-declaration vs tested.]
+**B) If NO certificate (and market doesn't require one):**
 
-**Red flags found:** [list, or "None"]
+| Item | Finding | Evidence |
+|---|---|---|
+| Full test report provided? | [Yes/No] | [doc ref] |
+| Tested against (standard) | [IEC 61851-1 / UL 2594 / IEC 62752 / ...] | [ ] |
+| Test house & date | [ ] | [ ] |
+
+**Standard required for this product/market:** [e.g. "IEC 61851-1 + IEC 62752 for an EU IC-CPD portable charger"]
+
+**Assessment:** [Is certification needed here at all? If yes, is the cert genuine/current? If no, does the factory prove it meets the standard via test data? Flag the dangerous cases: forged/borrowed cert, or neither cert nor test data.]
+
+**Red flags found:** [forged/borrowed cert · expired · model mismatch · neither cert nor test data — or "None"]
 
 ---
 
