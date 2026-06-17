@@ -32,7 +32,7 @@
 
 ### ⚠️ 待你确认/填写
 
-- `[确认 slug]` — CCS1/CCS2 博客真实 URL(打开网站博客页核对)
+- ✅ CCS1/CCS2 博客 slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcin`(PDF 正文不含链接,此项仅供 CTA 页/分发时引用)
 - `[落地页 URL]` — lead magnet 落地页地址(做好后填)
 - 封面是否放你的照片 / BYD 背景一句话(建议放,增强可信度)
 
@@ -137,6 +137,6 @@ That's exactly what I do. For a single named supplier, I deliver:
 # ✅ 下一步
 
 1. 你确认:封面放不放照片 / lead magnet 落地页要不要我帮你建(复用 EmailCapture + Resend)
-2. 核对 CCS1/CCS2 博客真实 slug
+2. ✅ CCS1/CCS2 博客 slug 已确认 (2026-06-15)
 3. PDF 排版(Canva / Docs)— 这步需要你或设计来做,我只出文案
 4. 剩下的 B(Tier 1 报告评分模板)我可以接着做

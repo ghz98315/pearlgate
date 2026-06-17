@@ -193,13 +193,13 @@ I wrote a full breakdown of CCS1 vs CCS2 (pins, markets, why two standards exist
 
 **第一条评论(发完帖立刻自己评论):**
 ```
-Full CCS1 vs CCS2 breakdown here: [填你的博客 URL: /blog/ccs1-vs-ccs2-...]
+Full CCS1 vs CCS2 breakdown here: https://www.pearlgatesourcing.com/blog/ccs1-vs-ccs2-complete-guide-ev-charger-sourcin
 ```
 
 **中文运营备注:**
 - 这条把外链放**第一条评论**(正文说 "link in comments"),规避 LinkedIn 对外链帖的压制
 - 引流到你**真实已发布**的 CCS1/CCS2 博客 → 博客又有站内 CTA → 闭环
-- ⚠️ 发布前去站内确认博客的真实 slug,填进评论
+- ✅ slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcin` — 直接用上面填好的完整 URL
 
 ---
 
@@ -262,7 +262,7 @@ After 12 years in Chinese manufacturing, telling factories from traders is almos
 # ⚠️ 发布前 checklist
 
 - [ ] 确认 LinkedIn 个人页资料已优化(headline / about,见 memory 里的 linkedin-optimization 方案)
-- [ ] 第 4 条的博客真实 slug 填进评论草稿
+- [ ] 第 4 条的博客链接已填好完整 URL(slug 已确认 ✅)
 - [ ] 第 1 / 第 5 条的"DMs open"——确认你能及时看到并回复 DM
 - [ ] 想好被问"how much"时的回答(楔子产品话术,Tier 1 $490,首单可免费换案例)
 - [ ] ⚠️ 最佳发布时间用你自己账号的 analytics 验证后调整
