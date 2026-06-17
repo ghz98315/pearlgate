@@ -27,6 +27,22 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(initialPosts);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  // 统一日期格式为 YYYY-MM-DD,空值/非法值返回空串
+  const formatDate = (value?: string) => {
+    if (!value) return '';
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('en-CA'); // en-CA = YYYY-MM-DD
+  };
+
+  // 按发布时间从新到旧排序(空发布时间排最后)
+  const sortByDateDesc = (list: BlogPost[]) =>
+    [...list].sort((a, b) => {
+      const ta = new Date(a.published_at || a.date || 0).getTime();
+      const tb = new Date(b.published_at || b.date || 0).getTime();
+      return tb - ta;
+    });
+
   const categories = ['all', ...Array.from(new Set(posts.map(p => p.category)))];
 
   useEffect(() => {
@@ -51,7 +67,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
       });
     }
 
-    setFilteredPosts(results);
+    setFilteredPosts(sortByDateDesc(results));
   }, [searchQuery, selectedCategory, posts]);
 
   const highlightText = (text: string, query: string) => {
@@ -133,7 +149,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
               href={`/blog/${post.slug}`}
               className="group rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1"
             >
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative aspect-[16/9] overflow-hidden">
                 <Image
                   src={imageUrl}
                   alt={post.title}
@@ -156,7 +172,7 @@ export default function BlogSearchClient({ initialPosts }: { initialPosts: BlogP
                 <div className="mt-4 flex items-center gap-4 text-xs text-text-secondary">
                   <span className="flex items-center gap-1">
                     <Calendar size={12} />
-                    {new Date(publishDate).toLocaleDateString("zh-CN", { month: "short", day: "numeric", year: "numeric" })}
+                    {formatDate(publishDate)}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock size={12} />

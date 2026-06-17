@@ -54,7 +54,7 @@ export default async function BlogPreview() {
               href={`/blog/${post.slug}`}
               className="group bg-navy-800 rounded-xl overflow-hidden hover:bg-navy-700 transition-all"
             >
-              <div className="relative h-36 bg-navy-700">
+              <div className="relative aspect-[16/9] bg-navy-700">
                 {post.featured_image && (
                   <Image
                     src={post.featured_image}
