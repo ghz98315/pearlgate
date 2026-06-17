@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ResourceDownloadModal from '@/components/ResourceDownloadModal';
-import { FileText, CheckCircle, Award } from 'lucide-react';
+import { FileText, CheckCircle, Award, ShieldCheck } from 'lucide-react';
 
 const resources = [
   {
@@ -30,6 +30,14 @@ const resources = [
     icon: Award,
     pdfUrl: '/resources/Certification_Compliance_Checklist.pdf',
     cta: 'Download PDF',
+  },
+  {
+    id: 'supplier-verification',
+    title: 'The 7-Point EVSE Supplier Verification Checklist',
+    description: "A sourcing insider's guide to the 7 checks that catch bad suppliers before you wire a deposit — and how to judge what certification your market actually requires.",
+    icon: ShieldCheck,
+    pdfUrl: '/resources/evse-supplier-verification-checklist.pdf',
+    cta: 'Download the Guide',
   },
 ];
 
@@ -58,7 +66,7 @@ export default function ResourcesPage() {
         {/* Resources Grid */}
         <section className="py-20">
           <div className="max-w-6xl mx-auto px-6">
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {resources.map((resource) => {
                 const Icon = resource.icon;
                 return (
