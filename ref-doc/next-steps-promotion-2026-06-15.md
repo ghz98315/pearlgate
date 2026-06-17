@@ -3,7 +3,7 @@
 > 写于: 2026-06-15
 > 本会话最终 commit: `e2017f0`
 > 这是**推广/获客线**的锚点,和产品线 [next-steps-2026-06-12](./next-steps-2026-06-12.md) 并行。
-> 关联: [推广策略矩阵](./promotion-strategy-2026-06-15.md) · [LinkedIn-Reddit playbook](./linkedin-reddit-playbook-2026-06-15.md) · [验证清单弹药源](./evse-verification-checklist-2026-06-15.md)
+> 关联: [推广策略矩阵](./promotion-strategy-2026-06-15.md) · [客户开发执行手册](./客户开发执行手册-2026-06-15.md) · [LinkedIn 帖文库](./LinkedIn帖文库-2026-06-15.md) · [产品与交付弹药](./产品与交付弹药-2026-06-15.md)
 
 ---
 
@@ -25,7 +25,7 @@
 - 不是"查证书真伪",而是"按市场需求 + 测试达标"两层判断
 - **没证书 ≠ 不合格**:很多工厂按标准测试但不申请(年费+维护成本高,需量摊薄)
 - 真红旗 = 伪造/借用证书,或既无证书又无测试数据
-- 见 [[evse-verification-checklist-2026-06-15]] 第 2 点
+- 见 [产品与交付弹药](./产品与交付弹药-2026-06-15.md) A 部分第 2 点
 
 ---
 
@@ -47,7 +47,7 @@
 
 | 项 | 说明 | 优先级 |
 |---|---|---|
-| **发 LinkedIn 5 帖** | 成稿在 [[linkedin-posts-batch1-2026-06-15]],复制即发,启动现金腿 | 🥇 最高 |
+| **发 LinkedIn 帖(11 条成稿)** | 成稿在 [LinkedIn 帖文库](./LinkedIn帖文库-2026-06-15.md),复制即发,启动现金腿。每日节奏见 [客户开发执行手册](./客户开发执行手册-2026-06-15.md) | 🥇 最高 |
 | ~~核对 CCS 博客真实 slug~~ ✅ 已确认 (2026-06-15) | 真实 slug = `ccs1-vs-ccs2-complete-guide-ev-charger-sourcing`,LinkedIn 第4帖已填完整 URL。注意 migrate-blog-data.mjs 里的旧 slug 已过时 | 完成 |
 | **确认 Tier 2 = $1,290** | Tier 1 $490 已定,Tier 2 待确认 | 🥈 |
 | **建 LinkedIn 公司页** | thank-you 页暂指个人页,有公司页后给 slug 替换 | 🥉 |
