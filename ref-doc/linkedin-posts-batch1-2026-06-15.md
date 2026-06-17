@@ -193,13 +193,13 @@ I wrote a full breakdown of CCS1 vs CCS2 (pins, markets, why two standards exist
 
 **第一条评论(发完帖立刻自己评论):**
 ```
-Full CCS1 vs CCS2 breakdown here: https://www.pearlgatesourcing.com/blog/ccs1-vs-ccs2-complete-guide-ev-charger-sourcin
+Full CCS1 vs CCS2 breakdown here: https://www.pearlgatesourcing.com/blog/ccs1-vs-ccs2-complete-guide-ev-charger-sourcing
 ```
 
 **中文运营备注:**
 - 这条把外链放**第一条评论**(正文说 "link in comments"),规避 LinkedIn 对外链帖的压制
 - 引流到你**真实已发布**的 CCS1/CCS2 博客 → 博客又有站内 CTA → 闭环
-- ✅ slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcin` — 直接用上面填好的完整 URL
+- ✅ slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcing` — 直接用上面填好的完整 URL
 
 ---
 

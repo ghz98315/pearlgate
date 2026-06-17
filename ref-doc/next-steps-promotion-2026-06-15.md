@@ -48,7 +48,7 @@
 | 项 | 说明 | 优先级 |
 |---|---|---|
 | **发 LinkedIn 5 帖** | 成稿在 [[linkedin-posts-batch1-2026-06-15]],复制即发,启动现金腿 | 🥇 最高 |
-| ~~核对 CCS 博客真实 slug~~ ✅ 已确认 (2026-06-15) | 真实 slug = `ccs1-vs-ccs2-complete-guide-ev-charger-sourcin`,LinkedIn 第4帖已填完整 URL。注意 migrate-blog-data.mjs 里的旧 slug 已过时 | 完成 |
+| ~~核对 CCS 博客真实 slug~~ ✅ 已确认 (2026-06-15) | 真实 slug = `ccs1-vs-ccs2-complete-guide-ev-charger-sourcing`,LinkedIn 第4帖已填完整 URL。注意 migrate-blog-data.mjs 里的旧 slug 已过时 | 完成 |
 | **确认 Tier 2 = $1,290** | Tier 1 $490 已定,Tier 2 待确认 | 🥈 |
 | **建 LinkedIn 公司页** | thank-you 页暂指个人页,有公司页后给 slug 替换 | 🥉 |
 | **海外号已可用** | 用户确认可正常运营 LinkedIn/Reddit 海外号 ✅ | — |

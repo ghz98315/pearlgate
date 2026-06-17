@@ -32,7 +32,7 @@
 
 ### ⚠️ 待你确认/填写
 
-- ✅ CCS1/CCS2 博客 slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcin`(PDF 正文不含链接,此项仅供 CTA 页/分发时引用)
+- ✅ CCS1/CCS2 博客 slug 已确认 (2026-06-15): `ccs1-vs-ccs2-complete-guide-ev-charger-sourcing`(PDF 正文不含链接,此项仅供 CTA 页/分发时引用)
 - `[落地页 URL]` — lead magnet 落地页地址(做好后填)
 - 封面是否放你的照片 / BYD 背景一句话(建议放,增强可信度)
 
