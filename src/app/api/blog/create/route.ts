@@ -6,11 +6,10 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// 验证 Admin Token
+// 验证 Admin Token（接受 ADMIN_TOKEN 或 ADMIN_PASSWORD）
 function verifyAuth(req: NextRequest): boolean {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.replace("Bearer ", "");
-  return token === process.env.ADMIN_TOKEN;
+  const token = req.headers.get("authorization")?.replace("Bearer ", "");
+  return token === process.env.ADMIN_TOKEN || token === process.env.ADMIN_PASSWORD;
 }
 
 // 验证必填字段

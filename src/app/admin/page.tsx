@@ -233,75 +233,176 @@ function SupplierForm() {
   );
 }
 
+const VALID_CATEGORIES = ["Sourcing Guide", "Technical Guide", "Market Analysis", "Certification Guide", "Supplier Verification"];
+
 function BlogForm() {
-  const [output, setOutput] = useState("");
-  const [markdownContent, setMarkdownContent] = useState("");
+  const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [metaDesc, setMetaDesc] = useState("");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState(VALID_CATEGORIES[0]);
+  const [readTime, setReadTime] = useState("");
+  const [tags, setTags] = useState("");
+  const [status, setStatus] = useState<"draft" | "published">("draft");
+  const [featuredUrl, setFeaturedUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [result, setResult] = useState<{ ok: boolean; msg: string; previewUrl?: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const pw = () => typeof window !== "undefined" ? sessionStorage.getItem("admin_password") ?? "" : "";
+
+  const autoSlug = (t: string) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
+
+  const uploadFile = async (file: File): Promise<string> => {
+    const fd = new FormData(); fd.append("file", file);
+    const r = await fetch("/api/upload-image", { method: "POST", body: fd });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error);
+    return j.url;
+  };
+
+  const onFeaturedPick = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; if (!file) return;
+    setUploading(true);
+    try { setFeaturedUrl(await uploadFile(file)); } catch (err: any) { alert("Upload failed: " + err.message); }
+    finally { setUploading(false); }
+  };
+
+  const onInlineImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]; if (!file) return;
+    setUploading(true);
+    try {
+      const url = await uploadFile(file);
+      const md = `![${file.name.replace(/\.[^.]+$/, "")}](${url})`;
+      await navigator.clipboard.writeText(md);
+      alert("Copied to clipboard:\n" + md);
+    } catch (err: any) { alert("Upload failed: " + err.message); }
+    finally { setUploading(false); e.target.value = ""; }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-
-    const post = {
-      slug: String(data.get("title")).toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 60),
-      title: data.get("title"),
-      description: data.get("description"),
-      date: data.get("date"),
-      readTime: data.get("readTime"),
-      category: data.get("category"),
-      image: data.get("image"),
-      content: markdownContent, // 使用 state 中的 markdown 内容
-    };
-
-    setOutput(JSON.stringify(post, null, 2));
+    setBusy(true); setResult(null);
+    try {
+      const res = await fetch("/api/blog/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${pw()}` },
+        body: JSON.stringify({
+          title, slug, content,
+          metaDescription: metaDesc,
+          category, readTime,
+          tags: tags.split(",").map(s => s.trim()).filter(Boolean),
+          featuredImage: featuredUrl,
+          status,
+        }),
+      });
+      const j = await res.json();
+      if (j.success) {
+        setResult({ ok: true, msg: `✓ ${j.message}`, previewUrl: j.previewUrl });
+      } else {
+        const detail = j.details ? "\n" + Object.entries(j.details).map(([k, v]) => `• ${k}: ${v}`).join("\n") : "";
+        setResult({ ok: false, msg: j.error + detail });
+      }
+    } catch (err: any) {
+      setResult({ ok: false, msg: err.message });
+    } finally { setBusy(false); }
   };
 
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">Add New Blog Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <Input name="title" label="Title" required />
-        <Input name="description" label="Description (SEO)" required />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Input name="date" label="Date" type="date" required />
-          <Input name="readTime" label="Read Time" placeholder="e.g., 5 min read" />
-          <Input name="category" label="Category" placeholder="e.g., Sourcing Guide" />
-        </div>
-        <Input name="image" label="Cover Image URL" />
-
-        {/* Markdown Editor with Preview */}
-        <div>
-          <label className="block text-sm font-medium mb-2">Content (Markdown)</label>
-          <div data-color-mode="light">
-            <MDEditor
-              value={markdownContent}
-              onChange={(val) => setMarkdownContent(val || "")}
-              height={500}
-              preview="live"
-              hideToolbar={false}
-              enableScroll={true}
-              visibleDragbar={true}
-            />
+        {/* Title + Slug */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-medium mb-1">Title *</label>
+            <input value={title} onChange={e => { setTitle(e.target.value); setSlug(autoSlug(e.target.value)); }}
+              className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20" required />
           </div>
-          <p className="text-xs text-gray-500 mt-2">
-            💡 Tip: Use the toolbar for formatting, or write Markdown directly. Preview updates in real-time.
-          </p>
+          <div>
+            <label className="block text-xs font-medium mb-1">Slug *</label>
+            <input value={slug} onChange={e => setSlug(e.target.value)}
+              className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20 font-mono" required />
+          </div>
         </div>
 
-        <button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
-          Generate JSON
+        {/* Meta description */}
+        <div>
+          <label className="block text-xs font-medium mb-1">
+            Meta Description * <span className={`ml-1 ${metaDesc.length >= 150 && metaDesc.length <= 160 ? "text-green-600" : "text-red-500"}`}>{metaDesc.length}/160</span>
+          </label>
+          <textarea value={metaDesc} onChange={e => setMetaDesc(e.target.value)} rows={2}
+            className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20 resize-none" required />
+        </div>
+
+        {/* Category / ReadTime / Status */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-xs font-medium mb-1">Category *</label>
+            <select value={category} onChange={e => setCategory(e.target.value)}
+              className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20">
+              {VALID_CATEGORIES.map(c => <option key={c}>{c}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="block text-xs font-medium mb-1">Read Time *</label>
+            <input value={readTime} onChange={e => setReadTime(e.target.value)} placeholder="e.g., 8 min read"
+              className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20" required />
+          </div>
+          <div>
+            <label className="block text-xs font-medium mb-1">Status</label>
+            <select value={status} onChange={e => setStatus(e.target.value as any)}
+              className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div>
+          <label className="block text-xs font-medium mb-1">Tags (comma separated)</label>
+          <input value={tags} onChange={e => setTags(e.target.value)} placeholder="EV Charging, J1772, Sourcing Guide"
+            className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm focus:outline-none focus:ring-2 focus:ring-navy-700/20" />
+        </div>
+
+        {/* Featured image */}
+        <div>
+          <label className="block text-xs font-medium mb-1">Cover Image</label>
+          <div className="flex gap-2 items-center">
+            <input type="file" accept="image/*" onChange={onFeaturedPick} className="text-sm" />
+            {uploading && <span className="text-xs text-gray-500">Uploading…</span>}
+          </div>
+          {featuredUrl && <p className="mt-1 text-xs text-green-600 break-all">✓ {featuredUrl}</p>}
+        </div>
+
+        {/* Inline image upload helper */}
+        <div className="flex items-center gap-2 p-3 bg-navy-50 rounded-lg">
+          <span className="text-xs text-gray-600">Upload image for content body →</span>
+          <input type="file" accept="image/*" onChange={onInlineImage} className="text-sm" />
+          <span className="text-xs text-gray-400">(uploads & copies Markdown to clipboard)</span>
+        </div>
+
+        {/* Markdown editor */}
+        <div>
+          <label className="block text-xs font-medium mb-1">Content (Markdown) *</label>
+          <div data-color-mode="light">
+            <MDEditor value={content} onChange={v => setContent(v || "")} height={500} preview="live" />
+          </div>
+        </div>
+
+        <button type="submit" disabled={busy}
+          className="bg-navy-900 hover:bg-navy-800 disabled:opacity-50 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+          {busy ? "Saving…" : status === "draft" ? "Save as Draft" : "Publish"}
         </button>
       </form>
 
-      {output && (
-        <div className="mt-6">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-sm">Generated JSON (copy to posts.ts)</h3>
-            <button onClick={() => navigator.clipboard.writeText(output)} className="flex items-center gap-1 text-xs text-navy-700 hover:text-navy-900">
-              <Copy size={12} /> Copy
-            </button>
-          </div>
-          <pre className="bg-navy-900 text-white p-4 rounded-lg text-xs overflow-x-auto max-h-96">{output}</pre>
+      {result && (
+        <div className={`mt-4 p-4 rounded-lg text-sm whitespace-pre-wrap ${result.ok ? "bg-green-50 text-green-800" : "bg-red-50 text-red-800"}`}>
+          {result.msg}
+          {result.previewUrl && (
+            <a href={result.previewUrl} target="_blank" rel="noreferrer" className="ml-4 underline font-medium">Preview →</a>
+          )}
         </div>
       )}
     </div>
