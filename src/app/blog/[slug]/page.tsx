@@ -181,7 +181,6 @@ export default async function BlogPostPage({
 
           <article className="mt-12 max-w-none">
             {(() => {
-              let imageCount = 0; // 跟踪图片数量
               return (
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
@@ -247,14 +246,11 @@ export default async function BlogPostPage({
                 th: ({node, ...props}) => <th className="px-6 py-4 text-left font-semibold text-navy-900 border border-navy-200" {...props} />,
                 td: ({node, ...props}) => <td className="px-6 py-4 text-text-secondary border border-navy-200" {...props} />,
 
-                // 图片
+                // 图片（跳过与封面图 URL 相同的图，避免重复显示）
                 img: ({node, src, alt, ...props}: any) => {
-                  imageCount++;
-                  // 跳过第一张图片（已作为封面图显示）
-                  if (imageCount === 1) {
+                  if (src && (src === post.featured_image || src === post.image)) {
                     return null;
                   }
-                  // 提取 caption（从 alt 或下一行的斜体文本）
                   const caption = alt || '';
                   return <ImageZoom src={src || ''} alt={caption} caption={caption} />;
                 },
