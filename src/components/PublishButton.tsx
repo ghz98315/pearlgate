@@ -5,7 +5,7 @@ export default function PublishButton({ postId, slug }: { postId: string; slug: 
   const [busy, setBusy] = useState(false);
 
   const publish = async () => {
-    const pw = sessionStorage.getItem("admin_password");
+    const pw = localStorage.getItem("admin_password");
     if (!pw) { alert("请先登录 Admin 后台再发布"); return; }
     if (!confirm("确认发布这篇文章？发布后对所有人可见。")) return;
     setBusy(true);

@@ -25,7 +25,7 @@ function subscribeAuth(cb: () => void) {
   };
 }
 function getAuthSnapshot() {
-  return sessionStorage.getItem(AUTH_KEY) === "true";
+  return localStorage.getItem(AUTH_KEY) === "true";
 }
 function notifyAuthChange() {
   authStoreSubscribers.forEach((cb) => cb());
@@ -90,8 +90,8 @@ function PasswordGate({ onSuccess }: { onSuccess: () => void }) {
         setErr("Invalid password");
         return;
       }
-      sessionStorage.setItem(AUTH_KEY, "true");
-      sessionStorage.setItem("admin_password", pwd);
+      localStorage.setItem(AUTH_KEY, "true");
+      localStorage.setItem("admin_password", pwd);
       onSuccess();
     } catch {
       setErr("Login failed");
