@@ -13,6 +13,7 @@ import { createClient } from '@supabase/supabase-js';
 import { generateSEOMetadata } from '@/lib/seo';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import PublishButton from '@/components/PublishButton';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -127,6 +128,7 @@ export default async function BlogPostPage({
       {isPreview && (
         <div className="fixed top-0 left-0 right-0 z-50 bg-orange-500 text-white text-center py-2 text-sm font-medium">
           🔍 预览模式 - 此文章为草稿状态，仅你可见
+          <PublishButton postId={post.id} slug={post.slug} />
         </div>
       )}
       <script

@@ -6,11 +6,9 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 );
 
-// 验证 Admin Token
 function verifyAuth(req: NextRequest): boolean {
-  const authHeader = req.headers.get("authorization");
-  const token = authHeader?.replace("Bearer ", "");
-  return token === process.env.ADMIN_TOKEN;
+  const token = req.headers.get("authorization")?.replace("Bearer ", "");
+  return token === process.env.ADMIN_TOKEN || token === process.env.ADMIN_PASSWORD;
 }
 
 // GET /api/blog/[id] - 获取单篇文章详情
