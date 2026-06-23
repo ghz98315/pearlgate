@@ -170,14 +170,8 @@ export default async function BlogPostPage({
           </div>
 
           {(post.featured_image || post.image) && (
-            <div className="relative mt-8 h-64 lg:h-96 rounded-2xl overflow-hidden bg-gray-100">
-              <Image
-                src={post.featured_image || post.image}
-                alt={post.title}
-                fill
-                className="object-contain"
-                priority
-              />
+            <div className="mt-8">
+              <ImageZoom src={post.featured_image || post.image} alt={post.title} />
             </div>
           )}
 
