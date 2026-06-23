@@ -243,15 +243,35 @@ const VALID_CATEGORIES = ["Sourcing Guide", "Technical Guide", "Market Analysis"
 function DraftsList() {
   const [drafts, setDrafts] = useState<{ id: string; slug: string; title: string; date: string }[]>([]);
   const [loading, setLoading] = useState(true);
+  const [publishing, setPublishing] = useState<string | null>(null);
 
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/blog_posts?status=eq.draft&select=id,slug,title,created_at&order=created_at.desc`, {
       headers: { apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "", Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""}` },
     })
       .then(r => r.json())
-      .then(d => { setDrafts(Array.isArray(d) ? d.map((p: any) => ({ id: p.id, slug: p.slug, title: p.title, date: p.created_at?.slice(0, 10) })) : []); })
+      .then(d => setDrafts(Array.isArray(d) ? d.map((p: any) => ({ id: p.id, slug: p.slug, title: p.title, date: p.created_at?.slice(0, 10) })) : []))
       .finally(() => setLoading(false));
-  });
+  }, []);
+
+  const publish = async (d: { id: string; slug: string; title: string }) => {
+    if (!confirm(`发布「${d.title}」？发布后对所有人可见。`)) return;
+    setPublishing(d.id);
+    const pw = localStorage.getItem("admin_password") ?? "";
+    const res = await fetch(`/api/blog/${d.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${pw}` },
+      body: JSON.stringify({ status: "published", published_at: new Date().toISOString() }),
+    });
+    const j = await res.json();
+    if (j.success) {
+      setDrafts(prev => prev.filter(x => x.id !== d.id));
+      alert(`✓ 已发布：/blog/${d.slug}`);
+    } else {
+      alert("发布失败: " + (j.error ?? "unknown"));
+    }
+    setPublishing(null);
+  };
 
   if (loading) return <p className="text-sm text-gray-400">Loading drafts…</p>;
   if (!drafts.length) return null;
@@ -266,10 +286,14 @@ function DraftsList() {
               <p className="text-sm font-medium text-navy-900">{d.title}</p>
               <p className="text-xs text-gray-400 font-mono">{d.slug} · {d.date}</p>
             </div>
-            <a href={`/blog/${d.slug}?preview=true`} target="_blank" rel="noreferrer"
-              className="text-xs font-medium text-orange-600 hover:text-orange-800 underline">
-              预览 / 发布 →
-            </a>
+            <div className="flex gap-3 items-center">
+              <a href={`/blog/${d.slug}?preview=true`} target="_blank" rel="noreferrer"
+                className="text-xs text-navy-600 hover:underline">预览 →</a>
+              <button onClick={() => publish(d)} disabled={publishing === d.id}
+                className="text-xs font-semibold bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white px-3 py-1.5 rounded-lg">
+                {publishing === d.id ? "发布中…" : "✓ 发布"}
+              </button>
+            </div>
           </div>
         ))}
       </div>
