@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { Database, FileText, Users, Copy, Lock } from "lucide-react";
 import dynamic from "next/dynamic";
 import LeadsList from "@/components/admin/LeadsList";
@@ -58,7 +58,12 @@ export default function AdminPage() {
 
         <div className="mt-8">
           {activeTab === "suppliers" && <SupplierForm />}
-          {activeTab === "blog" && <BlogForm />}
+          {activeTab === "blog" && (
+            <div className="space-y-8">
+              <DraftsList />
+              <BlogForm />
+            </div>
+          )}
           {activeTab === "leads" && <LeadsList />}
         </div>
       </div>
@@ -234,6 +239,43 @@ function SupplierForm() {
 }
 
 const VALID_CATEGORIES = ["Sourcing Guide", "Technical Guide", "Market Analysis", "Certification Guide", "Supplier Verification"];
+
+function DraftsList() {
+  const [drafts, setDrafts] = useState<{ id: string; slug: string; title: string; date: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/blog_posts?status=eq.draft&select=id,slug,title,created_at&order=created_at.desc`, {
+      headers: { apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "", Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ""}` },
+    })
+      .then(r => r.json())
+      .then(d => { setDrafts(Array.isArray(d) ? d.map((p: any) => ({ id: p.id, slug: p.slug, title: p.title, date: p.created_at?.slice(0, 10) })) : []); })
+      .finally(() => setLoading(false));
+  });
+
+  if (loading) return <p className="text-sm text-gray-400">Loading drafts…</p>;
+  if (!drafts.length) return null;
+
+  return (
+    <div>
+      <h2 className="text-lg font-semibold mb-3">草稿箱 ({drafts.length})</h2>
+      <div className="divide-y divide-border rounded-xl border border-border overflow-hidden">
+        {drafts.map(d => (
+          <div key={d.id} className="flex items-center justify-between px-4 py-3 bg-white hover:bg-gray-50">
+            <div>
+              <p className="text-sm font-medium text-navy-900">{d.title}</p>
+              <p className="text-xs text-gray-400 font-mono">{d.slug} · {d.date}</p>
+            </div>
+            <a href={`/blog/${d.slug}?preview=true`} target="_blank" rel="noreferrer"
+              className="text-xs font-medium text-orange-600 hover:text-orange-800 underline">
+              预览 / 发布 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function BlogForm() {
   const [title, setTitle] = useState("");
